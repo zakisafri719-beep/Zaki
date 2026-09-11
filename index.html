@@ -3,273 +3,303 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Game Hub | منصة الألعاب العالمية</title>
-<!-- مكتبة الأيقونات العالمية FontAwesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<title>Game Hub - الألعاب المميزة</title>
 <style>
 :root {
-    --bg: #070913;
-    --bg2: rgba(15, 23, 42, 0.75);
-    --card-bg: rgba(30, 41, 59, 0.7);
-    --border: rgba(255, 255, 255, 0.1);
-    --text: #ffffff;
-    --text2: #cbd5e1;
-    --purple: #8b5cf6;
-    --purple-glow: rgba(139, 92, 246, 0.4);
-    --blue: #3b82f6;
+    --bg-dark: #0f172a;
+    --card-bg: #1e293b;
+    --text-light: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent: #6366f1;
+    --accent-hover: #4f46e5;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+[data-theme="light"] {
+    --bg-dark: #f1f5f9;
+    --card-bg: #ffffff;
+    --text-light: #0f172a;
+    --text-muted: #64748b;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    transition: background-color 0.3s, color 0.3s;
+}
 
 body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    font-family: system-ui, -apple-system, sans-serif;
+    padding-bottom: 60px;
 }
 
-/* هيدر عصري بتأثير الزجاج */
 header {
-    height: 80px;
-    background: var(--bg2);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
+    background-color: var(--card-bg);
+    padding: 20px 40px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    padding: 0 40px;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.logo { 
-    font-size: 26px; 
-    font-weight: 800; 
-    cursor: pointer;
-    display: flex;
     align-items: center;
-    gap: 10px;
-    background: linear-gradient(135deg, #a855f7, #3b82f6);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);
 }
 
-nav { display: flex; gap: 25px; }
-nav a { 
-    color: var(--text2); 
-    text-decoration: none; 
-    font-size: 15px; 
-    font-weight: 500;
-    transition: 0.3s ease; 
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-nav a:hover { color: var(--purple); transform: translateY(-2px); }
-
-.container { max-width: 1250px; margin: auto; padding: 30px 20px; }
-
-/* القسم الرئيسي المطور */
-.hero {
-    min-height: 380px;
-    border-radius: 24px;
-    padding: 60px;
-    display: flex;
-    align-items: center;
-    position: relative;
-    overflow: hidden;
-    background: linear-gradient(90deg, rgba(7,9,19,0.95) 30%, rgba(7,9,19,0.4) 100%), 
-                url('https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
-    border: 1px solid var(--border);
-    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
-}
-
-.hero-content { max-width: 600px; position: relative; z-index: 2; }
-.hero h1 { font-size: 48px; font-weight: 900; margin: 15px 0; line-height: 1.2; }
-.hero h1 span { color: var(--purple); }
-.hero p { color: var(--text2); font-size: 18px; margin-bottom: 30px; }
-
-.hero-button {
-    background: linear-gradient(135deg, var(--purple), var(--blue));
-    border: none;
-    color: white;
-    padding: 14px 32px;
-    border-radius: 30px;
-    font-size: 16px;
+.logo {
+    font-size: 24px;
     font-weight: bold;
-    cursor: pointer;
-    box-shadow: 0 0 20px var(--purple-glow);
-    transition: 0.3s ease;
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
+    color: var(--accent);
 }
-.hero-button:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 0 30px var(--purple-glow); }
 
-/* عناوين الأقسام */
-.section-title {
+.controls {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 45px 0 20px;
+    gap: 15px;
 }
-.section-title h2 { font-size: 26px; font-weight: 700; display: flex; align-items: center; gap: 10px; }
 
-/* الشبكة الخاصة بالألعاب */
-.games {
+.theme-btn {
+    background: none;
+    border: 1px solid var(--text-muted);
+    color: var(--text-light);
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.filters {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    background-color: var(--card-bg);
+    color: var(--text-light);
+    border: 1px solid var(--text-muted);
+    padding: 8px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.filter-btn.active {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: white;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.games-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 25px;
 }
 
 .game-card {
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 20px;
+    background-color: var(--card-bg);
+    border-radius: 12px;
     overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    backdrop-filter: blur(8px);
-    position: relative;
-}
-.game-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--purple);
-    box-shadow: 0 15px 30px rgba(139, 92, 246, 0.25);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.game-img-wrapper {
+.game-card img {
     width: 100%;
-    height: 180px;
-    overflow: hidden;
-    position: relative;
-}
-
-.game-img-wrapper img {
-    width: 100%;
-    height: 100%;
+    height: 160px;
     object-fit: cover;
-    transition: transform 0.5s ease;
 }
 
-.game-card:hover .game-img-wrapper img { transform: scale(1.1); }
+.game-details {
+    padding: 15px;
+}
 
-.game-info { padding: 20px; }
-.game-info h3 { font-size: 18px; margin-bottom: 8px; }
-.game-info p { color: var(--text2); font-size: 13px; margin-bottom: 15px; }
+.game-title {
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.game-category {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
 
 .rating {
-    color: #f59e0b;
-    font-weight: bold;
-    font-size: 14px;
     display: flex;
     align-items: center;
     gap: 5px;
+    font-weight: bold;
+    color: #f59e0b;
 }
 
-.details-btn {
-    width: 100%;
-    padding: 10px;
-    margin-top: 15px;
-    border: none;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.05);
+#scrollTopBtn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background-color: var(--accent);
     color: white;
+    border: none;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
     cursor: pointer;
-    transition: 0.3s;
-    font-weight: 600;
+    display: none;
+    font-size: 18px;
 }
-.details-btn:hover { background: var(--purple); }
 </style>
 </head>
-
 <body>
 
 <header>
-    <div class="logo">
-        <i class="fa-solid fa-gamepad"></i> GAMEHUB
+    <div class="logo">GameHub</div>
+    <div class="controls">
+        <button class="theme-btn" onclick="toggleTheme()">تغيير المظهر</button>
     </div>
-
-    <nav>
-        <a href="#home"><i class="fa-solid fa-house"></i> الرئيسية</a>
-        <a href="#games"><i class="fa-solid fa-fire"></i> الألعاب</a>
-    </nav>
 </header>
 
-<main class="container" id="home">
-
-    <section class="hero">
-        <div class="hero-content">
-            <h1>عالم <span>الألعاب الرقمية</span> بأسلوب عالمي</h1>
-            <p>تصفح المراجعات والتقييمات لأحدث وأقوى الألعاب العالمية</p>
-            <button class="hero-button" onclick="document.getElementById('games').scrollIntoView({behavior:'smooth'})">
-                استكشف الآن <i class="fa-solid fa-arrow-left"></i>
-            </button>
-        </div>
-    </section>
-
-    <div class="section-title" id="games">
-        <h2><i class="fa-solid fa-bolt" style="color:var(--purple)"></i> أهم الألعاب</h2>
+<div class="container">
+    <div class="filters">
+        <button class="filter-btn active" onclick="filterGames('all', this)">الكل</button>
+        <button class="filter-btn" onclick="filterGames('action', this)">أكشن</button>
+        <button class="filter-btn" onclick="filterGames('rpg', this)">آر بي جي</button>
+        <button class="filter-btn" onclick="filterGames('sports', this)">رياضة</button>
     </div>
 
-    <section class="games" id="gamesGrid"></section>
+    <div class="games-grid" id="gamesGrid"></div>
+</div>
 
-</main>
+<button id="scrollTopBtn" onclick="scrollToTop()">↑</button>
 
 <script>
-// قاعدة بيانات مدعومة بروابط صور حقيقية من Unsplash
 const games = [
     {
         name: "Grand Theft Auto V",
-        desc: "عالم مفتوح • أكشن • مغامرة",
-        rating: 9.5,
-        img: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80"
+        category: "action",
+        categoryText: "أكشن / عالم مفتوح",
+        rating: "9.5",
+        img: "25746.jpg"
+    },
+    {
+        name: "Minecraft",
+        category: "action",
+        categoryText: "بناء / مغامرة",
+        rating: "9.0",
+        img: "25781.png"
+    },
+    {
+        name: "Red Dead Redemption 2",
+        category: "action",
+        categoryText: "أكشن / عالم مفتوح",
+        rating: "9.8",
+        img: "25749.jpg"
+    },
+    {
+        name: "The Witcher 3",
+        category: "rpg",
+        categoryText: "آر بي جي / خيال",
+        rating: "9.7",
+        img: "25750.jpg"
+    },
+    {
+        name: "Call of Duty: MW",
+        category: "action",
+        categoryText: "منظور أول / أكشن",
+        rating: "8.8",
+        img: "25771.jpg"
+    },
+    {
+        name: "FIFA 24",
+        category: "sports",
+        categoryText: "رياضة / كرة قدم",
+        rating: "8.2",
+        img: "25757.jpg"
+    },
+    {
+        name: "God of War: Ragnarök",
+        category: "action",
+        categoryText: "أكشن / مغامرة",
+        rating: "9.6",
+        img: "25779.jpg"
+    },
+    {
+        name: "Elden Ring",
+        category: "rpg",
+        categoryText: "آر بي جي / عالم مفتوح",
+        rating: "9.5",
+        img: "25777.webp"
+    },
+    {
+        name: "Fortnite",
+        category: "action",
+        categoryText: "باتل رويال",
+        rating: "8.5",
+        img: "25778.jpg"
     },
     {
         name: "Cyberpunk 2077",
-        desc: "عالم مفتوح • سايبربانك • RPG",
-        rating: 9.0,
-        img: "https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        name: "Forza Horizon",
-        desc: "سباقات • عالم مفتوح • سيارات",
-        rating: 9.3,
-        img: "https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80"
-    },
-    {
-        name: "Fantasy RPG Adventure",
-        desc: "عالم مفتوح • خيال • RPG",
-        rating: 9.7,
-        img: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80"
+        category: "rpg",
+        categoryText: "آر بي جي / عالم مفتوح",
+        rating: "8.9",
+        img: "25747.jpg"
     }
 ];
 
-function renderGames() {
+function displayGames(filter = 'all') {
     const grid = document.getElementById('gamesGrid');
     grid.innerHTML = '';
 
-    games.forEach(game => {
+    const filteredGames = filter === 'all' 
+        ? games 
+        : games.filter(g => g.category === filter);
+
+    filteredGames.forEach(game => {
         const card = document.createElement('div');
         card.className = 'game-card';
         card.innerHTML = `
-            <div class="game-img-wrapper">
-                <img src="${game.img}" alt="${game.name}" loading="lazy">
-            </div>
-            <div class="game-info">
-                <h3>${game.name}</h3>
-                <p>${game.desc}</p>
-                <div class="rating"><i class="fa-solid fa-star"></i> ${game.rating}</div>
-                <button class="details-btn">عرض التفاصيل</button>
+            <img src="${game.img}" alt="${game.name}">
+            <div class="game-details">
+                <div class="game-title">${game.name}</div>
+                <div class="game-category">${game.categoryText}</div>
+                <div class="rating">★ ${game.rating}</div>
             </div>
         `;
         grid.appendChild(card);
     });
 }
 
-renderGames();
+function filterGames(category, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    displayGames(category);
+}
+
+function toggleTheme() {
+    const body = document.body;
+    const currentTheme = body.getAttribute('data-theme');
+    if (currentTheme === 'light') {
+        body.removeAttribute('data-theme');
+    } else {
+        body.setAttribute('data-theme', 'light');
+    }
+}
+
+window.onscroll = function() {
+    const btn = document.getElementById('scrollTopBtn');
+    if (document.documentElement.scrollTop > 200) {
+        btn.style.display = 'block';
+    } else {
+        btn.style.display = 'none';
+    }
+};
+
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+displayGames();
 </script>
 
 </body>
