@@ -4,52 +4,95 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Game Hub | موسوعة الألعاب</title>
-
 <style>
+:root {
+    --bg: #050817;
+    --bg2: #070d24;
+    --bg3: #0b1230;
+    --border: #252d61;
+    --border2: #303773;
+    --text: #ffffff;
+    --text2: #ddd;
+    --text3: #999;
+    --purple: #8b3dff;
+    --purple2: #9b4dff;
+    --purple3: #7935ff;
+    --blue: #1d6cff;
+    --yellow: #ffd21f;
+    --red: #ff3366;
+}
+
+body.light {
+    --bg: #f0f2f8;
+    --bg2: #ffffff;
+    --bg3: #ffffff;
+    --border: #e0e4f0;
+    --border2: #d0d5e5;
+    --text: #111;
+    --text2: #333;
+    --text3: #666;
+}
+
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-    background: #050817;
-    color: white;
+    background: var(--bg);
+    color: var(--text);
     font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
     scroll-behavior: smooth;
+    transition: background 0.3s, color 0.3s;
 }
 
 /* الشريط العلوي */
 header {
     height: 75px;
-    background: #070d24;
-    border-bottom: 1px solid #20275a;
+    background: var(--bg2);
+    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 35px;
+    padding: 0 30px;
     position: sticky;
     top: 0;
     z-index: 100;
+    transition: background 0.3s;
 }
 
-.logo { font-size: 25px; font-weight: bold; cursor: pointer; }
-.logo span { color: #8b3dff; }
-.logo small { display: block; font-size: 11px; color: #aaa; margin-top: 3px; }
+.logo { font-size: 24px; font-weight: bold; cursor: pointer; }
+.logo span { color: var(--purple); }
+.logo small { display: block; font-size: 11px; color: var(--text3); margin-top: 3px; }
 
-nav { display: flex; gap: 25px; }
-nav a { color: #ddd; text-decoration: none; font-size: 15px; transition: 0.3s; }
-nav a:hover { color: #9b4dff; }
+nav { display: flex; gap: 22px; }
+nav a { color: var(--text2); text-decoration: none; font-size: 15px; transition: 0.3s; }
+nav a:hover { color: var(--purple2); }
+
+.header-actions { display: flex; gap: 10px; align-items: center; }
 
 .search {
-    background: #11183b;
-    border: 1px solid #303773;
+    background: var(--bg3);
+    border: 1px solid var(--border2);
     border-radius: 25px;
     padding: 12px 20px;
-    width: 240px;
-    color: white;
+    width: 220px;
+    color: var(--text);
     outline: none;
     transition: 0.3s;
 }
-.search:focus { border-color: #8b3dff; box-shadow: 0 0 15px #8b3dff44; }
+.search:focus { border-color: var(--purple); box-shadow: 0 0 15px #8b3dff44; }
 
-/* المحتوى */
+.theme-btn {
+    background: var(--bg3);
+    border: 1px solid var(--border2);
+    color: var(--text);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    transition: 0.3s;
+}
+.theme-btn:hover { background: var(--purple); color: white; }
+
 .container { max-width: 1250px; margin: auto; padding: 25px; }
 
 /* الواجهة الرئيسية */
@@ -69,7 +112,7 @@ nav a:hover { color: #9b4dff; }
 }
 
 .hero-content { max-width: 550px; position: relative; z-index: 2; }
-.hero h1 { font-size: 55px; margin: 15px 0; }
+.hero h1 { font-size: 55px; margin: 15px 0; color: white; }
 .hero h1 span { color: #994cff; }
 .hero p { color: #c5c5d8; font-size: 19px; margin-bottom: 25px; }
 
@@ -94,7 +137,6 @@ nav a:hover { color: #9b4dff; }
     filter: drop-shadow(0 0 30px #7040ff);
     animation: float 3s ease-in-out infinite;
 }
-
 @keyframes float {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-15px); }
@@ -107,8 +149,36 @@ nav a:hover { color: #9b4dff; }
     align-items: center;
     margin: 35px 0 18px;
 }
-.section-title h2 { font-size: 24px; }
-.section-title span { color: #994cff; font-size: 14px; cursor: pointer; }
+.section-title h2 { font-size: 24px; color: var(--text); }
+.section-title span { color: var(--purple2); font-size: 14px; cursor: pointer; }
+
+/* التصنيفات */
+.categories {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding: 10px 0;
+    scrollbar-width: none;
+}
+.categories::-webkit-scrollbar { display: none; }
+
+.cat-btn {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text2);
+    padding: 10px 20px;
+    border-radius: 25px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: 0.3s;
+    font-size: 14px;
+}
+.cat-btn:hover { border-color: var(--purple); color: var(--purple2); }
+.cat-btn.active {
+    background: var(--purple3);
+    color: white;
+    border-color: var(--purple3);
+}
 
 /* المنصات */
 .platforms {
@@ -127,9 +197,10 @@ nav a:hover { color: #9b4dff; }
     border: 1px solid;
     transition: 0.3s;
     cursor: pointer;
+    color: white;
 }
 .platform:hover { transform: translateY(-6px); box-shadow: 0 10px 30px #0008; }
-.platform h3 { font-size: 23px; }
+.platform h3 { font-size: 22px; }
 .platform p { color: #ddd; font-size: 13px; }
 .platform button {
     width: fit-content;
@@ -157,14 +228,14 @@ nav a:hover { color: #9b4dff; }
 }
 
 .game {
-    background: #0b1230;
-    border: 1px solid #252d61;
+    background: var(--bg3);
+    border: 1px solid var(--border);
     border-radius: 17px;
     overflow: hidden;
     transition: 0.3s;
     position: relative;
 }
-.game:hover { transform: translateY(-5px); border-color: #8d3cff; }
+.game:hover { transform: translateY(-5px); border-color: var(--purple); }
 
 .fav-btn {
     position: absolute;
@@ -181,26 +252,32 @@ nav a:hover { color: #9b4dff; }
     z-index: 2;
     transition: 0.3s;
 }
-.fav-btn:hover { background: #8b3dff; }
-.fav-btn.active { background: #ff3366; }
+.fav-btn:hover { background: var(--purple); }
+.fav-btn.active { background: var(--red); }
 
 .game-image {
     height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 55px;
+    font-size: 60px;
 }
 
 .gta { background: linear-gradient(135deg, #8d1027, #21102d); }
 .minecraft { background: linear-gradient(135deg, #168c49, #123e35); }
 .rdr { background: linear-gradient(135deg, #a52618, #35120e); }
 .witcher { background: linear-gradient(135deg, #263b50, #10151d); }
+.cod { background: linear-gradient(135deg, #4a4a4a, #1a1a1a); }
+.fifa { background: linear-gradient(135deg, #1a7a3e, #0d3a1f); }
+.gow { background: linear-gradient(135deg, #8b1f1f, #3d0e0e); }
+.eldenring { background: linear-gradient(135deg, #7a6b3a, #2e2815); }
+.fortnite { background: linear-gradient(135deg, #7a3db8, #3d1f5c); }
+.cyberpunk { background: linear-gradient(135deg, #e6b800, #7a5c00); }
 
 .game-info { padding: 15px; }
-.game-info h3 { margin-bottom: 8px; font-size: 16px; }
-.game-info p { color: #999; font-size: 12px; margin-bottom: 12px; }
-.rating { color: #ffd21f; font-size: 14px; }
+.game-info h3 { margin-bottom: 8px; font-size: 15px; color: var(--text); }
+.game-info p { color: var(--text3); font-size: 12px; margin-bottom: 10px; }
+.rating { color: var(--yellow); font-size: 14px; }
 
 .details {
     margin-top: 12px;
@@ -208,17 +285,17 @@ nav a:hover { color: #9b4dff; }
     padding: 9px;
     border: none;
     border-radius: 20px;
-    background: #7935ff;
+    background: var(--purple3);
     color: white;
     cursor: pointer;
     transition: 0.3s;
 }
-.details:hover { background: #9b4dff; }
+.details:hover { background: var(--purple2); }
 
 /* الأخبار */
 .news {
-    background: #0b1230;
-    border: 1px solid #252d61;
+    background: var(--bg3);
+    border: 1px solid var(--border);
     border-radius: 18px;
     padding: 20px;
 }
@@ -227,12 +304,13 @@ nav a:hover { color: #9b4dff; }
     justify-content: space-between;
     align-items: center;
     padding: 15px 0;
-    border-bottom: 1px solid #202650;
+    border-bottom: 1px solid var(--border);
     transition: 0.3s;
 }
 .news-item:hover { padding-right: 10px; }
 .news-item:last-child { border-bottom: none; }
-.news-item span { color: #888; font-size: 12px; }
+.news-item strong { color: var(--text); }
+.news-item span { color: var(--text3); font-size: 12px; }
 
 /* الإحصائيات */
 .stats {
@@ -242,23 +320,48 @@ nav a:hover { color: #9b4dff; }
     margin-top: 20px;
 }
 .stat {
-    background: #0b1230;
-    border: 1px solid #252d61;
+    background: var(--bg3);
+    border: 1px solid var(--border);
     border-radius: 18px;
     padding: 25px;
     text-align: center;
     transition: 0.3s;
 }
-.stat:hover { border-color: #8b3dff; transform: translateY(-3px); }
-.stat strong { display: block; color: #9b4dff; font-size: 30px; margin-bottom: 8px; }
-.stat span { color: #aaa; }
+.stat:hover { border-color: var(--purple); transform: translateY(-3px); }
+.stat strong { display: block; color: var(--purple2); font-size: 30px; margin-bottom: 8px; }
+.stat span { color: var(--text3); }
+
+/* التواصل */
+.social {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+.social a {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 12px 22px;
+    border-radius: 25px;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 15px;
+}
+.social a:hover {
+    background: var(--purple3);
+    border-color: var(--purple3);
+    color: white;
+    transform: translateY(-3px);
+}
 
 footer {
     text-align: center;
     padding: 40px 20px;
-    color: #777;
+    color: var(--text3);
     margin-top: 30px;
-    border-top: 1px solid #1a2050;
+    border-top: 1px solid var(--border);
 }
 
 /* نافذة التفاصيل */
@@ -277,7 +380,7 @@ footer {
 .modal.active { display: flex; }
 
 .modal-content {
-    background: #0b1230;
+    background: var(--bg3);
     border: 1px solid #3933a5;
     border-radius: 20px;
     padding: 30px;
@@ -291,22 +394,59 @@ footer {
     to { transform: scale(1); opacity: 1; }
 }
 
-.modal-content h2 { color: #9b4dff; margin-bottom: 15px; }
-.modal-content p { color: #ccc; margin-bottom: 20px; line-height: 1.7; }
+.modal-content h2 { color: var(--purple2); margin-bottom: 15px; }
+.modal-content .modal-icon { font-size: 70px; margin-bottom: 15px; }
+.modal-content p { color: var(--text2); margin-bottom: 20px; line-height: 1.8; }
+.modal-content .modal-meta {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: var(--bg);
+    border-radius: 15px;
+}
+.modal-meta div { text-align: center; }
+.modal-meta small { display: block; color: var(--text3); font-size: 11px; margin-bottom: 5px; }
+.modal-meta strong { color: var(--purple2); font-size: 16px; }
+
 .modal-content .close {
-    background: #7935ff;
+    background: var(--purple3);
     color: white;
     border: none;
-    padding: 10px 30px;
+    padding: 12px 35px;
     border-radius: 20px;
     cursor: pointer;
+    font-size: 15px;
+    transition: 0.3s;
 }
+.modal-content .close:hover { background: var(--purple2); }
+
+/* زر العودة للأعلى */
+.top-btn {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: var(--purple3);
+    color: white;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px #7935ff66;
+    display: none;
+    z-index: 90;
+    transition: 0.3s;
+}
+.top-btn.show { display: block; }
+.top-btn:hover { background: var(--purple2); transform: translateY(-3px); }
 
 /* الهاتف */
 @media (max-width: 800px) {
     header { padding: 0 15px; }
     nav { display: none; }
-    .search { width: 150px; }
+    .search { width: 130px; padding: 10px 15px; font-size: 13px; }
     .container { padding: 15px; }
     .hero { min-height: 300px; padding: 30px; }
     .hero h1 { font-size: 38px; }
@@ -314,13 +454,15 @@ footer {
     .platforms { grid-template-columns: repeat(2, 1fr); }
     .games { grid-template-columns: repeat(2, 1fr); }
     .stats { grid-template-columns: 1fr; }
+    .logo { font-size: 18px; }
+    .logo small { font-size: 9px; }
+    .theme-btn { width: 38px; height: 38px; font-size: 16px; }
 }
 
 @media (max-width: 450px) {
-    .logo { font-size: 19px; }
-    .search { width: 130px; padding: 10px; }
-    .hero h1 { font-size: 32px; }
+    .hero h1 { font-size: 30px; }
     .platforms, .games { grid-template-columns: 1fr; }
+    .search { width: 110px; font-size: 12px; }
 }
 </style>
 </head>
@@ -337,19 +479,22 @@ footer {
         <a href="#home">🏠 الرئيسية</a>
         <a href="#games">🎮 الألعاب</a>
         <a href="#platforms">🖥️ المنصات</a>
-        <a href="#favorites">❤️ المفضلة</a>
     </nav>
 
-    <input class="search" id="searchInput" type="text" placeholder="🔍 ابحث عن لعبة...">
+    <div class="header-actions">
+        <input class="search" id="searchInput" type="text" placeholder="🔍 ابحث...">
+        <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="تبديل الوضع">🌙</button>
+    </div>
 </header>
 
 <main class="container" id="home">
 
+    <!-- الواجهة الرئيسية -->
     <section class="hero">
         <div class="hero-content">
             <div>🎮 مرحباً بك في Game Hub</div>
             <h1>موسوعة <span>الألعاب</span></h1>
-            <p>اكتشف عالم الألعاب في مكان واحد</p>
+            <p>اكتشف عالم الألعاب في مكان واحد — 10 ألعاب مميزة بمعلومات كاملة</p>
             <button class="hero-button" onclick="document.getElementById('games').scrollIntoView({behavior:'smooth'})">
                 🎮 استكشف الألعاب ←
             </button>
@@ -357,6 +502,7 @@ footer {
         <div class="hero-character">🎮</div>
     </section>
 
+    <!-- المنصات -->
     <div class="section-title" id="platforms">
         <h2>🕹️ المنصات</h2>
         <span>عرض الكل</span>
@@ -389,34 +535,54 @@ footer {
         </div>
     </section>
 
+    <!-- الألعاب -->
     <div class="section-title" id="games">
         <h2>🔥 ألعاب مميزة</h2>
-        <span>عرض الكل</span>
+        <span id="resultsCount">10 ألعاب</span>
     </div>
 
-    <section class="games" id="gamesGrid">
-        <!-- سيتم توليد الألعاب هنا بواسطة JavaScript -->
+    <!-- التصنيفات -->
+    <section class="categories" id="categories">
+        <button class="cat-btn active" data-cat="all">🎮 الكل</button>
+        <button class="cat-btn" data-cat="أكشن">⚔️ أكشن</button>
+        <button class="cat-btn" data-cat="مغامرة">🗺️ مغامرة</button>
+        <button class="cat-btn" data-cat="RPG">🧙 RPG</button>
+        <button class="cat-btn" data-cat="رياضة">⚽ رياضة</button>
+        <button class="cat-btn" data-cat="باتل رويال">🎯 باتل رويال</button>
+        <button class="cat-btn" data-cat="عالم مفتوح">🌍 عالم مفتوح</button>
     </section>
 
+    <section class="games" id="gamesGrid"></section>
+
+    <!-- الأخبار -->
     <div class="section-title">
         <h2>📰 أحدث الأخبار</h2>
     </div>
 
     <section class="news">
         <div class="news-item">
-            <strong>🎮 تحديث جديد للعبة GTA Online</strong>
+            <strong>🎮 تحديث جديد للعبة GTA Online بإضافات ضخمة</strong>
             <span>2025-11-10</span>
         </div>
         <div class="news-item">
-            <strong>🔥 إصدار جديد من Call of Duty</strong>
-            <span>2025-10-06</span>
+            <strong>🔥 إصدار جديد من Call of Duty يحطم الأرقام</strong>
+            <span>2025-11-08</span>
         </div>
         <div class="news-item">
-            <strong>🎮 معلومات جديدة عن GTA VI</strong>
+            <strong>🎮 معلومات جديدة عن GTA VI من Rockstar</strong>
             <span>2025-11-05</span>
+        </div>
+        <div class="news-item">
+            <strong>⚽ FIFA 25 قادم بمحرك رسومات جديد</strong>
+            <span>2025-11-02</span>
+        </div>
+        <div class="news-item">
+            <strong>🪓 God of War: تحديث مجاني للعبة</strong>
+            <span>2025-10-28</span>
         </div>
     </section>
 
+    <!-- الإحصائيات -->
     <div class="section-title">
         <h2>📊 إحصائيات الموقع</h2>
     </div>
@@ -427,32 +593,65 @@ footer {
         <div class="stat"><strong>+5000</strong><span>مراجعة</span></div>
     </section>
 
+    <!-- التواصل -->
+    <div class="section-title">
+        <h2>📞 تواصل معنا</h2>
+    </div>
+
+    <section class="social">
+        <a href="#" target="_blank">📘 فيسبوك</a>
+        <a href="#" target="_blank">📷 إنستغرام</a>
+        <a href="#" target="_blank">🐦 تويتر</a>
+        <a href="#" target="_blank">▶️ يوتيوب</a>
+        <a href="#" target="_blank">💬 واتساب</a>
+    </section>
+
 </main>
 
 <footer>
     🎮 GAME HUB
     <br>
-    موسوعة الألعاب في مكان واحد
+    <small>موسوعة الألعاب في مكان واحد © 2025</small>
 </footer>
 
 <!-- نافذة التفاصيل -->
 <div class="modal" id="modal">
     <div class="modal-content">
+        <div class="modal-icon" id="modalIcon"></div>
         <h2 id="modalTitle"></h2>
         <p id="modalDesc"></p>
+        <div class="modal-meta">
+            <div>
+                <small>التقييم</small>
+                <strong id="modalRating"></strong>
+            </div>
+            <div>
+                <small>التصنيف</small>
+                <strong id="modalCat"></strong>
+            </div>
+            <div>
+                <small>السنة</small>
+                <strong id="modalYear"></strong>
+            </div>
+        </div>
         <button class="close" onclick="closeModal()">إغلاق</button>
     </div>
 </div>
 
+<!-- زر العودة للأعلى -->
+<button class="top-btn" id="topBtn" onclick="scrollTo({top:0,behavior:'smooth'})">↑</button>
+
 <script>
-// ====== قاعدة بيانات الألعاب ======
+// ====== قاعدة بيانات الألعاب الكاملة ======
 const games = [
     {
         id: 1,
         name: "Grand Theft Auto V",
         desc: "عالم مفتوح • أكشن • مغامرة",
-        fullDesc: "لعبة أكشن ومغامرة في عالم مفتوح، تتيح لك اللعب بشخصيات متعددة واستكشاف مدينة لوس سانتوس بكل تفاصيلها.",
+        fullDesc: "لعبة أكشن ومغامرة في عالم مفتوح، تتيح لك اللعب بثلاث شخصيات واستكشاف مدينة لوس سانتوس بكل تفاصيلها. واحدة من أنجح الألعاب في التاريخ.",
         rating: 9.5,
+        year: 2013,
+        category: "عالم مفتوح",
         icon: "🚗",
         css: "gta"
     },
@@ -460,8 +659,10 @@ const games = [
         id: 2,
         name: "Minecraft",
         desc: "بناء • مغامرة • بقاء",
-        fullDesc: "لعبة بناء واستكشاف لا نهائية، يمكنك بناء أي شيء تتخيله والبقاء على قيد الحياة في عالم من المكعبات.",
+        fullDesc: "لعبة بناء واستكشاف لا نهائية، يمكنك بناء أي شيء تتخيله من المكعبات، والبقاء على قيد الحياة في عالم مليء بالمخلوقات والمغامرات.",
         rating: 9.0,
+        year: 2011,
+        category: "مغامرة",
         icon: "⛏️",
         css: "minecraft"
     },
@@ -469,8 +670,10 @@ const games = [
         id: 3,
         name: "Red Dead Redemption 2",
         desc: "عالم مفتوح • أكشن • قصة",
-        fullDesc: "مغامرة ملحمية في الغرب الأمريكي القديم، مع قصة عميقة وعالم مفتوح مذهل بالتفاصيل.",
+        fullDesc: "مغامرة ملحمية في الغرب الأمريكي القديم، مع قصة عميقة وعالم مفتوح مذهل بالتفاصيل. تتبع قصة آرثر مورغان وعصابة فان دير ليند.",
         rating: 9.7,
+        year: 2018,
+        category: "عالم مفتوح",
         icon: "🤠",
         css: "rdr"
     },
@@ -478,14 +681,83 @@ const games = [
         id: 4,
         name: "The Witcher 3",
         desc: "عالم مفتوح • RPG • مغامرة",
-        fullDesc: "لعبة تقمص أدوار خيالية، تلعب فيها دور صياد الوحوش جيرالت في عالم ضخم مليء بالمهام الجانبية.",
+        fullDesc: "لعبة تقمص أدوار خيالية، تلعب فيها دور صياد الوحوش جيرالت في عالم ضخم مليء بالمهام الجانبية والوحوش الخطيرة.",
         rating: 9.6,
+        year: 2015,
+        category: "RPG",
         icon: "⚔️",
         css: "witcher"
+    },
+    {
+        id: 5,
+        name: "Call of Duty: MW",
+        desc: "أكشن • تصويب • حرب",
+        fullDesc: "لعبة تصويب من منظور الشخص الأول، تعيش فيها تجارب حربية واقعية مع رسومات مذهلة وأطوار لعب متعددة، بما فيها الباتل رويال.",
+        rating: 9.2,
+        year: 2019,
+        category: "أكشن",
+        icon: "🎯",
+        css: "cod"
+    },
+    {
+        id: 6,
+        name: "FIFA 24",
+        desc: "رياضة • كرة قدم • جماعية",
+        fullDesc: "لعبة كرة القدم الأكثر شعبية في العالم، مع فرق ولاعبين حقيقيين ودوريات عالمية وأطوار لعب متنوعة للفرد والجماعة.",
+        rating: 8.5,
+        year: 2023,
+        category: "رياضة",
+        icon: "⚽",
+        css: "fifa"
+    },
+    {
+        id: 7,
+        name: "God of War: Ragnarök",
+        desc: "أكشن • مغامرة • أساطير",
+        fullDesc: "مغامرة ملحمية مع كراتوس وأتريوس في عالم الأساطير الإسكندنافية، مع قتال ملحمي وقصة مؤثرة ورسومات مذهلة.",
+        rating: 9.8,
+        year: 2022,
+        category: "أكشن",
+        icon: "🪓",
+        css: "gow"
+    },
+    {
+        id: 8,
+        name: "Elden Ring",
+        desc: "RPG • عالم مفتوح • تحدٍ",
+        fullDesc: "لعبة تقمص أدوار من مطور Dark Souls، مع عالم ضخم مفتوح ومعارك صعبة ومكافئة، وقصة غامضة من كتابة جورج ر.ر. مارتن.",
+        rating: 9.7,
+        year: 2022,
+        category: "RPG",
+        icon: "🗡️",
+        css: "eldenring"
+    },
+    {
+        id: 9,
+        name: "Fortnite",
+        desc: "باتل رويال • بناء • مجانية",
+        fullDesc: "لعبة باتل رويال مجانية، تجمع بين البناء والقتال السريع مع تحديثات موسمية مستمرة وتعاونات مع أفلام ومسلسلات شهيرة.",
+        rating: 8.8,
+        year: 2017,
+        category: "باتل رويال",
+        icon: "🏗️",
+        css: "fortnite"
+    },
+    {
+        id: 10,
+        name: "Cyberpunk 2077",
+        desc: "عالم مفتوح • سايبربانك • RPG",
+        fullDesc: "مغامرة في مستقبل بعيد، مدينة Night City المليئة بالتقنيات والقصص الجانبية الممتعة، مع قصة شخصية قوية.",
+        rating: 9.0,
+        year: 2020,
+        category: "RPG",
+        icon: "🌆",
+        css: "cyberpunk"
     }
 ];
 
 let favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+let currentFilter = 'all';
 
 // ====== توليد كروت الألعاب ======
 function renderGames(list) {
@@ -494,6 +766,7 @@ function renderGames(list) {
 
     if (list.length === 0) {
         grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;color:#888;padding:40px">لا توجد نتائج 🔍</p>';
+        document.getElementById('resultsCount').textContent = '0 ألعاب';
         return;
     }
 
@@ -515,14 +788,21 @@ function renderGames(list) {
         `;
         grid.appendChild(card);
     });
+
+    document.getElementById('resultsCount').textContent = list.length + ' ألعاب';
 }
 
 // ====== نافذة التفاصيل ======
 function showDetails(id) {
     const game = games.find(g => g.id === id);
     if (!game) return;
-    document.getElementById('modalTitle').textContent = game.icon + ' ' + game.name;
-    document.getElementById('modalDesc').textContent = game.fullDesc + ` (التقييم: ${game.rating}/10)`;
+
+    document.getElementById('modalIcon').textContent = game.icon;
+    document.getElementById('modalTitle').textContent = game.name;
+    document.getElementById('modalDesc').textContent = game.fullDesc;
+    document.getElementById('modalRating').textContent = game.rating + '/10';
+    document.getElementById('modalCat').textContent = game.category;
+    document.getElementById('modalYear').textContent = game.year;
     document.getElementById('modal').classList.add('active');
 }
 
@@ -530,7 +810,6 @@ function closeModal() {
     document.getElementById('modal').classList.remove('active');
 }
 
-// إغلاق عند النقر خارج النافذة
 document.getElementById('modal').addEventListener('click', (e) => {
     if (e.target.id === 'modal') closeModal();
 });
@@ -549,19 +828,32 @@ function toggleFav(id, btn) {
     localStorage.setItem('favorites', JSON.stringify(favorites));
 }
 
-// ====== البحث ======
-document.getElementById('searchInput').addEventListener('input', (e) => {
-    const query = e.target.value.trim().toLowerCase();
-    const filtered = games.filter(g =>
-        g.name.toLowerCase().includes(query) ||
-        g.desc.toLowerCase().includes(query)
-    );
+// ====== البحث + الفلترة ======
+function applyFilters() {
+    const query = document.getElementById('searchInput').value.trim().toLowerCase();
+    let filtered = games;
+
+    if (currentFilter !== 'all') {
+        filtered = filtered.filter(g =>
+            g.category === currentFilter ||
+            g.desc.includes(currentFilter)
+        );
+    }
+
+    if (query) {
+        filtered = filtered.filter(g =>
+            g.name.toLowerCase().includes(query) ||
+            g.desc.toLowerCase().includes(query) ||
+            g.category.toLowerCase().includes(query)
+        );
+    }
+
     renderGames(filtered);
-});
+}
 
-// ====== التشغيل الأولي ======
-renderGames(games);
-</script>
+document.getElementById('searchInput').addEventListener('input', applyFilters);
 
-</body>
-</html>
+// ====== التصنيفات ======
+document.querySelectorAll('.cat-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.querySelectorAll('.cat-btn').forEach(b
