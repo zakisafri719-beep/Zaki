@@ -470,7 +470,7 @@ footer {
 <body>
 
 <header>
-    <div class="logo" onclick="scrollTo({top:0,behavior:'smooth'})">
+    <div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">
         🎮 GAME <span>HUB</span>
         <small>موسوعة الألعاب</small>
     </div>
@@ -639,7 +639,7 @@ footer {
 </div>
 
 <!-- زر العودة للأعلى -->
-<button class="top-btn" id="topBtn" onclick="scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button class="top-btn" id="topBtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <script>
 // ====== قاعدة بيانات الألعاب الكاملة ======
@@ -783,7 +783,7 @@ function renderGames(list) {
                 <h3>${game.name}</h3>
                 <p>${game.desc}</p>
                 <div class="rating">⭐ ${game.rating}</div>
-                <button class="details" onclick="showDetails(${game.id})">عرض التفاصيل →</button>
+                <button class="details" onclick="showDetails(${game.id})">عرض التفاصيل ←</button>
             </div>
         `;
         grid.appendChild(card);
@@ -856,4 +856,33 @@ document.getElementById('searchInput').addEventListener('input', applyFilters);
 // ====== التصنيفات ======
 document.querySelectorAll('.cat-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-        document.querySelectorAll('.cat-btn').forEach(b
+        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentFilter = btn.dataset.cat;
+        applyFilters();
+    });
+});
+
+// ====== تبديل المظهر ======
+function toggleTheme() {
+    document.body.classList.toggle('light');
+    const btn = document.getElementById('themeBtn');
+    btn.textContent = document.body.classList.contains('light') ? '☀️' : '🌙';
+}
+
+// ====== زر العودة للأعلى ======
+window.addEventListener('scroll', () => {
+    const topBtn = document.getElementById('topBtn');
+    if (window.scrollY > 300) {
+        topBtn.classList.add('show');
+    } else {
+        topBtn.classList.remove('show');
+    }
+});
+
+// العرض الأولي عند فتح الصفحة
+renderGames(games);
+</script>
+
+</body>
+</html>
