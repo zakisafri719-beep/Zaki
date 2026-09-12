@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar" dir="rtl" translate="no">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="google" content="notranslate">
 <title>Game Hub | موسوعة الألعاب</title>
 <style>
 :root{
@@ -14,10 +15,14 @@ body.light{
 --bg:#f0f2f8;--bg2:#fff;--bg3:#fff;--border:#e0e4f0;--border2:#d0d5e5;
 --text:#111;--text2:#333;--text3:#666;
 }
-*{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+button,input,select,a{outline:none !important;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none}
+button:focus,input:focus,select:focus,a:focus{outline:none !important;box-shadow:none}
+::selection{background:var(--purple3);color:#fff}
+::-moz-selection{background:var(--purple3);color:#fff}
+
 body{background:var(--bg);color:var(--text);font-family:'Segoe UI',Tahoma,Arial,sans-serif;scroll-behavior:smooth;transition:background .3s,color .3s;overflow-x:hidden}
 
-/* شريط تقدم القراءة */
 #progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#762cff,#b03cff);width:0%;z-index:999;transition:width .1s}
 
 header{height:75px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 30px;position:sticky;top:0;z-index:100;transition:background .3s}
@@ -54,7 +59,6 @@ nav a:hover{color:var(--purple2)}
 .section-title h2{font-size:24px;color:var(--text)}
 .section-title span{color:var(--purple2);font-size:14px;cursor:pointer}
 
-/* قوائم الترتيب */
 .controls{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:15px}
 .controls select{background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:10px 18px;border-radius:20px;font-size:14px;cursor:pointer;outline:none;transition:.3s;font-family:inherit}
 .controls select:hover{border-color:var(--purple)}
@@ -65,7 +69,6 @@ nav a:hover{color:var(--purple2)}
 .cat-btn:hover{border-color:var(--purple);color:var(--purple2)}
 .cat-btn.active{background:var(--purple3);color:#fff;border-color:var(--purple3)}
 
-/* قسم الأكثر تقييماً */
 .top-rated{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:20px}
 .top-card{position:relative;border-radius:20px;overflow:hidden;height:220px;cursor:pointer;transition:.3s;border:2px solid transparent}
 .top-card:hover{transform:translateY(-5px);border-color:var(--yellow)}
@@ -75,7 +78,6 @@ nav a:hover{color:var(--purple2)}
 .top-card .overlay h3{font-size:16px;margin-bottom:5px}
 .top-card .overlay .rating{color:#ffd21f;font-size:14px}
 
-/* الألعاب */
 .games{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
 .game{background:var(--bg3);border:1px solid var(--border);border-radius:17px;overflow:hidden;transition:.3s;position:relative;opacity:0;transform:translateY(20px);animation:fadeIn .5s forwards}
 @keyframes fadeIn{to{opacity:1;transform:translateY(0)}}
@@ -97,7 +99,6 @@ nav a:hover{color:var(--purple2)}
 .details{margin-top:12px;width:100%;padding:9px;border:none;border-radius:20px;background:var(--purple3);color:#fff;cursor:pointer;transition:.3s}
 .details:hover{background:var(--purple2)}
 
-/* الألعاب القادمة */
 .upcoming-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
 .upcoming-card{background:var(--bg3);border:1px solid var(--border);border-radius:15px;padding:20px;transition:.3s;position:relative;overflow:hidden}
 .upcoming-card:hover{border-color:var(--purple);transform:translateY(-3px)}
@@ -106,7 +107,6 @@ nav a:hover{color:var(--purple2)}
 .upcoming-card p{font-size:12px;color:var(--text3);margin-bottom:10px}
 .upcoming-date{display:inline-block;background:var(--purple3);color:#fff;padding:5px 15px;border-radius:15px;font-size:12px}
 
-/* الأخبار */
 .news{background:var(--bg3);border:1px solid var(--border);border-radius:18px;padding:20px}
 .news-item{display:flex;justify-content:space-between;align-items:center;padding:15px 0;border-bottom:1px solid var(--border);transition:.3s}
 .news-item:hover{padding-right:10px}
@@ -114,7 +114,6 @@ nav a:hover{color:var(--purple2)}
 .news-item strong{color:var(--text)}
 .news-item span{color:var(--text3);font-size:12px}
 
-/* الإحصائيات */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:20px}
 .stat{background:var(--bg3);border:1px solid var(--border);border-radius:18px;padding:25px;text-align:center;transition:.3s}
 .stat:hover{border-color:var(--purple);transform:translateY(-3px)}
@@ -123,7 +122,6 @@ nav a:hover{color:var(--purple2)}
 
 footer{text-align:center;padding:40px 20px;color:var(--text3);margin-top:30px;border-top:1px solid var(--border)}
 
-/* النافذة */
 .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000000cc;z-index:200;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(5px)}
 .modal.active{display:flex}
 .modal-content{background:var(--bg3);border:1px solid #3933a5;border-radius:20px;padding:25px;max-width:500px;width:100%;text-align:center;animation:pop .3s ease;max-height:90vh;overflow-y:auto}
@@ -139,12 +137,10 @@ footer{text-align:center;padding:40px 20px;color:var(--text3);margin-top:30px;bo
 .close{background:var(--purple3);color:#fff;border:none;padding:12px 35px;border-radius:20px;cursor:pointer;font-size:15px;transition:.3s}
 .close:hover{background:var(--purple2)}
 
-/* زر العودة */
 .top-btn{position:fixed;bottom:25px;left:25px;width:50px;height:50px;border-radius:50%;background:var(--purple3);color:#fff;border:none;font-size:20px;cursor:pointer;box-shadow:0 5px 20px #7935ff66;display:none;z-index:90;transition:.3s}
 .top-btn.show{display:block}
 .top-btn:hover{background:var(--purple2);transform:translateY(-3px)}
 
-/* Toast (رسالة منبثقة) */
 .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--purple3);color:#fff;padding:15px 30px;border-radius:25px;font-size:14px;z-index:1000;transition:.3s;box-shadow:0 5px 20px #7935ff66}
 .toast.show{transform:translateX(-50%) translateY(0)}
 
@@ -176,7 +172,6 @@ nav{display:none}
 </head>
 <body>
 
-<!-- شريط تقدم القراءة -->
 <div id="progress-bar"></div>
 
 <header>
@@ -209,14 +204,11 @@ nav{display:none}
 <div class="hero-character">🎮</div>
 </section>
 
-<!-- الأكثر تقييماً -->
 <div class="section-title" id="top-rated"><h2>⭐ الأكثر تقييماً</h2><span>أعلى 3 ألعاب</span></div>
 <section class="top-rated" id="topRatedGrid"></section>
 
-<!-- الألعاب -->
 <div class="section-title" id="games"><h2>🔥 جميع الألعاب</h2><span id="resultsCount">10 ألعاب</span></div>
 
-<!-- الترتيب -->
 <div class="controls">
 <select id="sortSelect" onchange="applyFilters()">
 <option value="default">📋 الترتيب الافتراضي</option>
@@ -243,11 +235,9 @@ nav{display:none}
 
 <section class="games" id="gamesGrid"></section>
 
-<!-- الألعاب القادمة -->
-<div class="section-title" id="upcoming"><h2>🚀 الألعاب القادمة</h2><span>2026</span></div>
+<div class="section-title" id="upcoming"><h2>🚀 الألعاب القادمة</h2><span>2025-2026</span></div>
 <section class="upcoming-grid" id="upcomingGrid"></section>
 
-<!-- الأخبار -->
 <div class="section-title"><h2>📰 أحدث الأخبار</h2></div>
 <section class="news">
 <div class="news-item"><strong>🎮 تحديث جديد للعبة GTA Online</strong><span>2025-11-10</span></div>
@@ -257,7 +247,6 @@ nav{display:none}
 <div class="news-item"><strong>🪓 تحديث God of War المجاني</strong><span>2025-10-28</span></div>
 </section>
 
-<!-- الإحصائيات -->
 <div class="section-title"><h2>📊 إحصائيات الموقع</h2></div>
 <section class="stats">
 <div class="stat"><strong>+8000</strong><span>لعبة</span></div>
@@ -270,7 +259,6 @@ nav{display:none}
 
 <footer>🎮 GAME HUB<br><small>موسوعة الألعاب في مكان واحد © 2025</small></footer>
 
-<!-- النافذة -->
 <div class="modal" id="modal">
 <div class="modal-content">
 <div class="modal-img" id="modalImg"></div>
@@ -289,7 +277,6 @@ nav{display:none}
 <div class="toast" id="toast"></div>
 
 <script>
-// ====== قاعدة بيانات الألعاب ======
 const games=[
 {id:1,name:"Minecraft",desc:"بناء • مغامرة • بقاء",fullDesc:"لعبة بناء واستكشاف لا نهائية، يمكنك بناء أي شيء تتخيله من المكعبات، والبقاء على قيد الحياة في عالم مليء بالمخلوقات.",rating:9.0,year:2011,category:"مغامرة",image:"https://i.postimg.cc/59HZFNKx/file-000000001210821087a228f03f7e497e.jpg"},
 {id:2,name:"God of War: Ragnarök",desc:"أكشن • مغامرة • أساطير",fullDesc:"مغامرة ملحمية مع كراتوس وأتريوس في عالم الأساطير الإسكندنافية، مع قتال ملحمي وقصة مؤثرة ورسومات مذهلة.",rating:9.8,year:2022,category:"أكشن",image:"https://i.postimg.cc/d0bGH6vF/wp11484883-god-of-war-ragnarok-desktop-wallpapers.jpg"},
@@ -303,7 +290,6 @@ const games=[
 {id:10,name:"Grand Theft Auto V",desc:"عالم مفتوح • أكشن • مغامرة",fullDesc:"لعبة أكشن ومغامرة في عالم مفتوح، تتيح لك اللعب بثلاث شخصيات واستكشاف مدينة لوس سانتوس بكل تفاصيلها.",rating:9.5,year:2013,category:"عالم مفتوح",image:"https://i.postimg.cc/Hs8dHt1N/wallpaperbetter.jpg"}
 ];
 
-// ====== الألعاب القادمة ======
 const upcomingGames=[
 {name:"Grand Theft Auto VI",date:"2026",desc:"الإصدار الأكثر انتظاراً من Rockstar"},
 {name:"The Witcher 4",date:"2026",desc:"الجزء الجديد من سلسلة CD Projekt"},
@@ -313,11 +299,9 @@ const upcomingGames=[
 {name:"Death Stranding 2",date:"2025",desc:"من إخراج هيديو كوجيما"}
 ];
 
-// ====== المتغيرات ======
 let favorites=JSON.parse(localStorage.getItem('favorites')||'[]');
 let currentFilter='all';
 
-// ====== ظهور رسالة Toast ======
 function showToast(msg){
 const t=document.getElementById('toast');
 t.textContent=msg;
@@ -325,18 +309,16 @@ t.classList.add('show');
 setTimeout(()=>t.classList.remove('show'),2500);
 }
 
-// ====== حساب "منذ الإصدار" ======
 function timeAgo(year){
 const now=new Date().getFullYear();
 const diff=now-year;
-if(diff===0)return "هذا العام";
+if(diff<=0)return "هذا العام";
 if(diff===1)return "منذ سنة";
 if(diff===2)return "منذ سنتين";
-if(diff<11)return "منذ "+diff+" سنوات";
+if(diff<=10)return "منذ "+diff+" سنوات";
 return "منذ "+diff+" سنة";
 }
 
-// ====== توليد الألعاب ======
 function renderGames(list){
 const grid=document.getElementById('gamesGrid');
 grid.innerHTML='';
@@ -352,10 +334,10 @@ card.className='game';
 card.style.animationDelay=(index*0.05)+'s';
 card.innerHTML=`
 <div class="game-actions">
-<button class="fav-btn ${isFav?'active':''}" onclick="toggleFav(${game.id},this)" title="أضف للمفضلة">${isFav?'❤️':'🤍'}</button>
-<button class="share-btn" onclick="shareGame(${game.id})" title="شارك">📤</button>
+<button class="fav-btn ${isFav?'active':''}" onclick="event.stopPropagation();toggleFav(${game.id},this)">${isFav?'❤️':'🤍'}</button>
+<button class="share-btn" onclick="event.stopPropagation();shareGame(${game.id})">📤</button>
 </div>
-<div class="game-image"><img src="${game.image}" alt="${game.name}" loading="lazy" onerror="this.src='https://placehold.co/400x300/8b3dff/ffffff?text=${encodeURIComponent(game.name)}'"></div>
+<div class="game-image"><img src="${game.image}" alt="${game.name}" loading="lazy" onerror="this.src='https://placehold.co/400x300/8b3dff/ffffff?text=Game'"></div>
 <div class="game-info">
 <h3>${game.name}</h3>
 <p>${game.desc}</p>
@@ -370,7 +352,6 @@ grid.appendChild(card);
 document.getElementById('resultsCount').textContent=list.length+' ألعاب';
 }
 
-// ====== أعلى 3 تقييماً ======
 function renderTopRated(){
 const sorted=[...games].sort((a,b)=>b.rating-a.rating).slice(0,3);
 const grid=document.getElementById('topRatedGrid');
@@ -381,7 +362,7 @@ card.className='top-card';
 card.onclick=()=>showDetails(game.id);
 card.innerHTML=`
 <div class="rank">${i+1}</div>
-<img src="${game.image}" alt="${game.name}" onerror="this.src='https://placehold.co/400x300/8b3dff/ffffff?text=${encodeURIComponent(game.name)}'">
+<img src="${game.image}" alt="${game.name}" onerror="this.src='https://placehold.co/400x300/8b3dff/ffffff?text=Game'">
 <div class="overlay">
 <h3>${game.name}</h3>
 <div class="rating">⭐ ${game.rating} • ${game.category}</div>
@@ -390,7 +371,6 @@ grid.appendChild(card);
 });
 }
 
-// ====== الألعاب القادمة ======
 function renderUpcoming(){
 const grid=document.getElementById('upcomingGrid');
 grid.innerHTML='';
@@ -405,11 +385,10 @@ grid.appendChild(card);
 });
 }
 
-// ====== النافذة ======
 function showDetails(id){
 const game=games.find(g=>g.id===id);
 if(!game)return;
-document.getElementById('modalImg').innerHTML=`<img src="${game.image}" alt="${game.name}" onerror="this.src='https://placehold.co/500x300/8b3dff/ffffff?text=${encodeURIComponent(game.name)}'">`;
+document.getElementById('modalImg').innerHTML=`<img src="${game.image}" alt="${game.name}" onerror="this.src='https://placehold.co/500x300/8b3dff/ffffff?text=Game'">`;
 document.getElementById('modalTitle').textContent=game.name;
 document.getElementById('modalDesc').textContent=game.fullDesc;
 document.getElementById('modalRating').textContent=game.rating+'/10';
@@ -420,7 +399,6 @@ document.getElementById('modal').classList.add('active');
 function closeModal(){document.getElementById('modal').classList.remove('active')}
 document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
 
-// ====== المفضلة ======
 function toggleFav(id,btn){
 if(favorites.includes(id)){
 favorites=favorites.filter(f=>f!==id);
@@ -431,13 +409,14 @@ showToast('تم الحذف من المفضلة');
 favorites.push(id);
 btn.classList.add('active');
 btn.textContent='❤️';
-showToast('تم الإضافة إلى المفضلة');
+showToast('تمت الإضافة إلى المفضلة');
 }
 localStorage.setItem('favorites',JSON.stringify(favorites));
 }
 
-// ====== مشاركة اللعبة ======
 function shareGame(id){
 const game=games.find(g=>g.id===id);
 if(!game)return;
-const text=`🎮 ${game.name}\n⭐ التقييم: ${game.rating}/10\n📅 السنة: ${game.year}\n\nشاهد الم
+const text='🎮 '+game.name+'\n⭐ التقييم: '+game.rating+'/10\n📅 السنة: '+game.year+'\n\nشاهد الموقع: '+window.location.href;
+if(navigator.share){
+navigator.share({title:game.name
