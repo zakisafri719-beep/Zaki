@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
 <title>Game Hub | موسوعة الألعاب</title>
-<meta name="description" content="موسوعة الألعاب الأولى بالعربية — 10 ألعاب مميزة بمعلومات كاملة وتقييمات. اكتشف أفضل ألعاب PlayStation, Xbox, PC">
-<meta name="keywords" content="ألعاب, موسوعة, تقييمات, PlayStation, Xbox, PC, Game Hub, ألعاب عربية">
+<meta name="description" content="موسوعة الألعاب الأولى بالعربية — 10 ألعاب مميزة بمعلومات كاملة وتقييمات.">
+<meta name="keywords" content="ألعاب, موسوعة, تقييمات, PlayStation, Xbox, PC, Game Hub">
 <meta name="author" content="Zaki Safri">
 <meta name="robots" content="index, follow">
 <meta property="og:title" content="Game Hub | موسوعة الألعاب">
@@ -35,7 +35,7 @@ body.font-large{font-size:18px}
 button,input,select,a{outline:none!important;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;font-family:inherit}
 ::selection{background:var(--purple3);color:#fff}
 body{background:var(--bg);color:var(--text);font-family:'Segoe UI',Tahoma,Arial,sans-serif;scroll-behavior:smooth;transition:background .3s,color .3s;overflow-x:hidden}
-#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,#762cff,#b03cff);width:0%;z-index:999;transition:width .1s}
+#progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--purple3),var(--purple));width:0%;z-index:999;transition:width .1s}
 header{min-height:75px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:10px 25px;position:sticky;top:0;z-index:100;transition:background .3s;flex-wrap:wrap;gap:10px}
 .logo{font-size:24px;font-weight:bold;cursor:pointer;color:var(--text)}
 .logo span{color:var(--purple)}
@@ -48,7 +48,7 @@ nav a:hover{color:var(--purple2)}
 .search:focus{border-color:var(--purple);box-shadow:0 0 15px #8b3dff44}
 .icon-btn{background:var(--bg3);border:1px solid var(--border2);color:var(--text);width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:18px;transition:.3s;display:flex;align-items:center;justify-content:center;padding:0;line-height:1}
 .icon-btn:hover{background:var(--purple);color:#fff;border-color:var(--purple)}
-.random-btn{background:linear-gradient(90deg,#762cff,#b03cff);border:none;color:#fff;box-shadow:0 0 15px #7c32ff66}
+.random-btn{background:linear-gradient(90deg,var(--purple3),var(--purple));border:none;color:#fff;box-shadow:0 0 15px #7c32ff66}
 .container{max-width:1250px;margin:auto;padding:25px}
 .hero{min-height:330px;border-radius:25px;padding:50px;display:flex;align-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 80% 30%,#7338ff 0,transparent 30%),radial-gradient(circle at 60% 80%,#1d6cff 0,transparent 30%),linear-gradient(135deg,#17125a,#080d2b);border:1px solid #3933a5;margin-bottom:20px}
 .hero-content{max-width:550px;position:relative;z-index:2}
@@ -56,8 +56,8 @@ nav a:hover{color:var(--purple2)}
 .hero h1 span{color:#994cff}
 .hero p{color:#c5c5d8;font-size:19px;margin-bottom:25px}
 .hero-buttons{display:flex;gap:12px;flex-wrap:wrap}
-.hero-button{background:linear-gradient(90deg,#762cff,#b03cff);border:none;color:#fff;padding:14px 25px;border-radius:30px;font-size:16px;cursor:pointer;box-shadow:0 0 25px #7c32ff66;transition:.3s}
-.hero-button.secondary{background:transparent;border:2px solid #994cff;box-shadow:none}
+.hero-button{background:linear-gradient(90deg,var(--purple3),var(--purple));border:none;color:#fff;padding:14px 25px;border-radius:30px;font-size:16px;cursor:pointer;box-shadow:0 0 25px #7c32ff66;transition:.3s}
+.hero-button.secondary{background:transparent;border:2px solid var(--purple);box-shadow:none}
 .hero-character{position:absolute;left:40px;bottom:-25px;font-size:170px;filter:drop-shadow(0 0 30px #7040ff);animation:float 3s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
 .section-title{display:flex;justify-content:space-between;align-items:center;margin:35px 0 18px;flex-wrap:wrap;gap:10px}
@@ -97,7 +97,7 @@ nav a:hover{color:var(--purple2)}
 .details{margin-top:12px;width:100%;padding:9px;border:none;border-radius:20px;background:var(--purple3);color:#fff;cursor:pointer;transition:.3s}
 .upcoming-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
 .upcoming-card{background:var(--bg3);border:1px solid var(--border);border-radius:15px;padding:20px;transition:.3s;position:relative;overflow:hidden}
-.upcoming-card::before{content:'';position:absolute;top:0;right:0;width:5px;height:100%;background:linear-gradient(180deg,#762cff,#b03cff)}
+.upcoming-card::before{content:'';position:absolute;top:0;right:0;width:5px;height:100%;background:linear-gradient(180deg,var(--purple3),var(--purple))}
 .upcoming-card h4{font-size:15px;margin-bottom:8px;color:var(--text)}
 .upcoming-card p{font-size:12px;color:var(--text3);margin-bottom:10px}
 .upcoming-date{display:inline-block;background:var(--purple3);color:#fff;padding:5px 15px;border-radius:15px;font-size:12px}
@@ -113,7 +113,7 @@ nav a:hover{color:var(--purple2)}
 footer{text-align:center;padding:40px 20px;color:var(--text3);margin-top:30px;border-top:1px solid var(--border)}
 .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000000cc;z-index:200;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(5px)}
 .modal.active{display:flex}
-.modal-content{background:var(--bg3);border:1px solid #3933a5;border-radius:20px;padding:25px;max-width:550px;width:100%;animation:pop .3s ease;max-height:90vh;overflow-y:auto}
+.modal-content{background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:25px;max-width:550px;width:100%;animation:pop .3s ease;max-height:90vh;overflow-y:auto}
 @keyframes pop{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
 .modal-img{width:100%;height:220px;border-radius:15px;overflow:hidden;margin-bottom:15px;background:#111}
 .modal-img img{width:100%;height:100%;object-fit:cover}
@@ -129,8 +129,9 @@ footer{text-align:center;padding:40px 20px;color:var(--text3);margin-top:30px;bo
 .modal-info-row .label{color:var(--text3)}
 .modal-info-row .value{color:var(--purple2);font-weight:bold;text-align:left}
 .close{background:var(--purple3);color:#fff;border:none;padding:12px 35px;border-radius:20px;cursor:pointer;font-size:15px;width:100%}
-.top-btn{position:fixed;bottom:25px;left:25px;width:50px;height:50px;border-radius:50%;background:var(--purple3);color:#fff;border:none;font-size:20px;cursor:pointer;box-shadow:0 5px 20px #7935ff66;display:none;z-index:90;padding:0}
+.top-btn{position:fixed;bottom:25px;left:25px;width:50px;height:50px;border-radius:50%;background:var(--purple3);color:#fff;border:none;font-size:20px;cursor:pointer;box-shadow:0 5px 20px #7935ff66;display:none;z-index:90;padding:0;transition:.3s}
 .top-btn.show{display:block}
+.top-btn:hover{background:var(--purple2)}
 .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--purple3);color:#fff;padding:15px 30px;border-radius:25px;font-size:14px;z-index:1000;transition:.3s;box-shadow:0 5px 20px #7935ff66}
 .toast.show{transform:translateX(-50%) translateY(0)}
 .settings-group{margin-bottom:20px;text-align:right}
@@ -147,6 +148,19 @@ footer{text-align:center;padding:40px 20px;color:var(--text3);margin-top:30px;bo
 .settings-info p{margin-bottom:8px;color:var(--text2)}
 .settings-info p:last-child{margin-bottom:0}
 .settings-info strong{color:var(--purple2)}
+/* أحجام الخط */
+body.font-small p,body.font-small .game-info h3,body.font-small .game-info p,body.font-small .modal-desc,body.font-small .news-item strong,body.font-small .upcoming-card p,body.font-small .section-title span{font-size:11px}
+body.font-medium p,body.font-medium .game-info h3,body.font-medium .game-info p,body.font-medium .modal-desc,body.font-medium .news-item strong,body.font-medium .upcoming-card p,body.font-medium .section-title span{font-size:13px}
+body.font-large p,body.font-large .game-info h3,body.font-large .game-info p,body.font-large .modal-desc,body.font-large .news-item strong,body.font-large .upcoming-card p,body.font-large .section-title span{font-size:16px}
+body.font-small h1{font-size:45px}
+body.font-medium h1{font-size:55px}
+body.font-large h1{font-size:65px}
+body.font-small h2{font-size:20px}
+body.font-medium h2{font-size:24px}
+body.font-large h2{font-size:28px}
+body.font-small h3{font-size:13px}
+body.font-medium h3{font-size:15px}
+body.font-large h3{font-size:18px}
 @media(max-width:900px){header{padding:8px 15px}nav{display:none}.search{width:100px;padding:8px 12px;font-size:12px}.hero h1{font-size:38px}.hero-character{opacity:.25;left:20px;font-size:130px}.top-rated{grid-template-columns:1fr;gap:12px}.top-card{height:180px}.games{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.upcoming-grid{grid-template-columns:1fr}.logo{font-size:16px}.icon-btn{width:38px;height:38px;font-size:16px}}
 @media(max-width:500px){.hero h1{font-size:28px}.games{grid-template-columns:1fr}.search{width:80px}}
 </style>
@@ -154,7 +168,7 @@ footer{text-align:center;padding:40px 20px;color:var(--text3);margin-top:30px;bo
 <body>
 <div id="progress-bar"></div>
 <header>
-<div class="logo" onclick="scrollTo({top:0,behavior:'smooth'})">🎮 GAME <span>HUB</span><small>موسوعة الألعاب</small></div>
+<div class="logo" onclick="window.scrollTo({top:0,behavior:'smooth'})">🎮 GAME <span>HUB</span><small>موسوعة الألعاب</small></div>
 <nav><a href="#home">🏠 الرئيسية</a><a href="#top-rated">⭐ الأفضل</a><a href="#most-viewed">👁️ الأكثر مشاهدة</a><a href="#games">🎮 الألعاب</a><a href="#upcoming">🚀 قادمة</a></nav>
 <div class="header-actions">
 <input class="search" id="searchInput" type="text" placeholder="🔍 ابحث...">
@@ -246,6 +260,8 @@ footer{text-align:center;padding:40px 20px;color:var(--text3);margin-top:30px;bo
 <button class="setting-btn color-btn" onclick="setAccent('#1d6cff')" data-setting="accent" data-value="#1d6cff" style="background:#1d6cff"></button>
 <button class="setting-btn color-btn" onclick="setAccent('#12b94f')" data-setting="accent" data-value="#12b94f" style="background:#12b94f"></button>
 <button class="setting-btn color-btn" onclick="setAccent('#ff3366')" data-setting="accent" data-value="#ff3366" style="background:#ff3366"></button>
+<button class="setting-btn color-btn" onclick="setAccent('#ffd21f')" data-setting="accent" data-value="#ffd21f" style="background:#ffd21f"></button>
+<button class="setting-btn color-btn" onclick="setAccent('#ff6b00')" data-setting="accent" data-value="#ff6b00" style="background:#ff6b00"></button>
 </div>
 </div>
 <div class="settings-group">
@@ -279,7 +295,7 @@ footer{text-align:center;padding:40px 20px;color:var(--text3);margin-top:30px;bo
 <button class="close" onclick="closeModal()">إغلاق</button>
 </div>
 </div>
-<button class="top-btn" id="topBtn" onclick="scrollTo({top:0,behavior:'smooth'})">↑</button>
+<button class="top-btn" id="topBtn">↑</button>
 <div class="toast" id="toast"></div>
 <script>
 const games=[
@@ -451,6 +467,10 @@ const topBtn=document.getElementById('topBtn');
 if(window.scrollY>300){topBtn.classList.add('show')}else{topBtn.classList.remove('show')}
 });
 
+document.getElementById('topBtn').addEventListener('click',function(){
+window.scrollTo({top:0,behavior:'smooth'});
+});
+
 // ====== الإعدادات ======
 function openSettings(){
 document.getElementById('settingsModal').classList.add('active');
@@ -501,9 +521,25 @@ function setAccent(color){
 document.documentElement.style.setProperty('--purple',color);
 document.documentElement.style.setProperty('--purple2',color);
 document.documentElement.style.setProperty('--purple3',color);
+document.querySelectorAll('.logo span').forEach(function(e){e.style.color=color});
+document.querySelectorAll('.cat-btn.active').forEach(function(e){e.style.background=color;e.style.borderColor=color});
+document.querySelectorAll('.details').forEach(function(e){e.style.background=color});
+document.querySelectorAll('.close').forEach(function(e){e.style.background=color});
+document.querySelectorAll('.hero-button').forEach(function(e){e.style.background='linear-gradient(90deg,'+color+',#b03cff)'});
+document.querySelectorAll('.section-title span').forEach(function(e){e.style.color=color});
+document.querySelectorAll('.modal-meta strong').forEach(function(e){e.style.color=color});
+document.querySelectorAll('.stat strong').forEach(function(e){e.style.color=color});
+document.querySelectorAll('.settings-group h4').forEach(function(e){e.style.color=color});
+document.querySelectorAll('.upcoming-date').forEach(function(e){e.style.background=color});
+document.querySelectorAll('.settings-info strong').forEach(function(e){e.style.color=color});
+document.querySelectorAll('.top-btn').forEach(function(e){e.style.background=color});
+document.querySelectorAll('.toast').forEach(function(e){e.style.background=color});
+document.querySelectorAll('.random-btn').forEach(function(e){e.style.background='linear-gradient(90deg,'+color+',#b03cff)'});
+document.querySelectorAll('.modal-info-row .value').forEach(function(e){e.style.color=color});
+document.querySelectorAll('.section-title span').forEach(function(e){e.style.color=color});
 localStorage.setItem('accentColor',color);
 loadSettingsUI();
-showToast('تم تغيير لون التطبيق');
+showToast('تم تغيير لون التطبيق بالكامل');
 }
 
 function clearAllData(){
@@ -521,9 +557,7 @@ const accent=localStorage.getItem('accentColor')||'#8b3dff';
 if(theme==='light')document.body.classList.add('light');
 if(theme==='gray')document.body.classList.add('gray');
 document.body.classList.add('font-'+font);
-document.documentElement.style.setProperty('--purple',accent);
-document.documentElement.style.setProperty('--purple2',accent);
-document.documentElement.style.setProperty('--purple3',accent);
+setTimeout(function(){setAccent(accent)},100);
 })();
 
 populateYears();
@@ -531,6 +565,7 @@ renderTopRated();
 renderMostViewed();
 renderGames(games);
 renderUpcoming();
+
 if('serviceWorker' in navigator){
 window.addEventListener('load',function(){
 navigator.serviceWorker.register('sw.js').then(function(reg){
