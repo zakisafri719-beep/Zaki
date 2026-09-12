@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="google" content="notranslate">
 <title>Game Hub | موسوعة الألعاب</title>
+<meta name="description" content="موسوعة الألعاب الأولى بالعربية — 10 ألعاب مميزة بمعلومات كاملة وتقييمات. اكتشف أفضل ألعاب PlayStation, Xbox, PC">
+<meta name="keywords" content="ألعاب, موسوعة, تقييمات, PlayStation, Xbox, PC, Game Hub, ألعاب عربية">
+<meta name="author" content="Zaki Safri">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Game Hub | موسوعة الألعاب">
+<meta property="og:description" content="اكتشف أفضل الألعاب بمعلومات كاملة">
+<meta property="og:image" content="https://i.postimg.cc/63G5V4Bx/file-000000005950821093a1169df3be8252.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://zakisafri719-beep.github.io/Zaki/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Game Hub | موسوعة الألعاب">
+<meta name="twitter:image" content="https://i.postimg.cc/63G5V4Bx/file-000000005950821093a1169df3be8252.png">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#8b3dff">
 <link rel="icon" type="image/png" href="https://i.postimg.cc/63G5V4Bx/file-000000005950821093a1169df3be8252.png">
@@ -15,6 +27,10 @@
 <style>
 :root{--bg:#050817;--bg2:#070d24;--bg3:#0b1230;--border:#252d61;--border2:#303773;--text:#fff;--text2:#ddd;--text3:#999;--purple:#8b3dff;--purple2:#9b4dff;--purple3:#7935ff;--yellow:#ffd21f;--red:#ff3366;--green:#12b94f}
 body.light{--bg:#f0f2f8;--bg2:#fff;--bg3:#fff;--border:#e0e4f0;--border2:#d0d5e5;--text:#111;--text2:#333;--text3:#666}
+body.gray{--bg:#1a1a1a;--bg2:#242424;--bg3:#2e2e2e;--border:#3a3a3a;--text:#e0e0e0;--text2:#b0b0b0;--text3:#888}
+body.font-small{font-size:13px}
+body.font-medium{font-size:15px}
+body.font-large{font-size:18px}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 button,input,select,a{outline:none!important;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;font-family:inherit}
 ::selection{background:var(--purple3);color:#fff}
@@ -117,6 +133,20 @@ footer{text-align:center;padding:40px 20px;color:var(--text3);margin-top:30px;bo
 .top-btn.show{display:block}
 .toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--purple3);color:#fff;padding:15px 30px;border-radius:25px;font-size:14px;z-index:1000;transition:.3s;box-shadow:0 5px 20px #7935ff66}
 .toast.show{transform:translateX(-50%) translateY(0)}
+.settings-group{margin-bottom:20px;text-align:right}
+.settings-group h4{color:var(--purple2);margin-bottom:10px;font-size:15px}
+.settings-options{display:flex;gap:8px;flex-wrap:wrap}
+.setting-btn{background:var(--bg);border:1px solid var(--border);color:var(--text);padding:10px 15px;border-radius:15px;cursor:pointer;font-size:13px;transition:.3s}
+.setting-btn:hover{border-color:var(--purple);background:var(--purple3);color:#fff}
+.setting-btn.active{border-color:var(--purple);background:var(--purple3);color:#fff}
+.setting-btn.color-btn{width:45px;height:45px;padding:0;border-radius:50%;border:3px solid transparent}
+.setting-btn.color-btn.active{border-color:#fff;box-shadow:0 0 15px currentColor}
+.setting-btn.danger{background:#ff336622;border-color:#ff3366;color:#ff3366}
+.setting-btn.danger:hover{background:#ff3366;color:#fff}
+.settings-info{background:var(--bg);border-radius:12px;padding:15px;font-size:13px}
+.settings-info p{margin-bottom:8px;color:var(--text2)}
+.settings-info p:last-child{margin-bottom:0}
+.settings-info strong{color:var(--purple2)}
 @media(max-width:900px){header{padding:8px 15px}nav{display:none}.search{width:100px;padding:8px 12px;font-size:12px}.hero h1{font-size:38px}.hero-character{opacity:.25;left:20px;font-size:130px}.top-rated{grid-template-columns:1fr;gap:12px}.top-card{height:180px}.games{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.upcoming-grid{grid-template-columns:1fr}.logo{font-size:16px}.icon-btn{width:38px;height:38px;font-size:16px}}
 @media(max-width:500px){.hero h1{font-size:28px}.games{grid-template-columns:1fr}.search{width:80px}}
 </style>
@@ -125,11 +155,11 @@ footer{text-align:center;padding:40px 20px;color:var(--text3);margin-top:30px;bo
 <div id="progress-bar"></div>
 <header>
 <div class="logo" onclick="scrollTo({top:0,behavior:'smooth'})">🎮 GAME <span>HUB</span><small>موسوعة الألعاب</small></div>
-<nav><a href="#home">🏠 الرئيسية</a><a href="#top-rated">⭐ الأفضل</a><a href="#games">🎮 الألعاب</a><a href="#upcoming">🚀 قادمة</a></nav>
+<nav><a href="#home">🏠 الرئيسية</a><a href="#top-rated">⭐ الأفضل</a><a href="#most-viewed">👁️ الأكثر مشاهدة</a><a href="#games">🎮 الألعاب</a><a href="#upcoming">🚀 قادمة</a></nav>
 <div class="header-actions">
 <input class="search" id="searchInput" type="text" placeholder="🔍 ابحث...">
 <button class="icon-btn random-btn" onclick="randomGame()" title="لعبة عشوائية">🎲</button>
-<button class="icon-btn" id="themeBtn" onclick="toggleTheme()" title="تبديل المظهر">🌙</button>
+<button class="icon-btn" onclick="openSettings()" title="الإعدادات">⚙️</button>
 </div>
 </header>
 <main class="container" id="home">
@@ -147,6 +177,8 @@ footer{text-align:center;padding:40px 20px;color:var(--text3);margin-top:30px;bo
 </section>
 <div class="section-title" id="top-rated"><h2>⭐ الأكثر تقييماً</h2><span>أعلى 3 ألعاب</span></div>
 <section class="top-rated" id="topRatedGrid"></section>
+<div class="section-title" id="most-viewed"><h2>👁️ الأكثر مشاهدة</h2><span>الأكثر فتحاً للتفاصيل</span></div>
+<section class="top-rated" id="mostViewedGrid"></section>
 <div class="section-title" id="games"><h2>🔥 جميع الألعاب</h2><span id="resultsCount">10 ألعاب</span></div>
 <div class="controls">
 <select id="sortSelect" onchange="applyFilters()">
@@ -188,6 +220,51 @@ footer{text-align:center;padding:40px 20px;color:var(--text3);margin-top:30px;bo
 </section>
 </main>
 <footer>🎮 GAME HUB<br><small>موسوعة الألعاب في مكان واحد © 2025</small></footer>
+<div class="modal" id="settingsModal">
+<div class="modal-content">
+<h2>⚙️ الإعدادات</h2>
+<div class="settings-group">
+<h4>🌙 المظهر</h4>
+<div class="settings-options">
+<button class="setting-btn" onclick="setTheme('dark')" data-setting="theme" data-value="dark">🌙 ليلي</button>
+<button class="setting-btn" onclick="setTheme('light')" data-setting="theme" data-value="light">☀️ نهاري</button>
+<button class="setting-btn" onclick="setTheme('gray')" data-setting="theme" data-value="gray">🌫️ رمادي</button>
+</div>
+</div>
+<div class="settings-group">
+<h4>🔤 حجم الخط</h4>
+<div class="settings-options">
+<button class="setting-btn" onclick="setFontSize('small')" data-setting="font" data-value="small">صغير</button>
+<button class="setting-btn" onclick="setFontSize('medium')" data-setting="font" data-value="medium">متوسط</button>
+<button class="setting-btn" onclick="setFontSize('large')" data-setting="font" data-value="large">كبير</button>
+</div>
+</div>
+<div class="settings-group">
+<h4>🎨 لون التطبيق</h4>
+<div class="settings-options">
+<button class="setting-btn color-btn" onclick="setAccent('#8b3dff')" data-setting="accent" data-value="#8b3dff" style="background:#8b3dff"></button>
+<button class="setting-btn color-btn" onclick="setAccent('#1d6cff')" data-setting="accent" data-value="#1d6cff" style="background:#1d6cff"></button>
+<button class="setting-btn color-btn" onclick="setAccent('#12b94f')" data-setting="accent" data-value="#12b94f" style="background:#12b94f"></button>
+<button class="setting-btn color-btn" onclick="setAccent('#ff3366')" data-setting="accent" data-value="#ff3366" style="background:#ff3366"></button>
+</div>
+</div>
+<div class="settings-group">
+<h4>🗑️ إدارة البيانات</h4>
+<div class="settings-options">
+<button class="setting-btn danger" onclick="clearAllData()">🗑️ مسح كل البيانات</button>
+</div>
+</div>
+<div class="settings-group">
+<h4>📱 معلومات</h4>
+<div class="settings-info">
+<p><strong>الإصدار:</strong> v1.0</p>
+<p><strong>المطوّر:</strong> Zaki Safri</p>
+<p><strong>الموقع:</strong> Game Hub</p>
+</div>
+</div>
+<button class="close" onclick="closeSettings()">إغلاق</button>
+</div>
+</div>
 <div class="modal" id="modal">
 <div class="modal-content">
 <div class="modal-img" id="modalImg"></div>
@@ -254,6 +331,32 @@ card.innerHTML='<div class="rank">'+(i+1)+'</div><img src="'+game.image+'" alt="
 grid.appendChild(card);
 });
 }
+
+function incrementViews(id){
+let views={};
+try{views=JSON.parse(localStorage.getItem('views')||'{}')}catch(e){views={}}
+views[id]=(views[id]||0)+1;
+localStorage.setItem('views',JSON.stringify(views));
+}
+
+function renderMostViewed(){
+const views=JSON.parse(localStorage.getItem('views')||'{}');
+const keys=Object.keys(views);
+const grid=document.getElementById('mostViewedGrid');if(!grid)return;grid.innerHTML='';
+if(keys.length===0){
+grid.innerHTML='<p style="grid-column:1/-1;text-align:center;color:#888;padding:30px;font-size:14px">لم يتم فتح أي لعبة بعد — تصفح الألعاب لرؤية الأكثر مشاهدة! 👁️</p>';
+return;
+}
+const sorted=keys.sort((a,b)=>views[b]-views[a]).slice(0,3).map(id=>games.find(g=>g.id==id)).filter(g=>g);
+sorted.forEach((game,i)=>{
+const card=document.createElement('div');
+card.className='top-card';
+card.onclick=function(){showDetails(game.id)};
+card.innerHTML='<div class="rank">'+(i+1)+'</div><img src="'+game.image+'" alt="'+game.name+'"><div class="overlay"><h3>'+game.name+'</h3><div class="rating">👁️ '+views[game.id]+' مشاهدة • ⭐ '+game.rating+'</div></div>';
+grid.appendChild(card);
+});
+}
+
 function renderUpcoming(){
 const grid=document.getElementById('upcomingGrid');if(!grid)return;grid.innerHTML='';
 upcomingGames.forEach(g=>{
@@ -263,9 +366,11 @@ card.innerHTML='<h4>🎮 '+g.name+'</h4><p>'+g.desc+'</p><span class="upcoming-d
 grid.appendChild(card);
 });
 }
+
 function showDetails(id){
 const game=games.find(g=>g.id===id);
 if(!game)return;
+incrementViews(id);
 document.getElementById('modalImg').innerHTML='<img src="'+game.image+'" alt="'+game.name+'">';
 document.getElementById('modalTitle').textContent=game.name;
 document.getElementById('modalDesc').textContent=game.fullDesc;
@@ -274,14 +379,18 @@ document.getElementById('modalCat').textContent=game.category;
 document.getElementById('modalYear').textContent=game.year+' ('+timeAgo(game.year)+')';
 document.getElementById('modalInfo').innerHTML='<div class="modal-info-row"><span class="label">🏢 المطوّر</span><span class="value">'+game.developer+'</span></div>'+'<div class="modal-info-row"><span class="label">📤 الناشر</span><span class="value">'+game.publisher+'</span></div>'+'<div class="modal-info-row"><span class="label">🖥️ المنصات</span><span class="value">'+game.platforms+'</span></div>'+'<div class="modal-info-row"><span class="label">👥 الوضع</span><span class="value">'+game.mode+'</span></div>'+'<div class="modal-info-row"><span class="label">🔞 التصنيف العمري</span><span class="value">'+game.ageRating+'</span></div>'+'<div class="modal-info-row"><span class="label">💾 المساحة</span><span class="value">'+game.size+'</span></div>';
 document.getElementById('modal').classList.add('active');
+setTimeout(renderMostViewed,500);
 }
+
 function closeModal(){document.getElementById('modal').classList.remove('active')}
 document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+
 function toggleFav(id,btn){
 if(favorites.indexOf(id)>-1){favorites=favorites.filter(f=>f!==id);btn.classList.remove('active');btn.textContent='🤍';showToast('تم الحذف من المفضلة')}
 else{favorites.push(id);btn.classList.add('active');btn.textContent='❤️';showToast('تمت الإضافة إلى المفضلة')}
 localStorage.setItem('favorites',JSON.stringify(favorites));
 }
+
 function shareGame(id){
 const game=games.find(g=>g.id===id);
 if(!game)return;
@@ -290,6 +399,7 @@ if(navigator.share){navigator.share({title:game.name,text:text,url:window.locati
 else if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>showToast('تم نسخ رابط اللعبة!'))}
 else{showToast('انسخ الرابط يدوياً: '+window.location.href)}
 }
+
 function populateYears(){
 const years=[...new Set(games.map(g=>g.year))].sort((a,b)=>b-a);
 const select=document.getElementById('yearSelect');
@@ -300,6 +410,7 @@ opt.textContent='📅 '+y;
 select.appendChild(opt);
 });
 }
+
 function applyFilters(){
 const query=document.getElementById('searchInput').value.toLowerCase().trim();
 const sortValue=document.getElementById('sortSelect').value;
@@ -315,16 +426,12 @@ if(sortValue==='year-asc')filtered.sort((a,b)=>a.year-b.year);
 if(sortValue==='name-asc')filtered.sort((a,b)=>a.name.localeCompare(b.name));
 renderGames(filtered);
 }
-function toggleTheme(){
-document.body.classList.toggle('light');
-const isLight=document.body.classList.contains('light');
-document.getElementById('themeBtn').textContent=isLight?'☀️':'🌙';
-localStorage.setItem('theme',isLight?'light':'dark');
-}
+
 function randomGame(){
 const randomIndex=Math.floor(Math.random()*games.length);
 showDetails(games[randomIndex].id);
 }
+
 document.getElementById('categories').addEventListener('click',function(e){
 if(e.target.classList.contains('cat-btn')){
 document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active')});
@@ -333,7 +440,9 @@ currentFilter=e.target.dataset.cat;
 applyFilters();
 }
 });
+
 document.getElementById('searchInput').addEventListener('input',applyFilters);
+
 window.addEventListener('scroll',function(){
 const totalHeight=document.documentElement.scrollHeight-window.innerHeight;
 const progress=(window.scrollY/totalHeight)*100;
@@ -341,12 +450,85 @@ document.getElementById('progress-bar').style.width=progress+'%';
 const topBtn=document.getElementById('topBtn');
 if(window.scrollY>300){topBtn.classList.add('show')}else{topBtn.classList.remove('show')}
 });
-if(localStorage.getItem('theme')==='light'){
-document.body.classList.add('light');
-document.getElementById('themeBtn').textContent='☀️';
+
+// ====== الإعدادات ======
+function openSettings(){
+document.getElementById('settingsModal').classList.add('active');
+loadSettingsUI();
 }
+
+function closeSettings(){
+document.getElementById('settingsModal').classList.remove('active');
+}
+
+document.getElementById('settingsModal').addEventListener('click',function(e){
+if(e.target.id==='settingsModal')closeSettings();
+});
+
+function loadSettingsUI(){
+const theme=localStorage.getItem('theme')||'dark';
+const font=localStorage.getItem('fontSize')||'medium';
+const accent=localStorage.getItem('accentColor')||'#8b3dff';
+document.querySelectorAll('[data-setting="theme"]').forEach(function(b){b.classList.remove('active')});
+document.querySelectorAll('[data-setting="font"]').forEach(function(b){b.classList.remove('active')});
+document.querySelectorAll('[data-setting="accent"]').forEach(function(b){b.classList.remove('active')});
+const themeBtn=document.querySelector('[data-setting="theme"][data-value="'+theme+'"]');
+if(themeBtn)themeBtn.classList.add('active');
+const fontBtn=document.querySelector('[data-setting="font"][data-value="'+font+'"]');
+if(fontBtn)fontBtn.classList.add('active');
+const accentBtn=document.querySelector('[data-setting="accent"][data-value="'+accent+'"]');
+if(accentBtn)accentBtn.classList.add('active');
+}
+
+function setTheme(mode){
+document.body.classList.remove('light','gray');
+if(mode==='light')document.body.classList.add('light');
+if(mode==='gray')document.body.classList.add('gray');
+localStorage.setItem('theme',mode);
+loadSettingsUI();
+showToast('تم تغيير المظهر');
+}
+
+function setFontSize(size){
+document.body.classList.remove('font-small','font-medium','font-large');
+document.body.classList.add('font-'+size);
+localStorage.setItem('fontSize',size);
+loadSettingsUI();
+showToast('تم تغيير حجم الخط');
+}
+
+function setAccent(color){
+document.documentElement.style.setProperty('--purple',color);
+document.documentElement.style.setProperty('--purple2',color);
+document.documentElement.style.setProperty('--purple3',color);
+localStorage.setItem('accentColor',color);
+loadSettingsUI();
+showToast('تم تغيير لون التطبيق');
+}
+
+function clearAllData(){
+if(confirm('هل أنت متأكد من مسح كل البيانات؟ (المفضلة، الإعدادات، المشاهدات)')){
+localStorage.clear();
+showToast('تم مسح كل البيانات');
+setTimeout(function(){location.reload()},1000);
+}
+}
+
+(function loadSavedSettings(){
+const theme=localStorage.getItem('theme')||'dark';
+const font=localStorage.getItem('fontSize')||'medium';
+const accent=localStorage.getItem('accentColor')||'#8b3dff';
+if(theme==='light')document.body.classList.add('light');
+if(theme==='gray')document.body.classList.add('gray');
+document.body.classList.add('font-'+font);
+document.documentElement.style.setProperty('--purple',accent);
+document.documentElement.style.setProperty('--purple2',accent);
+document.documentElement.style.setProperty('--purple3',accent);
+})();
+
 populateYears();
 renderTopRated();
+renderMostViewed();
 renderGames(games);
 renderUpcoming();
 if('serviceWorker' in navigator){
