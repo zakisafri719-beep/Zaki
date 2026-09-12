@@ -242,4 +242,145 @@ const grid=document.getElementById('topRatedGrid');if(!grid)return;grid.innerHTM
 sorted.forEach((game,i)=>{
 const card=document.createElement('div');
 card.className='top-card';
-card.onclick=function(){showDetails(game.id)
+card.onclick=function(){showDetails(game.id)};
+card.innerHTML='<div class="rank">'+(i+1)+'</div><img src="'+game.image+'" alt="'+game.name+'"><div class="overlay"><h3>'+game.name+'</h3><div class="rating">⭐ '+game.rating+' • '+game.category+'</div></div>';
+grid.appendChild(card);
+});
+}
+
+function renderUpcoming(){
+const grid=document.getElementById('upcomingGrid');if(!grid)return;grid.innerHTML='';
+upcomingGames.forEach(g=>{
+const card=document.createElement('div');
+card.className='upcoming-card';
+card.innerHTML='<h4>🎮 '+g.name+'</h4><p>'+g.desc+'</p><span class="upcoming-date">📅 '+g.date+'</span>';
+grid.appendChild(card);
+});
+}
+
+function showDetails(id){
+const game=games.find(g=>g.id===id);
+if(!game)return;
+document.getElementById('modalImg').innerHTML='<img src="'+game.image+'" alt="'+game.name+'">';
+document.getElementById('modalTitle').textContent=game.name;
+document.getElementById('modalDesc').textContent=game.fullDesc;
+document.getElementById('modalRating').textContent=game.rating+'/10';
+document.getElementById('modalCat').textContent=game.category;
+document.getElementById('modalYear').textContent=game.year+' ('+timeAgo(game.year)+')';
+document.getElementById('modalInfo').innerHTML=
+'<div class="modal-info-row"><span class="label">🏢 المطوّر</span><span class="value">'+game.developer+'</span></div>'+
+'<div class="modal-info-row"><span class="label">📤 الناشر</span><span class="value">'+game.publisher+'</span></div>'+
+'<div class="modal-info-row"><span class="label">🖥️ المنصات</span><span class="value">'+game.platforms+'</span></div>'+
+'<div class="modal-info-row"><span class="label">👥 الوضع</span><span class="value">'+game.mode+'</span></div>'+
+'<div class="modal-info-row"><span class="label">🔞 التصنيف العمري</span><span class="value">'+game.ageRating+'</span></div>'+
+'<div class="modal-info-row"><span class="label">💾 المساحة</span><span class="value">'+game.size+'</span></div>';
+document.getElementById('modal').classList.add('active');
+}
+
+function closeModal(){document.getElementById('modal').classList.remove('active')}
+document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+
+function toggleFav(id,btn){
+if(favorites.indexOf(id)>-1){
+favorites=favorites.filter(f=>f!==id);
+btn.classList.remove('active');
+btn.textContent='🤍';
+showToast('تم الحذف من المفضلة');
+}else{
+favorites.push(id);
+btn.classList.add('active');
+btn.textContent='❤️';
+showToast('تمت الإضافة إلى المفضلة');
+}
+localStorage.setItem('favorites',JSON.stringify(favorites));
+}
+
+function shareGame(id){
+const game=games.find(g=>g.id===id);
+if(!game)return;
+const text='🎮 '+game.name+'\n⭐ التقييم: '+game.rating+'/10\n📅 السنة: '+game.year+'\n\nشاهد الموقع: '+window.location.href;
+if(navigator.share){
+navigator.share({title:game.name,text:text,url:window.location.href}).catch(()=>{});
+}else if(navigator.clipboard){
+navigator.clipboard.writeText(text).then(()=>showToast('تم نسخ رابط اللعبة!'));
+}else{
+showToast('انسخ الرابط يدوياً: '+window.location.href);
+}
+}
+
+function populateYears(){
+const years=[...new Set(games.map(g=>g.year))].sort((a,b)=>b-a);
+const select=document.getElementById('yearSelect');
+years.forEach(y=>{
+const opt=document.createElement('option');
+opt.value=y;
+opt.textContent='📅 '+y;
+select.appendChild(opt);
+});
+}
+
+function applyFilters(){
+const query=document.getElementById('searchInput').value.toLowerCase().trim();
+const sortValue=document.getElementById('sortSelect').value;
+const yearValue=document.getElementById('yearSelect').value;
+let filtered=[].concat(games);
+if(currentFilter!=='all'){
+filtered=filtered.filter(g=>g.category===currentFilter);
+}
+if(yearValue!=='all'){
+filtered=filtered.filter(g=>g.year===parseInt(yearValue));
+}
+if(query){
+filtered=filtered.filter(g=>g.name.toLowerCase().includes(query)||g.desc.toLowerCase().includes(query)||g.category.toLowerCase().includes(query));
+}
+if(sortValue==='rating-desc')filtered.sort((a,b)=>b.rating-a.rating);
+if(sortValue==='rating-asc')filtered.sort((a,b)=>a.rating-b.rating);
+if(sortValue==='year-desc')filtered.sort((a,b)=>b.year-a.year);
+if(sortValue==='year-asc')filtered.sort((a,b)=>a.year-b.year);
+if(sortValue==='name-asc')filtered.sort((a,b)=>a.name.localeCompare(b.name));
+renderGames(filtered);
+}
+
+function toggleTheme(){
+document.body.classList.toggle('light');
+const isLight=document.body.classList.contains('light');
+document.getElementById('themeBtn').textContent=isLight?'☀️':'🌙';
+localStorage.setItem('theme',isLight?'light':'dark');
+}
+
+function randomGame(){
+const randomIndex=Math.floor(Math.random()*games.length);
+showDetails(games[randomIndex].id);
+}
+
+document.getElementById('categories').addEventListener('click',function(e){
+if(e.target.classList.contains('cat-btn')){
+document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active')});
+e.target.classList.add('active');
+currentFilter=e.target.dataset.cat;
+applyFilters();
+}
+});
+
+document.getElementById('searchInput').addEventListener('input',applyFilters);
+
+window.addEventListener('scroll',function(){
+const totalHeight=document.documentElement.scrollHeight-window.innerHeight;
+const progress=(window.scrollY/totalHeight)*100;
+document.getElementById('progress-bar').style.width=progress+'%';
+const topBtn=document.getElementById('topBtn');
+if(window.scrollY>300){topBtn.classList.add('show')}else{topBtn.classList.remove('show')}
+});
+
+if(localStorage.getItem('theme')==='light'){
+document.body.classList.add('light');
+document.getElementById('themeBtn').textContent='☀️';
+}
+
+populateYears();
+renderTopRated();
+renderGames(games);
+renderUpcoming();
+</script>
+</body>
+</html>
