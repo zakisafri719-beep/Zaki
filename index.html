@@ -25,31 +25,23 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Game Hub">
 <style>
-:root{--bg:#050817;--bg2:#070d24;--bg3:#0b1230;--border:#252d61;--border2:#303773;--text:#fff;--text2:#ddd;--text3:#999;--accent:#8b3dff;--accent-light:#9b4dff;--accent-dark:#762cff;--yellow:#ffd21f;--red:#ff3366;--green:#12b94f}
+:root{--bg:#050817;--bg2:#070d24;--bg3:#0b1230;--border:#252d61;--border2:#303773;--text:#fff;--text2:#ddd;--text3:#999;--accent:#8b3dff;--accent-light:#9b4dff;--accent-dark:#762cff;--yellow:#ffd21f;--red:#ff3366;--green:#12b94f;--anim-speed:.3s}
 body.light{--bg:#f0f2f8;--bg2:#fff;--bg3:#fff;--border:#e0e4f0;--border2:#d0d5e5;--text:#111;--text2:#333;--text3:#666}
 body.gray{--bg:#1a1a1a;--bg2:#242424;--bg3:#2e2e2e;--border:#3a3a3a;--text:#e0e0e0;--text2:#b0b0b0;--text3:#888}
 body.font-small{font-size:13px}
 body.font-medium{font-size:15px}
 body.font-large{font-size:18px}
+body.no-animation *{transition:none!important;animation:none!important}
+body.fast-animation{--anim-speed:.15s}
+body.slow-animation{--anim-speed:.6s}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{overflow:hidden;height:100%;position:fixed;width:100%}
 button,input,select,a{outline:none!important;-webkit-tap-highlight-color:transparent;user-select:none;-webkit-user-select:none;font-family:inherit}
 ::selection{background:var(--accent);color:#fff}
-body{background:var(--bg);color:var(--text);font-family:'Segoe UI',Tahoma,Arial,sans-serif;scroll-behavior:smooth;transition:background .3s,color .3s}
+body{background:var(--bg);color:var(--text);font-family:'Segoe UI',Tahoma,Arial,sans-serif;scroll-behavior:smooth;transition:background var(--anim-speed),color var(--anim-speed)}
 #particles-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;pointer-events:none;opacity:.5}
 #progress-bar{position:fixed;top:0;left:0;height:3px;background:linear-gradient(90deg,var(--accent-dark),var(--accent));width:0%;z-index:9999;transition:width .1s}
-#news-ticker{background:linear-gradient(90deg,var(--accent-dark),var(--accent));color:#fff;padding:8px 0;overflow:hidden;position:relative;white-space:nowrap;font-size:13px;z-index:99}
-#news-ticker .ticker-content{display:inline-block;padding-right:100%;animation:ticker 30s linear infinite}
-@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(100%)}}
-.sidebar{position:fixed;top:0;right:-300px;width:280px;height:100%;background:var(--bg2);border-left:1px solid var(--border);z-index:1500;transition:right .3s;padding:25px;overflow-y:auto}
-.sidebar.open{right:0}
-.sidebar-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:#000000aa;z-index:1499;display:none}
-.sidebar-overlay.open{display:block}
-.sidebar h3{color:var(--accent-light);margin-bottom:20px;font-size:18px}
-.sidebar a{display:block;color:var(--text2);text-decoration:none;padding:12px 15px;border-radius:12px;margin-bottom:5px;transition:.3s;font-size:15px}
-.sidebar a:hover{background:var(--accent);color:#fff}
-.sidebar-close{position:absolute;top:15px;left:15px;background:transparent;border:none;color:var(--text);font-size:24px;cursor:pointer}
-header{min-height:75px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:10px 25px;position:sticky;top:0;z-index:100;transition:background .3s;flex-wrap:wrap;gap:10px}
+header{min-height:75px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:10px 25px;position:sticky;top:0;z-index:100;transition:background var(--anim-speed);flex-wrap:wrap;gap:10px}
 .logo{font-size:24px;font-weight:bold;cursor:pointer;color:var(--text)}
 .logo span{color:var(--accent)}
 .logo small{display:block;font-size:11px;color:var(--text3);margin-top:3px}
@@ -75,11 +67,10 @@ nav a:hover{color:var(--accent-light)}
 .hero-button.secondary{background:transparent;border:2px solid var(--accent);box-shadow:none}
 .hero-character{position:absolute;left:40px;bottom:-25px;font-size:170px;filter:drop-shadow(0 0 30px var(--accent));animation:float 3s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-15px)}}
+body.no-animation .hero-character{animation:none}
 .section-title{display:flex;justify-content:space-between;align-items:center;margin:35px 0 18px;flex-wrap:wrap;gap:10px}
 .section-title h2{font-size:24px;color:var(--text)}
 .section-title span{color:var(--accent-light);font-size:14px}
-.controls{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:15px}
-.controls select{background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:10px 18px;border-radius:20px;font-size:14px;cursor:pointer;outline:none;transition:.3s}
 .categories{display:flex;gap:10px;overflow-x:auto;padding:10px 0;scrollbar-width:none;margin-bottom:20px}
 .categories::-webkit-scrollbar{display:none}
 .cat-btn{background:var(--bg3);border:1px solid var(--border);color:var(--text2);padding:10px 20px;border-radius:25px;cursor:pointer;white-space:nowrap;transition:.3s;font-size:14px}
@@ -93,9 +84,10 @@ nav a:hover{color:var(--accent-light)}
 .top-card .overlay h3{font-size:16px;margin-bottom:5px}
 .top-card .overlay .rating{color:#ffd21f;font-size:14px}
 .games{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.game{background:var(--bg3);border:1px solid var(--border);border-radius:17px;overflow:hidden;transition:.3s;position:relative;opacity:0;transform:translateY(30px);transition:opacity .6s,transform .6s,box-shadow .3s}
+.game{background:var(--bg3);border:1px solid var(--border);border-radius:17px;overflow:hidden;transition:opacity var(--anim-speed),transform var(--anim-speed),box-shadow .3s;position:relative;opacity:0;transform:translateY(30px)}
 .game.visible{opacity:1;transform:translateY(0)}
 .game:hover{transform:translateY(-5px);border-color:var(--accent);box-shadow:0 10px 30px var(--accent)}
+body.no-animation .game{opacity:1;transform:none}
 .game-actions{position:absolute;top:10px;left:10px;display:flex;gap:8px;z-index:2}
 .fav-btn,.share-btn{background:#0008;border:none;color:#fff;width:35px;height:35px;border-radius:50%;cursor:pointer;font-size:14px;transition:.3s;display:flex;align-items:center;justify-content:center;padding:0}
 .fav-btn.active{background:var(--red)}
@@ -129,11 +121,12 @@ nav a:hover{color:var(--accent-light)}
 .stat{background:var(--bg3);border:1px solid var(--border);border-radius:18px;padding:25px;text-align:center}
 .stat strong{display:block;color:var(--accent-light);font-size:28px;margin-bottom:8px}
 .stat span{color:var(--text3);font-size:13px}
-footer{text-align:center;padding:40px 20px;color:var(--text3);margin-top:30px;border-top:1px solid var(--border)}
+footer{text-align:center;padding:40px 20px 120px;color:var(--text3);margin-top:30px;border-top:1px solid var(--border)}
 .modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000000cc;z-index:2000;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(5px)}
 .modal.active{display:flex}
-.modal-content{background:var(--bg3);border:1px solid var(--accent);border-radius:20px;padding:25px;max-width:550px;width:100%;animation:pop .3s ease;max-height:90vh;overflow-y:auto}
+.modal-content{background:var(--bg3);border:1px solid var(--accent);border-radius:20px;padding:25px;max-width:550px;width:100%;animation:pop var(--anim-speed) ease;max-height:90vh;overflow-y:auto}
 @keyframes pop{from{transform:scale(.8);opacity:0}to{transform:scale(1);opacity:1}}
+body.no-animation .modal-content{animation:none}
 .modal-img{width:100%;height:220px;border-radius:15px;overflow:hidden;margin-bottom:15px;background:#111}
 .modal-img img{width:100%;height:100%;object-fit:cover}
 .modal-content h2{color:var(--accent-light);margin-bottom:12px;font-size:22px;text-align:center}
@@ -162,45 +155,57 @@ footer{text-align:center;padding:40px 20px;color:var(--text3);margin-top:30px;bo
 .fav-modal.active{background:var(--red);border-color:var(--red);color:#fff}
 .top-btn{position:fixed;bottom:100px;left:25px;width:50px;height:50px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:20px;cursor:pointer;box-shadow:0 5px 20px var(--accent);display:none;z-index:900;padding:0;transition:.3s}
 .top-btn.show{display:block}
-.toast{position:fixed;bottom:110px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--accent);color:#fff;padding:15px 30px;border-radius:25px;font-size:14px;z-index:3000;transition:.3s;box-shadow:0 5px 20px var(--accent);max-width:90%}
-.toast.show{transform:translateX(-50%) translateY(0)}
-.settings-group{margin-bottom:20px;text-align:right}
-.settings-group h4{color:var(--accent-light);margin-bottom:10px;font-size:15px}
-.settings-options{display:flex;gap:8px;flex-wrap:wrap}
-.setting-btn{background:var(--bg);border:1px solid var(--border);color:var(--text);padding:10px 15px;border-radius:15px;cursor:pointer;font-size:13px;transition:.3s}
-.setting-btn:hover{border-color:var(--accent);background:var(--accent);color:#fff}
-.setting-btn.active{border-color:var(--accent);background:var(--accent);color:#fff}
-.setting-btn.color-btn{width:45px;height:45px;padding:0;border-radius:50%;border:3px solid transparent}
-.setting-btn.color-btn.active{border-color:#fff;box-shadow:0 0 15px currentColor}
-.setting-btn.danger{background:#ff336622;border-color:#ff3366;color:#ff3366}
-.setting-btn.danger:hover{background:#ff3366;color:#fff}
-.settings-info{background:var(--bg);border-radius:12px;padding:15px;font-size:13px}
-.settings-info p{margin-bottom:8px;color:var(--text2)}
-.settings-info p:last-child{margin-bottom:0}
-.settings-info strong{color:var(--accent-light)}
+.toast{position:fixed;bottom:110px;left:50%;transform:translateX(-50%) translateY(100px);background:var(--accent);color:#fff;padding:14px 28px;border-radius:25px;font-size:14px;z-index:3000;transition:transform var(--anim-speed),opacity var(--anim-speed);box-shadow:0 5px 20px var(--accent);max-width:90%;opacity:0;pointer-events:none}
+.toast.show{transform:translateX(-50%) translateY(0);opacity:1}
 .badges{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:15px}
 .badge{background:var(--bg);border:2px solid var(--border);border-radius:15px;padding:15px;text-align:center;transition:.3s}
 .badge.unlocked{border-color:var(--yellow);background:linear-gradient(135deg,#ffd21f22,#ff950022)}
 .badge .badge-icon{font-size:30px;display:block;margin-bottom:8px}
 .badge .badge-name{font-size:11px;color:var(--text2)}
-.badge.unlocked .badge-name{color:var(--yellow);font-weight:bold}
-.trending{background:linear-gradient(90deg,var(--accent-dark),var(--accent));border-radius:15px;padding:15px 20px;margin-bottom:20px;color:#fff;overflow:hidden}
-.trending h3{font-size:14px;margin-bottom:10px;opacity:.9}
-.trending-list{display:flex;gap:15px;overflow-x:auto;scrollbar-width:none;padding-bottom:5px}
-.trending-list::-webkit-scrollbar{display:none}
-.trending-item{background:#ffffff22;padding:10px 15px;border-radius:15px;white-space:nowrap;font-size:13px;cursor:pointer;transition:.3s}
-.trending-item:hover{background:#ffffff44}
+.badge.unlocked .badge-name{color:var(--yellow);font-weight:bold} 
+/* ===== القائمة الجانبية ===== */
+.sidebar{position:fixed;top:0;right:-100%;width:320px;max-width:85%;height:100%;background:var(--bg2);border-left:1px solid var(--border);z-index:2000;transition:right var(--anim-speed) ease;overflow-y:auto;padding:20px;box-shadow:-10px 0 40px rgba(0,0,0,.5)}
+.sidebar.open{right:0}
+.sidebar-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:#000000aa;z-index:1999;display:none;backdrop-filter:blur(3px)}
+.sidebar-overlay.open{display:block}
+.sidebar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid var(--border)}
+.sidebar-header h3{color:var(--accent-light);font-size:18px}
+.sidebar-close{background:transparent;border:none;color:var(--text);font-size:24px;cursor:pointer;padding:5px}
+.sidebar-section{margin-bottom:20px}
+.sidebar-section-title{color:var(--accent);font-size:13px;margin-bottom:10px;font-weight:bold;display:flex;align-items:center;gap:8px}
+.sidebar-option{display:flex;justify-content:space-between;align-items:center;padding:12px 15px;background:var(--bg);border-radius:12px;margin-bottom:8px;transition:.3s;cursor:pointer;border:1px solid transparent}
+.sidebar-option:hover{border-color:var(--accent)}
+.sidebar-option-label{color:var(--text);font-size:14px;display:flex;align-items:center;gap:10px}
+.sidebar-option-value{color:var(--accent-light);font-size:13px;font-weight:bold}
+.sidebar-toggle{position:relative;width:48px;height:26px;background:var(--border);border-radius:15px;cursor:pointer;transition:.3s;border:none;padding:0}
+.sidebar-toggle::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;background:#fff;border-radius:50%;transition:.3s}
+.sidebar-toggle.on{background:var(--accent)}
+.sidebar-toggle.on::after{left:25px}
+.sidebar-btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.sidebar-btn{flex:1;min-width:60px;background:var(--bg);border:1px solid var(--border);color:var(--text2);padding:8px 12px;border-radius:12px;cursor:pointer;font-size:12px;transition:.3s}
+.sidebar-btn:hover{border-color:var(--accent);color:var(--accent)}
+.sidebar-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.sidebar-color-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.sidebar-color-btn{width:38px;height:38px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:.3s}
+.sidebar-color-btn.active{border-color:#fff;box-shadow:0 0 12px currentColor}
+.sidebar-select{background:var(--bg);border:1px solid var(--border);color:var(--text);padding:8px 12px;border-radius:12px;font-size:12px;cursor:pointer;outline:none;font-family:inherit;width:100%;margin-top:8px}
+.sidebar-info{background:var(--bg);border-radius:12px;padding:15px;font-size:12px;color:var(--text2);line-height:1.8}
+.sidebar-info strong{color:var(--accent-light)}
+
 /* ===== الشريط السفلي ===== */
-.bottom-nav{position:fixed;bottom:15px;left:50%;transform:translateX(-50%);width:calc(100% - 30px);max-width:420px;height:65px;background:var(--bg2);border:1px solid var(--border);border-radius:35px;display:flex;align-items:center;justify-content:space-around;z-index:1000;box-shadow:0 10px 40px rgba(0,0,0,.5);padding:0 10px;transition:background .3s}
-.bottom-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;position:relative;height:100%;background:transparent;border:none;color:var(--text3);font-size:10px;font-family:inherit;transition:.3s;padding:0}
-.bottom-nav-item .nav-icon{font-size:20px;transition:.3s;display:flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;transition:.3s}
-.bottom-nav-item .nav-label{font-size:9px;opacity:.8;transition:.3s}
-.bottom-nav-item.active{color:#fff}
-.bottom-nav-item.active .nav-icon{background:var(--accent);color:#fff;transform:translateY(-18px);box-shadow:0 10px 20px var(--accent);padding:12px;width:auto;height:auto;min-width:46px;min-height:46px}
-.bottom-nav-item.active .nav-label{color:var(--accent);font-weight:bold;transform:translateY(-15px)}
-/* ===== الصفحات المنزلقة ===== */
+.bottom-nav{position:fixed;bottom:15px;left:50%;transform:translateX(-50%);width:calc(100% - 30px);max-width:420px;height:65px;background:var(--bg2);border:1px solid var(--border);border-radius:35px;display:flex;align-items:center;justify-content:space-around;z-index:1000;box-shadow:0 10px 40px rgba(0,0,0,.5);padding:0 10px;transition:background var(--anim-speed)}
+.bottom-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;position:relative;height:100%;background:transparent;border:none;color:var(--text3);font-size:10px;font-family:inherit;transition:color var(--anim-speed);padding:0}
+.bottom-nav-item .nav-icon{font-size:22px;display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:50%;transition:all var(--anim-speed) ease}
+.bottom-nav-item .nav-label{font-size:9px;opacity:.7;transition:all var(--anim-speed)}
+.bottom-nav-item.active{color:var(--accent)}
+.bottom-nav-item.active .nav-icon{background:var(--accent);color:#fff;transform:translateY(-16px);box-shadow:0 8px 20px var(--accent);min-width:46px;min-height:46px}
+.bottom-nav-item.active .nav-label{color:var(--accent);font-weight:bold;opacity:1;transform:translateY(-13px)}
+body.no-animation .bottom-nav-item.active .nav-icon{transform:none;background:transparent;color:var(--accent)}
+body.no-animation .bottom-nav-item.active .nav-label{transform:none}
+
+/* ===== الصفحات ===== */
 .page-container{position:fixed;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:1}
-.page{position:absolute;top:0;left:0;width:100%;height:100%;overflow-y:auto;overflow-x:hidden;background:var(--bg);transition:transform .35s cubic-bezier(.4,0,.2,1);padding-bottom:100px;will-change:transform}
+.page{position:absolute;top:0;left:0;width:100%;height:100%;overflow-y:auto;overflow-x:hidden;background:var(--bg);transition:transform var(--anim-speed) cubic-bezier(.4,0,.2,1);padding-bottom:100px;will-change:transform;touch-action:pan-y}
 .page.dragging{transition:none}
 .page-header{padding:20px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:15px;position:sticky;top:0;z-index:10}
 .page-header h2{font-size:20px;color:var(--text);flex:1}
@@ -219,10 +224,13 @@ footer{text-align:center;padding:40px 20px;color:var(--text3);margin-top:30px;bo
 .rawg-mini-card .mini-info{padding:8px}
 .rawg-mini-card .mini-info h4{font-size:11px;color:var(--text);margin-bottom:4px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.3;height:28px}
 .rawg-mini-card .mini-info .mini-rating{font-size:10px;color:var(--yellow)}
-.rawg-show-more{grid-column:1/-1;background:linear-gradient(90deg,var(--accent-dark),var(--accent));color:#fff;border:none;padding:14px;border-radius:15px;font-size:14px;cursor:pointer;margin:15px 0;font-weight:bold;transition:.3s;box-shadow:0 5px 15px var(--accent)}
+.rawg-show-more{background:linear-gradient(90deg,var(--accent-dark),var(--accent));color:#fff;border:none;padding:14px;border-radius:15px;font-size:14px;cursor:pointer;margin:15px;font-weight:bold;transition:.3s;box-shadow:0 5px 15px var(--accent);width:calc(100% - 30px)}
 .rawg-show-more:hover{transform:translateY(-2px);box-shadow:0 8px 25px var(--accent)}
 .rawg-show-more:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.favorites-empty{text-align:center;padding:60px 20px;color:var(--text3)}
+.rawg-loading{text-align:center;padding:40px;color:var(--text3)}
+.rawg-loading .spinner{display:inline-block;width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite;margin-bottom:15px}
+@keyframes spin{to{transform:rotate(360deg)}}
+.favorites-empty{text-align:center;padding:60px 20px;color:var(--text3);grid-column:1/-1}
 .favorites-empty .empty-icon{font-size:60px;margin-bottom:15px;display:block}
 .favorites-empty p{font-size:15px;margin-bottom:20px}
 .favorites-empty .empty-btn{background:var(--accent);color:#fff;border:none;padding:12px 25px;border-radius:20px;cursor:pointer;font-size:14px}
@@ -234,7 +242,18 @@ footer{text-align:center;padding:40px 20px;color:var(--text3);margin-top:30px;bo
 .account-input:focus{border-color:var(--accent);box-shadow:0 0 15px var(--accent)}
 .account-btn{width:100%;background:linear-gradient(90deg,var(--accent-dark),var(--accent));color:#fff;border:none;padding:15px;border-radius:15px;font-size:16px;font-weight:bold;cursor:pointer;transition:.3s;box-shadow:0 5px 15px var(--accent);margin-top:5px}
 .account-btn:hover{transform:translateY(-2px);box-shadow:0 8px 25px var(--accent)}
-.account-note{text-align:center;color:var(--text3);font-size:11px;margin-top:15px;line-height:1.6} 
+.account-note{text-align:center;color:var(--text3);font-size:11px;margin-top:15px;line-height:1.6}
+.rawg-filters{display:flex;gap:10px;flex-wrap:wrap;padding:12px 15px}
+.rawg-filters select{background:var(--bg);border:1px solid var(--border);color:var(--text);padding:10px 18px;border-radius:20px;font-size:13px;cursor:pointer;outline:none;transition:.3s;font-family:inherit}
+.rawg-filters select:hover{border-color:var(--accent)}
+/* ===== أنماط التمرير ===== */
+.page::-webkit-scrollbar{width:6px}
+.page::-webkit-scrollbar-track{background:var(--bg2)}
+.page::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+.sidebar::-webkit-scrollbar{width:6px}
+.sidebar::-webkit-scrollbar-track{background:var(--bg2)}
+.sidebar::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
+/* ===== أحجام الخط ===== */
 body.font-small p,body.font-small .game-info h3,body.font-small .game-info p,body.font-small .modal-desc,body.font-small .news-item strong,body.font-small .upcoming-card p,body.font-small .section-title span{font-size:11px}
 body.font-medium p,body.font-medium .game-info h3,body.font-medium .game-info p,body.font-medium .modal-desc,body.font-medium .news-item strong,body.font-medium .upcoming-card p,body.font-medium .section-title span{font-size:13px}
 body.font-large p,body.font-large .game-info h3,body.font-large .game-info p,body.font-large .modal-desc,body.font-large .news-item strong,body.font-large .upcoming-card p,body.font-large .section-title span{font-size:16px}
@@ -247,6 +266,20 @@ body.font-large h2{font-size:28px}
 body.font-small h3{font-size:13px}
 body.font-medium h3{font-size:15px}
 body.font-large h3{font-size:18px}
+/* ===== أنماط مخصصة (تُفعّل بـ JS) ===== */
+body.grid-3 .rawg-grid-new{grid-template-columns:repeat(3,1fr)}
+body.grid-4 .rawg-grid-new{grid-template-columns:repeat(4,1fr)}
+body.grid-5 .rawg-grid-new{grid-template-columns:repeat(5,1fr)}
+body.compact-cards .rawg-mini-card .mini-img{height:70px}
+body.compact-cards .rawg-mini-card .mini-info h4{font-size:10px;height:24px}
+body.compact-cards .rawg-mini-card .mini-info{padding:6px}
+body.large-cards .rawg-mini-card .mini-img{height:130px}
+body.large-cards .rawg-mini-card .mini-info h4{font-size:13px;height:34px}
+body.hide-particles #particles-bg{display:none}
+body.hide-trending #trendingBox{display:none!important}
+body.hide-news .news-section{display:none!important}
+body.hide-upcoming .upcoming-section{display:none!important}
+/* ===== Media Queries ===== */
 @media(max-width:900px){
 header{padding:8px 15px}
 nav{display:none}
@@ -263,10 +296,10 @@ nav{display:none}
 .logo{font-size:16px}
 .icon-btn{width:38px;height:38px;font-size:16px}
 .menu-btn{width:38px;height:38px;font-size:18px}
-.sidebar{width:250px}
+.sidebar{width:290px}
 .bottom-nav{max-width:380px;height:62px;bottom:12px}
 .bottom-nav-item .nav-label{font-size:8px}
-.bottom-nav-item .nav-icon{font-size:18px;width:36px;height:36px}
+.bottom-nav-item .nav-icon{font-size:20px;width:38px;height:38px}
 .rawg-grid-new{grid-template-columns:repeat(4,1fr);gap:8px}
 .rawg-mini-card .mini-img{height:80px}
 .rawg-mini-card .mini-info h4{font-size:10px;height:26px}
@@ -278,15 +311,22 @@ nav{display:none}
 .search{width:80px}
 .rawg-grid-new{grid-template-columns:repeat(3,1fr);gap:8px}
 .rawg-mini-card .mini-img{height:75px}
+.sidebar{width:280px}
 }
+/* ===== حركات التمرير ===== */
+@keyframes slideInRight{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes slideInLeft{from{transform:translateX(-100%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes zoomIn{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
+body.anim-slide .game.visible{animation:slideInLeft .4s ease}
+body.anim-zoom .game.visible{animation:zoomIn .4s ease}
+/* ===== تأثير النقر ===== */
+button:active,.icon-btn:active,.menu-btn:active,.hero-button:active,.details:active,.close:active,.fav-modal:active,.rawg-search-btn:active,.rawg-show-more:active,.bottom-nav-item:active{transform:scale(.95)}
+body.no-animation button:active,body.no-animation .icon-btn:active,body.no-animation .menu-btn:active,body.no-animation .hero-button:active,body.no-animation .details:active,body.no-animation .close:active,body.no-animation .fav-modal:active,body.no-animation .rawg-search-btn:active,body.no-animation .rawg-show-more:active,body.no-animation .bottom-nav-item:active{transform:none}
 </style>
 </head>
-<body>
+<body class="grid-4">
 <canvas id="particles-bg"></canvas>
 <div id="progress-bar"></div>
-<div id="news-ticker">
-<div class="ticker-content" id="tickerContent">🎮 مرحباً بك في Game Hub — آلاف الألعاب في مكان واحد! • 🔥 اكتشف ألعاباً جديدة • ⭐ تقييمات وتفاصيل كاملة • ❤️ أضف ألعابك المفضلة</div>
-</div>
 
 <!-- ===== الصفحة الرئيسية ===== -->
 <div class="page-container">
@@ -294,7 +334,7 @@ nav{display:none}
 <header>
 <button class="menu-btn" onclick="toggleSidebar()" title="القائمة">☰</button>
 <div class="logo" onclick="scrollToTop()">🎮 GAME <span>HUB</span><small data-i18n="tagline">موسوعة الألعاب</small></div>
-<nav><a href="#home" data-i18n="nav_home">🏠 الرئيسية</a><a href="#top-rated" data-i18n="nav_top">⭐ الأفضل</a><a href="#most-viewed" data-i18n="nav_most">👁️ الأكثر مشاهدة</a><a href="#games" data-i18n="nav_games">🎮 الألعاب</a></nav>
+<nav><a href="#home" data-i18n="nav_home">🏠 الرئيسية</a><a href="#top-rated" data-i18n="nav_top">⭐ الأفضل</a><a href="#most-viewed" data-i18n="nav_most">👁️ الأكثر مشاهدة</a></nav>
 <div class="header-actions">
 <input class="search" id="searchInput" type="text" placeholder="🔍 ابحث..." data-i18n-placeholder="search_placeholder">
 <button class="icon-btn random-btn" onclick="randomGame()" title="لعبة عشوائية">🎲</button>
@@ -304,29 +344,119 @@ nav{display:none}
 </header>
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 <div class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<h3>⚙️ القائمة</h3>
 <button class="sidebar-close" onclick="toggleSidebar()">✕</button>
-<h3>🎮 القائمة</h3>
-<a href="#" onclick="event.preventDefault();goToPage(0);toggleSidebar()">🏠 الرئيسية</a>
-<a href="#" onclick="event.preventDefault();goToPage(1);toggleSidebar()">❤️ المفضلة</a>
-<a href="#" onclick="event.preventDefault();goToPage(2);toggleSidebar()">🎮 كل الألعاب</a>
-<a href="#" onclick="event.preventDefault();goToPage(3);toggleSidebar()">👤 الحساب</a>
-<a href="#top-rated" onclick="toggleSidebar()">⭐ الأفضل</a>
-<a href="#most-viewed" onclick="toggleSidebar()">👁️ الأكثر مشاهدة</a>
-<a href="#games" onclick="toggleSidebar()">🔥 ألعابي المميزة</a>
-<a href="#upcoming" onclick="toggleSidebar()">🚀 الألعاب القادمة</a>
-<a href="#" onclick="event.preventDefault();openAbout();toggleSidebar()">ℹ️ حول الموقع</a>
-<a href="#" onclick="event.preventDefault();openSettings();toggleSidebar()">⚙️ الإعدادات</a>
-<a href="#" onclick="event.preventDefault();showBadges();toggleSidebar()">🏆 إنجازاتي</a>
+</div>
+<div class="sidebar-section">
+<div class="sidebar-section-title">🎨 المظهر</div>
+<div class="sidebar-option" onclick="cycleTheme()">
+<span class="sidebar-option-label">🌙 الوضع</span>
+<span class="sidebar-option-value" id="themeValue">ليلي</span>
+</div>
+<div class="sidebar-section-title" style="margin-top:12px">🎨 لون التطبيق</div>
+<div class="sidebar-color-row">
+<button class="sidebar-color-btn" onclick="setAccent('#8b3dff')" data-color="#8b3dff" style="background:#8b3dff"></button>
+<button class="sidebar-color-btn" onclick="setAccent('#1d6cff')" data-color="#1d6cff" style="background:#1d6cff"></button>
+<button class="sidebar-color-btn" onclick="setAccent('#12b94f')" data-color="#12b94f" style="background:#12b94f"></button>
+<button class="sidebar-color-btn" onclick="setAccent('#ff3366')" data-color="#ff3366" style="background:#ff3366"></button>
+<button class="sidebar-color-btn" onclick="setAccent('#ffd21f')" data-color="#ffd21f" style="background:#ffd21f"></button>
+<button class="sidebar-color-btn" onclick="setAccent('#ff6b00')" data-color="#ff6b00" style="background:#ff6b00"></button>
+</div>
+<div class="sidebar-section-title" style="margin-top:12px">🔤 حجم الخط</div>
+<div class="sidebar-btn-row">
+<button class="sidebar-btn" onclick="setFontSize('small')" data-font="small">صغير</button>
+<button class="sidebar-btn" onclick="setFontSize('medium')" data-font="medium">متوسط</button>
+<button class="sidebar-btn" onclick="setFontSize('large')" data-font="large">كبير</button>
+</div>
+</div>
+<div class="sidebar-section">
+<div class="sidebar-section-title">🌐 اللغة</div>
+<div class="sidebar-btn-row">
+<button class="sidebar-btn" onclick="setLanguage('ar')" data-lang="ar">🇸🇦 العربية</button>
+<button class="sidebar-btn" onclick="setLanguage('en')" data-lang="en">🇬🇧 English</button>
+</div>
+</div>
+<div class="sidebar-section">
+<div class="sidebar-section-title">🎮 عدد الألعاب في الصف</div>
+<div class="sidebar-btn-row">
+<button class="sidebar-btn" onclick="setGridSize(3)" data-grid="3">3</button>
+<button class="sidebar-btn" onclick="setGridSize(4)" data-grid="4">4</button>
+<button class="sidebar-btn" onclick="setGridSize(5)" data-grid="5">5</button>
+</div>
+</div>
+<div class="sidebar-section">
+<div class="sidebar-section-title">📐 حجم البطاقات</div>
+<div class="sidebar-btn-row">
+<button class="sidebar-btn" onclick="setCardSize('compact')" data-card="compact">صغير</button>
+<button class="sidebar-btn" onclick="setCardSize('normal')" data-card="normal">عادي</button>
+<button class="sidebar-btn" onclick="setCardSize('large')" data-card="large">كبير</button>
+</div>
+</div>
+<div class="sidebar-section">
+<div class="sidebar-section-title">✨ الأنميشن</div>
+<div class="sidebar-option" onclick="toggleAnimation()">
+<span class="sidebar-option-label">🎬 تشغيل الأنميشن</span>
+<button class="sidebar-toggle on" id="animToggle"></button>
+</div>
+<div class="sidebar-btn-row">
+<button class="sidebar-btn" onclick="setAnimSpeed('slow')" data-speed="slow">بطيء</button>
+<button class="sidebar-btn" onclick="setAnimSpeed('normal')" data-speed="normal">عادي</button>
+<button class="sidebar-btn" onclick="setAnimSpeed('fast')" data-speed="fast">سريع</button>
+</div>
+<div class="sidebar-btn-row" style="margin-top:8px">
+<button class="sidebar-btn" onclick="setAnimStyle('fade')" data-style="fade">Fade</button>
+<button class="sidebar-btn" onclick="setAnimStyle('slide')" data-style="slide">Slide</button>
+<button class="sidebar-btn" onclick="setAnimStyle('zoom')" data-style="zoom">Zoom</button>
+</div>
+</div>
+<div class="sidebar-section">
+<div class="sidebar-section-title">🔊 الصوت</div>
+<div class="sidebar-option" onclick="toggleSound()">
+<span class="sidebar-option-label">🔊 صوت النقر</span>
+<button class="sidebar-toggle on" id="soundToggle"></button>
+</div>
+<div class="sidebar-section-title" style="margin-top:12px">🔉 مستوى الصوت</div>
+<input type="range" min="0" max="100" value="50" class="sidebar-select" id="volumeSlider" onchange="setVolume(this.value)">
+</div>
+<div class="sidebar-section">
+<div class="sidebar-section-title">📱 إضافات</div>
+<div class="sidebar-option" onclick="toggleSwipe()">
+<span class="sidebar-option-label">👆 السحب بين الصفحات</span>
+<button class="sidebar-toggle on" id="swipeToggle"></button>
+</div>
+<div class="sidebar-option" onclick="toggleParticles()">
+<span class="sidebar-option-label">✨ الجزيئات المتحركة</span>
+<button class="sidebar-toggle on" id="particlesToggle"></button>
+</div>
+<div class="sidebar-option" onclick="togglePerformance()">
+<span class="sidebar-option-label">⚡ وضع الأداء العالي</span>
+<button class="sidebar-toggle" id="performanceToggle"></button>
+</div>
+</div>
+<div class="sidebar-section">
+<div class="sidebar-section-title">ℹ️ معلومات</div>
+<div class="sidebar-info">
+<p><strong>الإصدار:</strong> v3.0</p>
+<p><strong>المطوّر:</strong> Zaki Safri</p>
+<p><strong>المصدر:</strong> RAWG API</p>
+<p><strong>الألعاب:</strong> 900,000+</p>
+</div>
+</div>
+<div class="sidebar-section">
+<button class="sidebar-btn" style="width:100%;padding:14px;background:var(--accent);color:#fff;border:none" onclick="showBadges();toggleSidebar()">🏆 إنجازاتي</button>
+<button class="sidebar-btn" style="width:100%;padding:14px;margin-top:8px;background:var(--red);color:#fff;border:none" onclick="clearAllData();toggleSidebar()">🗑️ مسح البيانات</button>
+</div>
 </div>
 <main class="container" id="home">
 <section class="hero">
 <div class="hero-content">
 <div data-i18n="hero_welcome">🎮 مرحباً بك في Game Hub</div>
 <h1 data-i18n-html="hero_title">موسوعة <span>الألعاب</span></h1>
-<p data-i18n="hero_subtitle">اكتشف عالم الألعاب — 10 ألعاب مميزة + آلاف الألعاب من الإنترنت</p>
+<p data-i18n="hero_subtitle">اكتشف عالم الألعاب — آلاف الألعاب في مكان واحد</p>
 <div class="hero-buttons">
-<button class="hero-button" onclick="document.getElementById('games').scrollIntoView({behavior:'smooth'})" data-i18n="hero_explore">🎮 استكشف الألعاب ←</button>
-<button class="hero-button secondary" onclick="goToPage(2)">🌐 كل الألعاب</button>
+<button class="hero-button" onclick="goToPage(2)">🌐 كل الألعاب</button>
+<button class="hero-button secondary" onclick="goToPage(1)">❤️ المفضلة</button>
 <button class="hero-button secondary" onclick="randomGame()" data-i18n="hero_random">🎲 عشوائية</button>
 </div>
 </div>
@@ -340,31 +470,9 @@ nav{display:none}
 <section class="top-rated" id="topRatedGrid"></section>
 <div class="section-title" id="most-viewed"><h2 data-i18n="section_most">👁️ الأكثر مشاهدة</h2><span data-i18n="most_sub">الأكثر فتحاً للتفاصيل</span></div>
 <section class="top-rated" id="mostViewedGrid"></section>
-<div class="section-title" id="games"><h2 data-i18n="section_games">🔥 ألعابي المميزة</h2><span id="resultsCount">10 ألعاب</span></div>
-<div class="controls">
-<select id="sortSelect" onchange="applyFilters()">
-<option value="default" data-i18n="sort_default">📋 الترتيب الافتراضي</option>
-<option value="rating-desc" data-i18n="sort_rating_desc">⭐ الأعلى تقييماً</option>
-<option value="rating-asc" data-i18n="sort_rating_asc">⭐ الأقل تقييماً</option>
-<option value="year-desc" data-i18n="sort_year_desc">📅 الأحدث</option>
-<option value="year-asc" data-i18n="sort_year_asc">📅 الأقدم</option>
-<option value="name-asc" data-i18n="sort_name_asc">🔤 الاسم (أ-ي)</option>
-</select>
-<select id="yearSelect" onchange="applyFilters()"><option value="all">📅 كل السنوات</option></select>
-</div>
-<section class="categories" id="categories">
-<button class="cat-btn active" data-cat="all" data-i18n="cat_all">🎮 الكل</button>
-<button class="cat-btn" data-cat="أكشن" data-i18n="cat_action">⚔️ أكشن</button>
-<button class="cat-btn" data-cat="مغامرة" data-i18n="cat_adventure">🗺️ مغامرة</button>
-<button class="cat-btn" data-cat="RPG" data-i18n="cat_rpg">🧙 RPG</button>
-<button class="cat-btn" data-cat="رياضة" data-i18n="cat_sport">⚽ رياضة</button>
-<button class="cat-btn" data-cat="باتل رويال" data-i18n="cat_battle">🎯 باتل رويال</button>
-<button class="cat-btn" data-cat="عالم مفتوح" data-i18n="cat_open">🌍 عالم مفتوح</button>
-</section>
-<section class="games" id="gamesGrid"></section>
-<div class="section-title" id="upcoming"><h2 data-i18n="section_upcoming">🚀 الألعاب القادمة</h2><span>2025-2026</span></div>
+<div class="section-title upcoming-section" id="upcoming"><h2 data-i18n="section_upcoming">🚀 الألعاب القادمة</h2><span>2025-2026</span></div>
 <section class="upcoming-grid" id="upcomingGrid"></section>
-<div class="section-title"><h2 data-i18n="section_news">📰 أحدث الأخبار</h2></div>
+<div class="section-title news-section"><h2 data-i18n="section_news">📰 أحدث الأخبار</h2></div>
 <section class="news">
 <div class="news-item"><strong data-i18n="news_1">🎮 تحديث جديد للعبة GTA Online</strong><span>2025-11-10</span></div>
 <div class="news-item"><strong data-i18n="news_2">🔥 إصدار جديد من Call of Duty</strong><span>2025-11-08</span></div>
@@ -388,20 +496,18 @@ nav{display:none}
 <button class="back-btn" onclick="goToPage(0)">←</button>
 <h2>❤️ المفضلة</h2>
 </div>
-<div id="favoritesPageContent">
-<div id="favoritesGrid" class="games"></div>
-</div>
+<div id="favoritesGrid" class="games" style="padding:15px"></div>
 </div>
 
 <!-- ===== صفحة كل الألعاب ===== -->
 <div class="page" data-page="games" id="pageGames">
 <div class="rawg-search-header">
 <div class="rawg-search-box">
-<input type="text" class="rawg-search-input" id="rawgSearchInput" placeholder="🔍 ابحث عن أي لعبة... (GTA, FIFA, Mario)">
+<input type="text" class="rawg-search-input" id="rawgSearchInput" placeholder="🔍 ابحث في 900,000 لعبة...">
 <button class="rawg-search-btn" onclick="searchRawg()">🔍</button>
 </div>
 </div>
-<div class="rawg-filters" style="padding:12px 15px;margin-bottom:0">
+<div class="rawg-filters">
 <select id="rawgGenre" onchange="filterRawgByGenre()">
 <option value="">🎯 كل التصنيفات</option>
 <option value="action">⚔️ أكشن</option>
@@ -414,7 +520,7 @@ nav{display:none}
 <option value="strategy">♟️ استراتيجية</option>
 <option value="simulation">🎮 محاكاة</option>
 </select>
-<select id="rawgOrdering" onchange="loadRawgGames(1,true)">
+<select id="rawgOrdering" onchange="filterRawgByGenre()">
 <option value="-rating">⭐ الأعلى تقييماً</option>
 <option value="-added">🔥 الأكثر شعبية</option>
 <option value="-released">📅 الأحدث</option>
@@ -422,13 +528,13 @@ nav{display:none}
 <option value="-metacritic">🏆 الأعلى Metacritic</option>
 </select>
 </div>
-<div class="rawg-loading" id="rawgLoading" style="text-align:center;padding:40px;color:var(--text3)">
-<div class="spinner" style="display:inline-block;width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin 1s linear infinite;margin-bottom:15px"></div>
+<div class="rawg-loading" id="rawgLoading">
+<div class="spinner"></div>
 <div>جاري جلب الألعاب...</div>
 </div>
 <div class="rawg-grid-new" id="rawgGridNew" style="display:none"></div>
-<div id="rawgError" class="rawg-error" style="display:none;text-align:center;padding:30px;color:var(--red);font-size:14px"></div>
-<button class="rawg-show-more" id="rawgShowMore" onclick="loadRawgGames(rawgPage+1)" style="display:none;width:calc(100% - 30px);margin:15px;grid-column:1/-1">📥 عرض المزيد</button>
+<div id="rawgError" style="display:none;text-align:center;padding:30px;color:var(--red);font-size:14px"></div>
+<button class="rawg-show-more" id="rawgShowMore" onclick="loadRawgGames(rawgPage+1)" style="display:none">📥 عرض المزيد</button>
 </div>
 
 <!-- ===== صفحة الحساب ===== -->
@@ -462,19 +568,19 @@ nav{display:none}
 
 <!-- ===== الشريط السفلي ===== -->
 <div class="bottom-nav">
-<button class="bottom-nav-item active" id="navHome" onclick="goToPage(0)" data-page-btn="0">
+<button class="bottom-nav-item active" data-page-btn="0" onclick="goToPage(0)">
 <span class="nav-icon">🏠</span>
 <span class="nav-label">الرئيسية</span>
 </button>
-<button class="bottom-nav-item" id="navFav" onclick="goToPage(1)" data-page-btn="1">
+<button class="bottom-nav-item" data-page-btn="1" onclick="goToPage(1)">
 <span class="nav-icon">❤️</span>
 <span class="nav-label">المفضلة</span>
 </button>
-<button class="bottom-nav-item" id="navGames" onclick="goToPage(2)" data-page-btn="2">
+<button class="bottom-nav-item" data-page-btn="2" onclick="goToPage(2)">
 <span class="nav-icon">🎮</span>
 <span class="nav-label">الألعاب</span>
 </button>
-<button class="bottom-nav-item" id="navAccount" onclick="goToPage(3)" data-page-btn="3">
+<button class="bottom-nav-item" data-page-btn="3" onclick="goToPage(3)">
 <span class="nav-icon">👤</span>
 <span class="nav-label">الحساب</span>
 </button>
@@ -484,56 +590,8 @@ nav{display:none}
 <div class="modal" id="settingsModal">
 <div class="modal-content">
 <h2 data-i18n="settings_title">⚙️ الإعدادات</h2>
-<div class="settings-group">
-<h4 data-i18n="settings_theme">🌙 المظهر</h4>
-<div class="settings-options">
-<button class="setting-btn" onclick="setTheme('dark')" data-setting="theme" data-value="dark" data-i18n="theme_dark">🌙 ليلي</button>
-<button class="setting-btn" onclick="setTheme('light')" data-setting="theme" data-value="light" data-i18n="theme_light">☀️ نهاري</button>
-<button class="setting-btn" onclick="setTheme('gray')" data-setting="theme" data-value="gray" data-i18n="theme_gray">🌫️ رمادي</button>
-</div>
-</div>
-<div class="settings-group">
-<h4 data-i18n="settings_font">🔤 حجم الخط</h4>
-<div class="settings-options">
-<button class="setting-btn" onclick="setFontSize('small')" data-setting="font" data-value="small" data-i18n="font_small">صغير</button>
-<button class="setting-btn" onclick="setFontSize('medium')" data-setting="font" data-value="medium" data-i18n="font_medium">متوسط</button>
-<button class="setting-btn" onclick="setFontSize('large')" data-setting="font" data-value="large" data-i18n="font_large">كبير</button>
-</div>
-</div>
-<div class="settings-group">
-<h4 data-i18n="settings_color">🎨 لون التطبيق</h4>
-<div class="settings-options">
-<button class="setting-btn color-btn" onclick="setAccent('#8b3dff')" data-setting="accent" data-value="#8b3dff" style="background:#8b3dff"></button>
-<button class="setting-btn color-btn" onclick="setAccent('#1d6cff')" data-setting="accent" data-value="#1d6cff" style="background:#1d6cff"></button>
-<button class="setting-btn color-btn" onclick="setAccent('#12b94f')" data-setting="accent" data-value="#12b94f" style="background:#12b94f"></button>
-<button class="setting-btn color-btn" onclick="setAccent('#ff3366')" data-setting="accent" data-value="#ff3366" style="background:#ff3366"></button>
-<button class="setting-btn color-btn" onclick="setAccent('#ffd21f')" data-setting="accent" data-value="#ffd21f" style="background:#ffd21f"></button>
-<button class="setting-btn color-btn" onclick="setAccent('#ff6b00')" data-setting="accent" data-value="#ff6b00" style="background:#ff6b00"></button>
-</div>
-</div>
-<div class="settings-group">
-<h4 data-i18n="settings_language">🌐 اللغة</h4>
-<div class="settings-options">
-<button class="setting-btn" onclick="setLanguage('ar')" data-setting="lang" data-value="ar">🇸🇦 العربية</button>
-<button class="setting-btn" onclick="setLanguage('en')" data-setting="lang" data-value="en">🇬🇧 English</button>
-</div>
-</div>
-<div class="settings-group">
-<h4 data-i18n="settings_data">🗑️ إدارة البيانات</h4>
-<div class="settings-options">
-<button class="setting-btn danger" onclick="clearAllData()" data-i18n="settings_clear">🗑️ مسح كل البيانات</button>
-</div>
-</div>
-<div class="settings-group">
-<h4 data-i18n="settings_info">📱 معلومات</h4>
-<div class="settings-info">
-<p><strong data-i18n="info_version">الإصدار:</strong> v3.0</p>
-<p><strong data-i18n="info_dev">المطوّر:</strong> Zaki Safri</p>
-<p><strong data-i18n="info_site">الموقع:</strong> Game Hub</p>
-<p><strong>مصدر البيانات:</strong> RAWG API</p>
-</div>
-</div>
-<button class="close" onclick="closeSettings()" data-i18n="settings_close">إغلاق</button>
+<div style="text-align:center;color:var(--text3);font-size:13px;margin-bottom:15px">استخدم القائمة الجانبية ☰ للإعدادات الكاملة</div>
+<button class="close" onclick="closeSettings()">إغلاق</button>
 </div>
 </div>
 <div class="modal" id="aboutModal">
@@ -544,7 +602,6 @@ nav{display:none}
 <div class="modal-info-row"><span class="label">📅 تاريخ الإصدار</span><span class="value">2025</span></div>
 <div class="modal-info-row"><span class="label">🔢 الإصدار</span><span class="value">v3.0</span></div>
 <div class="modal-info-row"><span class="label">👨‍💻 المطوّر</span><span class="value">Zaki Safri</span></div>
-<div class="modal-info-row"><span class="label">🎮 ألعابي المميزة</span><span class="value">10 ألعاب</span></div>
 <div class="modal-info-row"><span class="label">🌐 من RAWG</span><span class="value">900,000+ لعبة</span></div>
 </div>
 <button class="fav-modal" onclick="copySiteLink()">📋 نسخ رابط الموقع</button>
@@ -599,30 +656,29 @@ let touchStartY = 0;
 let touchCurrentX = 0;
 let isDragging = false;
 let dragDirection = null;
-// ===== الألعاب اليدوية =====
 const games=[
-{id:1,name:"Minecraft",desc:"بناء • مغامرة • بقاء",fullDesc:"لعبة بناء واستكشاف لا نهائية، يمكنك بناء أي شيء تتخيله من المكعبات، والبقاء على قيد الحياة في عالم مليء بالمخلوقات.",rating:9.0,year:2011,category:"مغامرة",image:"https://i.postimg.cc/59HZFNKx/file-000000001210821087a228f03f7e497e.jpg",developer:"Mojang Studios",publisher:"Xbox Game Studios",platforms:"PC, PS4, PS5, Xbox, Switch, Mobile",mode:"فردي + جماعي",ageRating:"PEGI 7",size:"من 1 GB"},
-{id:2,name:"God of War: Ragnarök",desc:"أكشن • مغامرة • أساطير",fullDesc:"مغامرة ملحمية مع كراتوس وأتريوس في عالم الأساطير الإسكندنافية، مع قتال ملحمي وقصة مؤثرة.",rating:9.8,year:2022,category:"أكشن",image:"https://i.postimg.cc/d0bGH6vF/wp11484883-god-of-war-ragnarok-desktop-wallpapers.jpg",developer:"Santa Monica Studio",publisher:"Sony Interactive",platforms:"PS4, PS5, PC",mode:"فردي",ageRating:"PEGI 18",size:"من 100 GB"},
-{id:3,name:"Fortnite",desc:"باتل رويال • بناء • مجانية",fullDesc:"لعبة باتل رويال مجانية، تجمع بين البناء والقتال السريع مع تحديثات موسمية مستمرة.",rating:8.8,year:2017,category:"باتل رويال",image:"https://i.postimg.cc/bYH1g1B9/fortnite-season-4-nexus-war-marvel-superheroes-crossover-3840x2160-2642.jpg",developer:"Epic Games",publisher:"Epic Games",platforms:"PC, PS, Xbox, Switch, Mobile",mode:"جماعي أونلاين",ageRating:"PEGI 12",size:"من 30 GB"},
-{id:4,name:"Elden Ring",desc:"RPG • عالم مفتوح • تحدٍ",fullDesc:"لعبة تقمص أدوار من مطور Dark Souls، مع عالم ضخم مفتوح ومعارك صعبة ومكافئة.",rating:9.7,year:2022,category:"RPG",image:"https://i.postimg.cc/bNmkcp8y/wp14808661-elden-ring-wallpapers.webp",developer:"FromSoftware",publisher:"Bandai Namco",platforms:"PC, PS4, PS5, Xbox",mode:"فردي + أونلاين",ageRating:"PEGI 16",size:"من 60 GB"},
-{id:5,name:"Call of Duty: MW",desc:"أكشن • تصويب • حرب",fullDesc:"لعبة تصويب من منظور الشخص الأول، تعيش فيها تجارب حربية واقعية مع رسومات مذهلة.",rating:9.2,year:2019,category:"أكشن",image:"https://i.postimg.cc/q7333KK3/wp4517207-call-of-duty-modern-warfare-2019-wallpapers.jpg",developer:"Infinity Ward",publisher:"Activision",platforms:"PC, PS4, Xbox One",mode:"فردي + جماعي",ageRating:"PEGI 18",size:"من 175 GB"},
-{id:6,name:"EA Sports FC 24",desc:"رياضة • كرة قدم • جماعية",fullDesc:"لعبة كرة القدم الأكثر شعبية في العالم، مع فرق ولاعبين حقيقيين ودوريات عالمية.",rating:8.5,year:2023,category:"رياضة",image:"https://i.postimg.cc/63V4HNYw/wp12780911-ea-sports-fc-24-wallpapers.jpg",developer:"EA Vancouver",publisher:"EA Sports",platforms:"PC, PS4, PS5, Xbox, Switch",mode:"فردي + جماعي",ageRating:"PEGI 3",size:"من 50 GB"},
-{id:7,name:"The Witcher 3",desc:"عالم مفتوح • RPG • مغامرة",fullDesc:"لعبة تقمص أدوار خيالية، تلعب فيها دور صياد الوحوش جيرالت في عالم ضخم مليء بالمهام.",rating:9.6,year:2015,category:"RPG",image:"https://i.postimg.cc/HnBcg9Gj/wp1854885-the-witcher-3-wallpapers.jpg",developer:"CD Projekt Red",publisher:"CD Projekt",platforms:"PC, PS4, PS5, Xbox, Switch",mode:"فردي",ageRating:"PEGI 18",size:"من 50 GB"},
-{id:8,name:"Red Dead Redemption 2",desc:"عالم مفتوح • أكشن • قصة",fullDesc:"مغامرة ملحمية في الغرب الأمريكي القديم، مع قصة عميقة وعالم مفتوح مذهل بالتفاصيل.",rating:9.7,year:2018,category:"عالم مفتوح",image:"https://i.postimg.cc/T3Ww763N/1303804.jpg",developer:"Rockstar Games",publisher:"Rockstar Games",platforms:"PC, PS4, Xbox One",mode:"فردي + أونلاين",ageRating:"PEGI 18",size:"من 150 GB"},
-{id:9,name:"Cyberpunk 2077",desc:"عالم مفتوح • سايبربانك • RPG",fullDesc:"مغامرة في مستقبل بعيد، مدينة Night City المليئة بالتقنيات والقصص الجانبية الممتعة.",rating:9.0,year:2020,category:"RPG",image:"https://i.postimg.cc/L5nRJtqw/wallpaperflare-com-wallpaper.jpg",developer:"CD Projekt Red",publisher:"CD Projekt",platforms:"PC, PS4, PS5, Xbox",mode:"فردي",ageRating:"PEGI 18",size:"من 70 GB"},
-{id:10,name:"Grand Theft Auto V",desc:"عالم مفتوح • أكشن • مغامرة",fullDesc:"لعبة أكشن ومغامرة في عالم مفتوح، تتيح لك اللعب بثلاث شخصيات واستكشاف مدينة لوس سانتوس.",rating:9.5,year:2013,category:"عالم مفتوح",image:"https://i.postimg.cc/Hs8dHt1N/wallpaperbetter.jpg",developer:"Rockstar North",publisher:"Rockstar Games",platforms:"PC, PS3, PS4, PS5, Xbox",mode:"فردي + أونلاين",ageRating:"PEGI 18",size:"من 90 GB"}
+{id:1,name:"Minecraft",desc:"بناء • مغامرة • بقاء",fullDesc:"لعبة بناء واستكشاف لا نهائية.",rating:9.0,year:2011,category:"مغامرة",image:"https://i.postimg.cc/59HZFNKx/file-000000001210821087a228f03f7e497e.jpg",developer:"Mojang Studios",publisher:"Xbox Game Studios",platforms:"PC, PS, Xbox, Switch, Mobile",mode:"فردي + جماعي",ageRating:"PEGI 7",size:"من 1 GB"},
+{id:2,name:"God of War: Ragnarök",desc:"أكشن • مغامرة • أساطير",fullDesc:"مغامرة ملحمية مع كراتوس وأتريوس.",rating:9.8,year:2022,category:"أكشن",image:"https://i.postimg.cc/d0bGH6vF/wp11484883-god-of-war-ragnarok-desktop-wallpapers.jpg",developer:"Santa Monica Studio",publisher:"Sony Interactive",platforms:"PS4, PS5, PC",mode:"فردي",ageRating:"PEGI 18",size:"من 100 GB"},
+{id:3,name:"Fortnite",desc:"باتل رويال • بناء • مجانية",fullDesc:"لعبة باتل رويال مجانية.",rating:8.8,year:2017,category:"باتل رويال",image:"https://i.postimg.cc/bYH1g1B9/fortnite-season-4-nexus-war-marvel-superheroes-crossover-3840x2160-2642.jpg",developer:"Epic Games",publisher:"Epic Games",platforms:"PC, PS, Xbox, Switch, Mobile",mode:"جماعي أونلاين",ageRating:"PEGI 12",size:"من 30 GB"},
+{id:4,name:"Elden Ring",desc:"RPG • عالم مفتوح • تحدٍ",fullDesc:"لعبة تقمص أدوار من مطور Dark Souls.",rating:9.7,year:2022,category:"RPG",image:"https://i.postimg.cc/bNmkcp8y/wp14808661-elden-ring-wallpapers.webp",developer:"FromSoftware",publisher:"Bandai Namco",platforms:"PC, PS, Xbox",mode:"فردي + أونلاين",ageRating:"PEGI 16",size:"من 60 GB"},
+{id:5,name:"Call of Duty: MW",desc:"أكشن • تصويب • حرب",fullDesc:"لعبة تصويب من منظور الشخص الأول.",rating:9.2,year:2019,category:"أكشن",image:"https://i.postimg.cc/q7333KK3/wp4517207-call-of-duty-modern-warfare-2019-wallpapers.jpg",developer:"Infinity Ward",publisher:"Activision",platforms:"PC, PS4, Xbox One",mode:"فردي + جماعي",ageRating:"PEGI 18",size:"من 175 GB"},
+{id:6,name:"EA Sports FC 24",desc:"رياضة • كرة قدم • جماعية",fullDesc:"لعبة كرة القدم الأكثر شعبية.",rating:8.5,year:2023,category:"رياضة",image:"https://i.postimg.cc/63V4HNYw/wp12780911-ea-sports-fc-24-wallpapers.jpg",developer:"EA Vancouver",publisher:"EA Sports",platforms:"PC, PS, Xbox, Switch",mode:"فردي + جماعي",ageRating:"PEGI 3",size:"من 50 GB"},
+{id:7,name:"The Witcher 3",desc:"عالم مفتوح • RPG • مغامرة",fullDesc:"لعبة تقمص أدوار خيالية.",rating:9.6,year:2015,category:"RPG",image:"https://i.postimg.cc/HnBcg9Gj/wp1854885-the-witcher-3-wallpapers.jpg",developer:"CD Projekt Red",publisher:"CD Projekt",platforms:"PC, PS, Xbox, Switch",mode:"فردي",ageRating:"PEGI 18",size:"من 50 GB"},
+{id:8,name:"Red Dead Redemption 2",desc:"عالم مفتوح • أكشن • قصة",fullDesc:"مغامرة في الغرب الأمريكي القديم.",rating:9.7,year:2018,category:"عالم مفتوح",image:"https://i.postimg.cc/T3Ww763N/1303804.jpg",developer:"Rockstar Games",publisher:"Rockstar Games",platforms:"PC, PS4, Xbox One",mode:"فردي + أونلاين",ageRating:"PEGI 18",size:"من 150 GB"},
+{id:9,name:"Cyberpunk 2077",desc:"عالم مفتوح • سايبربانك • RPG",fullDesc:"مغامرة في مستقبل بعيد.",rating:9.0,year:2020,category:"RPG",image:"https://i.postimg.cc/L5nRJtqw/wallpaperflare-com-wallpaper.jpg",developer:"CD Projekt Red",publisher:"CD Projekt",platforms:"PC, PS, Xbox",mode:"فردي",ageRating:"PEGI 18",size:"من 70 GB"},
+{id:10,name:"Grand Theft Auto V",desc:"عالم مفتوح • أكشن • مغامرة",fullDesc:"لعبة أكشن ومغامرة في عالم مفتوح.",rating:9.5,year:2013,category:"عالم مفتوح",image:"https://i.postimg.cc/Hs8dHt1N/wallpaperbetter.jpg",developer:"Rockstar North",publisher:"Rockstar Games",platforms:"PC, PS, Xbox",mode:"فردي + أونلاين",ageRating:"PEGI 18",size:"من 90 GB"}
 ];
 const upcomingGames=[
-{name:"Grand Theft Auto VI",date:"2026-05-26",desc:"الإصدار الأكثر انتظاراً من Rockstar"},
-{name:"The Witcher 4",date:"2026-12-31",desc:"الجزء الجديد من سلسلة CD Projekt"},
-{name:"Elder Scrolls VI",date:"2026-06-15",desc:"من Bethesda Game Studios"},
-{name:"Hollow Knight: Silksong",date:"2025-12-15",desc:"تكملة لعبة Hollow Knight"},
+{name:"Grand Theft Auto VI",date:"2026-05-26",desc:"من Rockstar"},
+{name:"The Witcher 4",date:"2026-12-31",desc:"من CD Projekt"},
+{name:"Elder Scrolls VI",date:"2026-06-15",desc:"من Bethesda"},
+{name:"Hollow Knight: Silksong",date:"2025-12-15",desc:"تكملة Hollow Knight"},
 {name:"Fable",date:"2026-03-20",desc:"إحياء سلسلة Fable"},
-{name:"Death Stranding 2",date:"2025-12-10",desc:"من إخراج هيديو كوجيما"}
+{name:"Death Stranding 2",date:"2025-12-10",desc:"من هيديو كوجيما"}
 ];
 const translations={
-ar:{tagline:"موسوعة الألعاب",nav_home:"🏠 الرئيسية",nav_top:"⭐ الأفضل",nav_most:"👁️ الأكثر مشاهدة",nav_games:"🎮 الألعاب",nav_upcoming:"🚀 قادمة",search_placeholder:"🔍 ابحث...",hero_welcome:"🎮 مرحباً بك في Game Hub",hero_title:"موسوعة <span>الألعاب</span>",hero_subtitle:"اكتشف عالم الألعاب — 10 ألعاب مميزة + آلاف الألعاب من الإنترنت",hero_explore:"🎮 استكشف الألعاب ←",hero_random:"🎲 عشوائية",section_top:"⭐ الأكثر تقييماً",top_sub:"أعلى 3 ألعاب",section_most:"👁️ الأكثر مشاهدة",most_sub:"الأكثر فتحاً للتفاصيل",section_games:"🔥 ألعابي المميزة",sort_default:"📋 الترتيب الافتراضي",sort_rating_desc:"⭐ الأعلى تقييماً",sort_rating_asc:"⭐ الأقل تقييماً",sort_year_desc:"📅 الأحدث",sort_year_asc:"📅 الأقدم",sort_name_asc:"🔤 الاسم (أ-ي)",cat_all:"🎮 الكل",cat_action:"⚔️ أكشن",cat_adventure:"🗺️ مغامرة",cat_rpg:"🧙 RPG",cat_sport:"⚽ رياضة",cat_battle:"🎯 باتل رويال",cat_open:"🌍 عالم مفتوح",section_upcoming:"🚀 الألعاب القادمة",section_news:"📰 أحدث الأخبار",news_1:"🎮 تحديث جديد للعبة GTA Online",news_2:"🔥 إصدار جديد من Call of Duty",news_3:"🎮 معلومات جديدة عن GTA VI",news_4:"⚽ EA Sports FC 25 قادم",news_5:"🪓 تحديث God of War المجاني",section_stats:"📊 إحصائيات الموقع",stat_games:"لعبة",stat_visitors:"زائر",stat_reviews:"مراجعة",stat_badges:"إنجاز",footer_text:"موسوعة الألعاب في مكان واحد © 2025",settings_title:"⚙️ الإعدادات",settings_theme:"🌙 المظهر",theme_dark:"🌙 ليلي",theme_light:"☀️ نهاري",theme_gray:"🌫️ رمادي",settings_font:"🔤 حجم الخط",font_small:"صغير",font_medium:"متوسط",font_large:"كبير",settings_color:"🎨 لون التطبيق",settings_language:"🌐 اللغة",settings_data:"🗑️ إدارة البيانات",settings_clear:"🗑️ مسح كل البيانات",settings_info:"📱 معلومات",info_version:"الإصدار:",info_dev:"المطوّر:",info_site:"الموقع:",settings_close:"إغلاق",modal_rating:"التقييم",modal_cat:"التصنيف",modal_year:"السنة"},
-en:{tagline:"Games Encyclopedia",nav_home:"🏠 Home",nav_top:"⭐ Top",nav_most:"👁️ Most Viewed",nav_games:"🎮 Games",nav_upcoming:"🚀 Upcoming",search_placeholder:"🔍 Search...",hero_welcome:"🎮 Welcome to Game Hub",hero_title:"<span>Games</span> Encyclopedia",hero_subtitle:"Discover the world of games — 10 featured + thousands from the internet",hero_explore:"🎮 Explore Games →",hero_random:"🎲 Random",section_top:"⭐ Top Rated",top_sub:"Top 3 Games",section_most:"👁️ Most Viewed",most_sub:"Most opened details",section_games:"🔥 My Featured Games",sort_default:"📋 Default Order",sort_rating_desc:"⭐ Highest Rated",sort_rating_asc:"⭐ Lowest Rated",sort_year_desc:"📅 Newest",sort_year_asc:"📅 Oldest",sort_name_asc:"🔤 Name (A-Z)",cat_all:"🎮 All",cat_action:"⚔️ Action",cat_adventure:"🗺️ Adventure",cat_rpg:"🧙 RPG",cat_sport:"⚽ Sports",cat_battle:"🎯 Battle Royale",cat_open:"🌍 Open World",section_upcoming:"🚀 Upcoming Games",section_news:"📰 Latest News",news_1:"🎮 New update for GTA Online",news_2:"🔥 New Call of Duty released",news_3:"🎮 New info about GTA VI",news_4:"⚽ EA Sports FC 25 is coming",news_5:"🪓 Free God of War update",section_stats:"📊 Site Stats",stat_games:"Games",stat_visitors:"Visitors",stat_reviews:"Reviews",stat_badges:"Badges",footer_text:"Games encyclopedia in one place © 2025",settings_title:"⚙️ Settings",settings_theme:"🌙 Theme",theme_dark:"🌙 Dark",theme_light:"☀️ Light",theme_gray:"🌫️ Gray",settings_font:"🔤 Font Size",font_small:"Small",font_medium:"Medium",font_large:"Large",settings_color:"🎨 App Color",settings_language:"🌐 Language",settings_data:"🗑️ Data Management",settings_clear:"🗑️ Clear All Data",settings_info:"📱 Info",info_version:"Version:",info_dev:"Developer:",info_site:"Site:",settings_close:"Close",modal_rating:"Rating",modal_cat:"Category",modal_year:"Year"}
+ar:{tagline:"موسوعة الألعاب",nav_home:"🏠 الرئيسية",nav_top:"⭐ الأفضل",nav_most:"👁️ الأكثر مشاهدة",nav_games:"🎮 الألعاب",nav_upcoming:"🚀 قادمة",search_placeholder:"🔍 ابحث...",hero_welcome:"🎮 مرحباً بك في Game Hub",hero_title:"موسوعة <span>الألعاب</span>",hero_subtitle:"اكتشف عالم الألعاب — آلاف الألعاب في مكان واحد",hero_explore:"🎮 استكشف الألعاب ←",hero_random:"🎲 عشوائية",section_top:"⭐ الأكثر تقييماً",top_sub:"أعلى 3 ألعاب",section_most:"👁️ الأكثر مشاهدة",most_sub:"الأكثر فتحاً للتفاصيل",section_upcoming:"🚀 الألعاب القادمة",section_news:"📰 أحدث الأخبار",news_1:"🎮 تحديث جديد للعبة GTA Online",news_2:"🔥 إصدار جديد من Call of Duty",news_3:"🎮 معلومات جديدة عن GTA VI",news_4:"⚽ EA Sports FC 25 قادم",news_5:"🪓 تحديث God of War المجاني",section_stats:"📊 إحصائيات الموقع",stat_games:"لعبة",stat_visitors:"زائر",stat_reviews:"مراجعة",stat_badges:"إنجاز",footer_text:"موسوعة الألعاب في مكان واحد © 2025",settings_title:"⚙️ الإعدادات",modal_rating:"التقييم",modal_cat:"التصنيف",modal_year:"السنة"},
+en:{tagline:"Games Encyclopedia",nav_home:"🏠 Home",nav_top:"⭐ Top",nav_most:"👁️ Most Viewed",nav_games:"🎮 Games",nav_upcoming:"🚀 Upcoming",search_placeholder:"🔍 Search...",hero_welcome:"🎮 Welcome to Game Hub",hero_title:"<span>Games</span> Encyclopedia",hero_subtitle:"Discover thousands of games in one place",hero_explore:"🎮 Explore Games →",hero_random:"🎲 Random",section_top:"⭐ Top Rated",top_sub:"Top 3 Games",section_most:"👁️ Most Viewed",most_sub:"Most opened details",section_upcoming:"🚀 Upcoming Games",section_news:"📰 Latest News",news_1:"🎮 New update for GTA Online",news_2:"🔥 New Call of Duty released",news_3:"🎮 New info about GTA VI",news_4:"⚽ EA Sports FC 25 is coming",news_5:"🪓 Free God of War update",section_stats:"📊 Site Stats",stat_games:"Games",stat_visitors:"Visitors",stat_reviews:"Reviews",stat_badges:"Badges",footer_text:"Games encyclopedia © 2025",settings_title:"⚙️ Settings",modal_rating:"Rating",modal_cat:"Category",modal_year:"Year"}
 };
 let favorites=[];
 try{favorites=JSON.parse(localStorage.getItem('favorites')||'[]')}catch(e){favorites=[]}
@@ -633,17 +689,10 @@ try{badges=JSON.parse(localStorage.getItem('badges')||'{}')}catch(e){badges={}}
 let currentFilter='all';
 let currentLang=localStorage.getItem('language')||'ar';
 let currentGameId=null;
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2500)}
-function timeAgo(year){const diff=new Date().getFullYear()-year;if(currentLang==='en'){if(diff<=0)return "This year";if(diff===1)return "1 year ago";return diff+" years ago"}if(diff<=0)return "هذا العام";if(diff===1)return "منذ سنة";if(diff===2)return "منذ سنتين";if(diff<=10)return "منذ "+diff+" سنوات";return "منذ "+diff+" سنة"}
-function copySiteLink(){const url=window.location.href;if(navigator.clipboard){navigator.clipboard.writeText(url).then(()=>{showToast(currentLang==='en'?'Link copied!':'تم نسخ رابط الموقع!');unlockBadge('sharer')})}else{showToast(url)}}
-function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sidebarOverlay').classList.toggle('open')}
-function openAbout(){document.getElementById('aboutModal').classList.add('active')}
-function closeAbout(){document.getElementById('aboutModal').classList.remove('active')}
-document.getElementById('aboutModal').addEventListener('click',function(e){if(e.target.id==='aboutModal')closeAbout()});
-function openBadges(){document.getElementById('badgesModal').classList.add('active');renderBadges()}
-function closeBadges(){document.getElementById('badgesModal').classList.remove('active')}
-document.getElementById('badgesModal').addEventListener('click',function(e){if(e.target.id==='badgesModal')closeBadges()});
-function showBadges(){openBadges()}
+let soundEnabled=localStorage.getItem('soundEnabled')!=='false';
+let swipeEnabled=localStorage.getItem('swipeEnabled')!=='false';
+let animEnabled=localStorage.getItem('animEnabled')!=='false';
+let volume=parseInt(localStorage.getItem('volume')||'50');
 const badgesList=[
 {id:'first_view',icon:'👁️',ar:'أول مشاهدة',en:'First View'},
 {id:'five_views',icon:'🔍',ar:'مستكشف',en:'Explorer'},
@@ -655,10 +704,45 @@ const badgesList=[
 {id:'rater',icon:'⭐',ar:'مقيّم',en:'Rater'},
 {id:'dark_mode',icon:'🌙',ar:'عاشق الليل',en:'Night Owl'}
 ];
+function playClick(){
+if(!soundEnabled||volume===0)return;
+try{
+const ctx=new (window.AudioContext||window.webkitAudioContext)();
+const osc=ctx.createOscillator();
+const gain=ctx.createGain();
+osc.connect(gain);
+gain.connect(ctx.destination);
+osc.frequency.value=800;
+osc.type='sine';
+gain.gain.setValueAtTime(volume/100*0.1,ctx.currentTime);
+gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.1);
+osc.start(ctx.currentTime);
+osc.stop(ctx.currentTime+0.1);
+}catch(e){}
+}
+document.addEventListener('click',function(e){
+if(e.target.closest('button')||e.target.closest('.bottom-nav-item')||e.target.closest('.icon-btn')||e.target.closest('.menu-btn')||e.target.closest('.cat-btn')||e.target.closest('.sidebar-option')||e.target.closest('.sidebar-btn')||e.target.closest('.sidebar-color-btn')){
+playClick();
+}
+});
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._timer);t._timer=setTimeout(()=>t.classList.remove('show'),2000)}
+function timeAgo(year){const diff=new Date().getFullYear()-year;if(currentLang==='en'){if(diff<=0)return "This year";if(diff===1)return "1 year ago";return diff+" years ago"}if(diff<=0)return "هذا العام";if(diff===1)return "منذ سنة";if(diff===2)return "منذ سنتين";if(diff<=10)return "منذ "+diff+" سنوات";return "منذ "+diff+" سنة"}
+function copySiteLink(){const url=window.location.href;if(navigator.clipboard){navigator.clipboard.writeText(url).then(()=>{showToast(currentLang==='en'?'Link copied!':'تم نسخ رابط الموقع!');unlockBadge('sharer')})}}
+function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('sidebarOverlay').classList.toggle('open');playClick()}
+function openAbout(){document.getElementById('aboutModal').classList.add('active')}
+function closeAbout(){document.getElementById('aboutModal').classList.remove('active')}
+document.getElementById('aboutModal').addEventListener('click',function(e){if(e.target.id==='aboutModal')closeAbout()});
+function openBadges(){document.getElementById('badgesModal').classList.add('active');renderBadges()}
+function closeBadges(){document.getElementById('badgesModal').classList.remove('active')}
+document.getElementById('badgesModal').addEventListener('click',function(e){if(e.target.id==='badgesModal')closeBadges()});
+function showBadges(){openBadges()}
+function openSettings(){document.getElementById('settingsModal').classList.add('active')}
+function closeSettings(){document.getElementById('settingsModal').classList.remove('active')}
+document.getElementById('settingsModal').addEventListener('click',function(e){if(e.target.id==='settingsModal')closeSettings()});
 function unlockBadge(id){if(badges[id])return;badges[id]=true;localStorage.setItem('badges',JSON.stringify(badges));document.getElementById('badgesCount').textContent=Object.keys(badges).length;showToast(currentLang==='en'?'🏆 New badge unlocked!':'🏆 إنجاز جديد!')}
 function renderBadges(){const list=document.getElementById('badgesList');list.innerHTML='';badgesList.forEach(b=>{const unlocked=badges[b.id];const div=document.createElement('div');div.className='badge'+(unlocked?' unlocked':'');div.innerHTML='<span class="badge-icon">'+b.icon+'</span><span class="badge-name">'+(currentLang==='en'?b.en:b.ar)+'</span>';list.appendChild(div)})}
 
-// ===== التنقل بين الصفحات =====
+// ===== التنقل =====
 function goToPage(index){
 if(index<0||index>=totalPages)return;
 currentPageIndex=index;
@@ -667,8 +751,7 @@ pages.forEach(p=>p.classList.remove('active'));
 pages[index].classList.add('active');
 updateBottomNav();
 if(index===1)renderFavoritesPage();
-if(index===2){setTimeout(()=>loadRawgGames(1,true),100)}
-if(index===3){}
+if(index===2)setTimeout(()=>loadRawgGames(1,true),100);
 }
 function updateBottomNav(){
 document.querySelectorAll('.bottom-nav-item').forEach(btn=>{
@@ -677,12 +760,14 @@ if(parseInt(btn.getAttribute('data-page-btn'))===currentPageIndex)btn.classList.
 });
 }
 function scrollToTop(){const p=document.querySelectorAll('.page')[currentPageIndex];if(p)p.scrollTo({top:0,behavior:'smooth'})}
-// ===== سحب الصفحات =====
-(function initSwipe(){
+
+// ===== السحب =====
+function initSwipe(){
 const pages=document.querySelectorAll('.page');
-pages.forEach((page,index)=>{
+pages.forEach(function(page,index){
 page.addEventListener('touchstart',function(e){
-if(e.target.closest('.modal')||e.target.closest('.bottom-nav'))return;
+if(!swipeEnabled)return;
+if(e.target.closest('.modal')||e.target.closest('.bottom-nav')||e.target.closest('.sidebar')||e.target.closest('.rawg-search-header')||e.target.closest('.page-header'))return;
 touchStartX=e.touches[0].clientX;
 touchStartY=e.touches[0].clientY;
 touchCurrentX=touchStartX;
@@ -691,246 +776,155 @@ dragDirection=null;
 page.classList.add('dragging');
 },{passive:true});
 page.addEventListener('touchmove',function(e){
-if(touchStartX===0)return;
+if(!swipeEnabled||touchStartX===0)return;
 touchCurrentX=e.touches[0].clientX;
-const deltaX=touchCurrentX-touchStartX;
-const deltaY=e.touches[0].clientY-touchStartY;
-if(!dragDirection&&(Math.abs(deltaX)>10||Math.abs(deltaY)>10)){
+var deltaX=touchCurrentX-touchStartX;
+var deltaY=e.touches[0].clientY-touchStartY;
+if(!dragDirection&&(Math.abs(deltaX)>15||Math.abs(deltaY)>15)){
 dragDirection=Math.abs(deltaX)>Math.abs(deltaY)?'horizontal':'vertical';
 }
 if(dragDirection!=='horizontal')return;
 isDragging=true;
-const resistance=0.6;
-const moveX=deltaX*resistance;
-const pageEl=e.currentTarget;
-const basePercent=index*100;
-const movePercent=basePercent+(moveX/window.innerWidth)*100;
+var moveX=deltaX*0.7;
+var pageEl=e.currentTarget;
+var basePercent=index*100;
+var movePercent=basePercent+(moveX/window.innerWidth)*100;
 pageEl.style.transform='translateX('+movePercent+'%)';
-pages.forEach(p=>{if(p!==pageEl)p.classList.add('dragging')});
 },{passive:true});
 page.addEventListener('touchend',function(e){
+if(!swipeEnabled){touchStartX=0;return}
 page.classList.remove('dragging');
-pages.forEach(p=>p.classList.remove('dragging'));
 if(!isDragging){touchStartX=0;return}
-const deltaX=touchCurrentX-touchStartX;
-const threshold=window.innerWidth*0.25;
-const pageEl=e.currentTarget;
-if(deltaX>threshold&&index>0){
+var deltaX=touchCurrentX-touchStartX;
+var threshold=window.innerWidth*0.25;
+var pageEl=e.currentTarget;
 pageEl.style.transform='';
-goToPage(index-1);
-}else if(deltaX<-threshold&&index<totalPages-1){
-pageEl.style.transform='';
-goToPage(index+1);
-}else{
-pageEl.style.transform='';
-}
-touchStartX=0;
-isDragging=false;
-dragDirection=null;
+if(deltaX>threshold&&index>0){goToPage(index-1)}
+else if(deltaX<-threshold&&index<totalPages-1){goToPage(index+1)}
+touchStartX=0;isDragging=false;dragDirection=null;
 },{passive:true});
 page.addEventListener('touchcancel',function(e){
 page.classList.remove('dragging');
-pages.forEach(p=>p.classList.remove('dragging'));
 e.currentTarget.style.transform='';
-touchStartX=0;
-isDragging=false;
-dragDirection=null;
+touchStartX=0;isDragging=false;dragDirection=null;
 });
 });
-})();
-
-// ===== دوال الألعاب اليدوية =====
-function renderGames(list){
-const grid=document.getElementById('gamesGrid');if(!grid)return;grid.innerHTML='';
-if(list.length===0){grid.innerHTML='<p style="grid-column:1/-1;text-align:center;color:#888;padding:40px">'+(currentLang==='en'?'No results 🔍':'لا توجد نتائج 🔍')+'</p>';document.getElementById('resultsCount').textContent=(currentLang==='en'?'0 Games':'0 ألعاب');return}
-list.forEach((game,index)=>{
-const isFav=favorites.indexOf(game.id)>-1;
-const userRating=userRatings[game.id]||0;
-const stars='★'.repeat(userRating)+'☆'.repeat(5-userRating);
-const card=document.createElement('div');
-card.className='game';
-card.innerHTML='<div class="game-actions"><button class="fav-btn '+(isFav?'active':'')+'" onclick="event.stopPropagation();toggleFav('+game.id+',this)">'+(isFav?'❤️':'🤍')+'</button><button class="share-btn" onclick="event.stopPropagation();shareGame('+game.id+')">📤</button></div><div class="game-image"><img src="'+game.image+'" alt="'+game.name+'" loading="lazy" onerror="this.src=\'https://placehold.co/400x300/8b3dff/ffffff?text=Game\'"></div><div class="game-info"><h3>'+game.name+'</h3><p>'+game.desc+'</p><div class="game-meta"><div class="rating">⭐ '+game.rating+'</div><div class="ago">'+timeAgo(game.year)+'</div></div>'+(userRating?'<div style="color:#ffd21f;font-size:12px;margin-bottom:5px">'+stars+'</div>':'')+'<button class="details" onclick="showDetails('+game.id+')">'+(currentLang==='en'?'View Details →':'عرض التفاصيل →')+'</button></div>';
-grid.appendChild(card);
-});
-document.getElementById('resultsCount').textContent=list.length+(currentLang==='en'?' Games':' ألعاب');
-setTimeout(animateOnScroll,100);
-}
-function animateOnScroll(){const cards=document.querySelectorAll('#gamesGrid .game');cards.forEach((card,index)=>{const rect=card.getBoundingClientRect();if(rect.top<window.innerHeight-50){setTimeout(function(){card.classList.add('visible')},index*30)}})}
-function renderTopRated(){const sorted=[].concat(games).sort((a,b)=>b.rating-a.rating).slice(0,3);const grid=document.getElementById('topRatedGrid');if(!grid)return;grid.innerHTML='';sorted.forEach((game,i)=>{const card=document.createElement('div');card.className='top-card';card.onclick=function(){showDetails(game.id)};card.innerHTML='<div class="rank">'+(i+1)+'</div><img src="'+game.image+'" alt="'+game.name+'"><div class="overlay"><h3>'+game.name+'</h3><div class="rating">⭐ '+game.rating+' • '+game.category+'</div></div>';grid.appendChild(card)})}
-function incrementViews(id){let views={};try{views=JSON.parse(localStorage.getItem('views')||'{}')}catch(e){views={}}views[id]=(views[id]||0)+1;localStorage.setItem('views',JSON.stringify(views));if(Object.keys(views).length===1)unlockBadge('first_view');if(Object.keys(views).length>=5)unlockBadge('five_views');if(Object.keys(views).length>=games.length)unlockBadge('all_views')}
-function renderMostViewed(){const views=JSON.parse(localStorage.getItem('views')||'{}');const keys=Object.keys(views);const grid=document.getElementById('mostViewedGrid');if(!grid)return;grid.innerHTML='';if(keys.length===0){grid.innerHTML='<p style="grid-column:1/-1;text-align:center;color:#888;padding:30px;font-size:14px">'+(currentLang==='en'?'No games opened yet 👁️':'لم يتم فتح أي لعبة بعد 👁️')+'</p>';return}const sorted=keys.sort((a,b)=>views[b]-views[a]).slice(0,3).map(id=>games.find(g=>g.id==id)).filter(g=>g);sorted.forEach((game,i)=>{const card=document.createElement('div');card.className='top-card';card.onclick=function(){showDetails(game.id)};card.innerHTML='<div class="rank">'+(i+1)+'</div><img src="'+game.image+'" alt="'+game.name+'"><div class="overlay"><h3>'+game.name+'</h3><div class="rating">👁️ '+views[game.id]+' '+(currentLang==='en'?'views':'مشاهدة')+'</div></div>';grid.appendChild(card)});renderTrending(views)}
-function renderTrending(views){const keys=Object.keys(views);if(keys.length<2){document.getElementById('trendingBox').style.display='none';return}const sorted=keys.sort((a,b)=>views[b]-views[a]).slice(0,5).map(id=>games.find(g=>g.id==id)).filter(g=>g);const list=document.getElementById('trendingList');list.innerHTML='';sorted.forEach((game,i)=>{const item=document.createElement('div');item.className='trending-item';item.innerHTML='🔥 '+(i+1)+'. '+game.name;item.onclick=function(){showDetails(game.id)};list.appendChild(item)});document.getElementById('trendingBox').style.display='block'}
-function renderUpcoming(){const grid=document.getElementById('upcomingGrid');if(!grid)return;grid.innerHTML='';upcomingGames.forEach(g=>{const card=document.createElement('div');card.className='upcoming-card';let countdownHtml='';if(g.date&&g.date.includes('-')){countdownHtml='<div class="countdown" data-date="'+g.date+'"></div>'}card.innerHTML='<h4>🎮 '+g.name+'</h4><p>'+g.desc+'</p>'+countdownHtml;grid.appendChild(card)});startCountdowns()}
-function startCountdowns(){document.querySelectorAll('.countdown').forEach(el=>{const targetDate=new Date(el.getAttribute('data-date')).getTime();function update(){const now=new Date().getTime();const diff=targetDate-now;if(diff<=0){el.innerHTML='<div class="countdown-item" style="min-width:auto"><strong>🎉</strong><small>'+(currentLang==='en'?'Available':'متاح')+'</small></div>';return}const days=Math.floor(diff/(1000*60*60*24));const hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));const mins=Math.floor((diff%(1000*60*60))/(1000*60));const secs=Math.floor((diff%(1000*60))/1000);el.innerHTML='<div class="countdown-item"><strong>'+days+'</strong><small>'+(currentLang==='en'?'Days':'يوم')+'</small></div><div class="countdown-item"><strong>'+hours+'</strong><small>'+(currentLang==='en'?'Hrs':'ساعة')+'</small></div><div class="countdown-item"><strong>'+mins+'</strong><small>'+(currentLang==='en'?'Min':'دقيقة')+'</small></div><div class="countdown-item"><strong>'+secs+'</strong><small>'+(currentLang==='en'?'Sec':'ثانية')+'</small></div>'}update();setInterval(update,1000)})}
-
-// ===== صفحة RAWG =====
-async function loadRawgGames(page,resetGrid){
-if(rawgLoading)return;
-if(resetGrid){rawgPage=1;page=1}
-rawgLoading=true;
-const grid=document.getElementById('rawgGridNew');
-const loading=document.getElementById('rawgLoading');
-const error=document.getElementById('rawgError');
-const showMore=document.getElementById('rawgShowMore');
-if(resetGrid){grid.innerHTML='';loading.style.display='block';error.style.display='none';grid.style.display='none'}
-else{showMore.disabled=true;showMore.textContent='⏳ جاري التحميل...'}
-let url=RAWG_PROXY+'?path=/api/games&key='+RAWG_API_KEY+'&page_size=12&page='+page;
-if(rawgCurrentQuery)url+='&search='+encodeURIComponent(rawgCurrentQuery);
-if(rawgCurrentGenre)url+='&genres='+rawgCurrentGenre;
-url+='&ordering='+rawgCurrentOrdering;
-try{
-const response=await fetch(url);
-if(!response.ok)throw new Error('HTTP '+response.status);
-const data=await response.json();
-if(data.error)throw new Error(data.error);
-const rawgGames=data.results||[];
-if(rawgGames.length===0){if(resetGrid){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text3)">😕 '+(currentLang==='en'?'No games found':'لا توجد نتائج')+'</div>';grid.style.display='grid'}showMore.style.display='none';loading.style.display='none';rawgLoading=false;return}
-rawgGames.forEach(game=>{
-const rating=(game.rating*2).toFixed(1);
-const year=game.released?game.released.split('-')[0]:'?';
-const image=game.background_image||'https://placehold.co/300x200/8b3dff/ffffff?text=Game';
-const card=document.createElement('div');
-card.className='rawg-mini-card';
-card.onclick=function(){showRawgGameDetails(game)};
-card.innerHTML='<div class="mini-img"><img src="'+image+'" alt="'+game.name+'" loading="lazy" onerror="this.src=\'https://placehold.co/300x200/8b3dff/ffffff?text=Game\'"></div><div class="mini-info"><h4>'+game.name+'</h4><div class="mini-rating">⭐ '+rating+' • '+year+'</div></div>';
-grid.appendChild(card);
-});
-grid.style.display='grid';
-loading.style.display='none';
-showMore.style.display='block';
-showMore.disabled=false;
-showMore.textContent=currentLang==='en'?'📥 Show More':'📥 عرض المزيد';
-rawgPage=page;
-}catch(err){
-console.error('RAWG Error:',err);
-if(resetGrid){loading.style.display='none';error.style.display='block';error.textContent='❌ '+(currentLang==='en'?'Connection error':'خطأ في الاتصال')+': '+err.message;showMore.style.display='none'}
-else{showMore.textContent='❌ '+(currentLang==='en'?'Failed — try again':'فشل — جرب مرة أخرى');showMore.disabled=false}
-}
-rawgLoading=false;
-}
-function searchRawg(){
-rawgCurrentQuery=document.getElementById('rawgSearchInput').value.trim();
-rawgCurrentGenre=document.getElementById('rawgGenre').value;
-rawgCurrentOrdering=document.getElementById('rawgOrdering').value;
-loadRawgGames(1,true);
-}
-function filterRawgByGenre(){
-rawgCurrentGenre=document.getElementById('rawgGenre').value;
-rawgCurrentOrdering=document.getElementById('rawgOrdering').value;
-loadRawgGames(1,true);
-}
-function showRawgGameDetails(game){
-const rating=(game.rating*2).toFixed(1);
-const year=game.released?game.released.split('-')[0]:'?';
-document.getElementById('modalImg').innerHTML='<img src="'+(game.background_image||'https://placehold.co/300x200/8b3dff/ffffff?text=Game')+'" alt="'+game.name+'">';
-document.getElementById('modalTitle').textContent=game.name;
-document.getElementById('modalDesc').textContent=(currentLang==='en'?'Released: ':'صدرت: ')+year+(currentLang==='en'?' • Rating: ':' • التقييم: ')+rating+'/10';
-document.getElementById('modalRating').textContent=rating+'/10';
-document.getElementById('modalCat').textContent=game.genres&&game.genres[0]?game.genres[0].name:'Game';
-document.getElementById('modalYear').textContent=year;
-document.getElementById('modalInfo').innerHTML='<div class="modal-info-row"><span class="label">🌐 '+(currentLang==='en'?'Source':'المصدر')+'</span><span class="value">RAWG API</span></div><div class="modal-info-row"><span class="label">📅 '+(currentLang==='en'?'Released':'تاريخ الإصدار')+'</span><span class="value">'+(game.released||'?')+'</span></div><div class="modal-info-row"><span class="label">⭐ '+(currentLang==='en'?'Rating':'التقييم')+'</span><span class="value">'+rating+'/10</span></div>';
-document.getElementById('starsRating').innerHTML='';
-document.getElementById('favModalBtn').style.display='none';
-document.getElementById('modal').classList.add('active');
 }
 
-// ===== صفحة المفضلة =====
-function renderFavoritesPage(){
-const grid=document.getElementById('favoritesGrid');
-grid.innerHTML='';
-if(favorites.length===0){
-grid.innerHTML='<div class="favorites-empty" style="grid-column:1/-1"><span class="empty-icon">💔</span><p>'+(currentLang==='en'?'No favorites yet':'لا توجد ألعاب مفضلة بعد')+'</p><button class="empty-btn" onclick="goToPage(0)">'+(currentLang==='en'?'Browse Games':'تصفح الألعاب')+'</button></div>';
-return;
+// ===== إعدادات القائمة =====
+function cycleTheme(){
+var themes=['dark','light','gray'];
+var names={dark:'ليلي',light:'نهاري',gray:'رمادي'};
+var current=localStorage.getItem('theme')||'dark';
+var next=themes[(themes.indexOf(current)+1)%3];
+setTheme(next);
+document.getElementById('themeValue').textContent=names[next];
 }
-const favGames=games.filter(g=>favorites.indexOf(g.id)>-1);
-favGames.forEach(game=>{
-const isFav=true;
-const card=document.createElement('div');
-card.className='game visible';
-card.innerHTML='<div class="game-actions"><button class="fav-btn active" onclick="event.stopPropagation();removeFromFav('+game.id+')">❤️</button></div><div class="game-image"><img src="'+game.image+'" alt="'+game.name+'" loading="lazy"></div><div class="game-info"><h3>'+game.name+'</h3><p>'+game.desc+'</p><div class="game-meta"><div class="rating">⭐ '+game.rating+'</div><div class="ago">'+timeAgo(game.year)+'</div></div><button class="details" onclick="showDetails('+game.id+')">'+(currentLang==='en'?'View Details →':'عرض التفاصيل →')+'</button></div>';
-grid.appendChild(card);
-});
+function setTheme(mode){document.body.classList.remove('light','gray');if(mode==='light')document.body.classList.add('light');if(mode==='gray')document.body.classList.add('gray');localStorage.setItem('theme',mode);updateSidebarUI();if(mode==='dark')unlockBadge('dark_mode');showToast(currentLang==='en'?'Theme changed':'تم تغيير المظهر')}
+function setFontSize(size){document.body.classList.remove('font-small','font-medium','font-large');document.body.classList.add('font-'+size);localStorage.setItem('fontSize',size);updateSidebarUI();showToast(currentLang==='en'?'Font size changed':'تم تغيير حجم الخط')}
+function setAccent(color){document.documentElement.style.setProperty('--accent',color);document.documentElement.style.setProperty('--accent-light',color);document.documentElement.style.setProperty('--accent-dark',color);localStorage.setItem('accentColor',color);updateSidebarUI();showToast(currentLang==='en'?'Color changed':'تم تغيير اللون')}
+function setLanguage(lang){currentLang=lang;localStorage.setItem('language',lang);document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.querySelectorAll('[data-i18n]').forEach(function(el){var key=el.getAttribute('data-i18n');if(translations[lang]&&translations[lang][key]){el.textContent=translations[lang][key]}});document.querySelectorAll('[data-i18n-html]').forEach(function(el){var key=el.getAttribute('data-i18n-html');if(translations[lang]&&translations[lang][key]){el.innerHTML=translations[lang][key]}});document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){var key=el.getAttribute('data-i18n-placeholder');if(translations[lang]&&translations[lang][key]){el.placeholder=translations[lang][key]}});updateSidebarUI();showToast(lang==='en'?'Language changed':'تم تغيير اللغة')}
+function setGridSize(size){document.body.classList.remove('grid-3','grid-4','grid-5');document.body.classList.add('grid-'+size);localStorage.setItem('gridSize',size);updateSidebarUI();showToast(currentLang==='en'?'Grid: '+size+' per row':'الشبكة: '+size+' في الصف')}
+function setCardSize(size){document.body.classList.remove('compact-cards','large-cards');if(size==='compact')document.body.classList.add('compact-cards');if(size==='large')document.body.classList.add('large-cards');localStorage.setItem('cardSize',size);updateSidebarUI();showToast(currentLang==='en'?'Card size changed':'تم تغيير حجم البطاقات')}
+function toggleAnimation(){animEnabled=!animEnabled;localStorage.setItem('animEnabled',animEnabled);document.body.classList.toggle('no-animation',!animEnabled);document.getElementById('animToggle').classList.toggle('on',animEnabled);showToast(currentLang==='en'?(animEnabled?'Animation ON':'Animation OFF'):(animEnabled?'الأنميشن مفعّل':'الأنميشن متوقف'))}
+function setAnimSpeed(speed){document.body.classList.remove('fast-animation','slow-animation');if(speed==='fast')document.body.classList.add('fast-animation');if(speed==='slow')document.body.classList.add('slow-animation');localStorage.setItem('animSpeed',speed);updateSidebarUI();showToast(currentLang==='en'?'Speed changed':'تم تغيير السرعة')}
+function setAnimStyle(style){document.body.classList.remove('anim-slide','anim-zoom');if(style==='slide')document.body.classList.add('anim-slide');if(style==='zoom')document.body.classList.add('anim-zoom');localStorage.setItem('animStyle',style);updateSidebarUI();showToast(currentLang==='en'?'Style changed':'تم تغيير النمط')}
+function toggleSound(){soundEnabled=!soundEnabled;localStorage.setItem('soundEnabled',soundEnabled);document.getElementById('soundToggle').classList.toggle('on',soundEnabled);showToast(currentLang==='en'?(soundEnabled?'Sound ON':'Sound OFF'):(soundEnabled?'الصوت مفعّل':'الصوت متوقف'))}
+function setVolume(val){volume=parseInt(val);localStorage.setItem('volume',volume)}
+function toggleSwipe(){swipeEnabled=!swipeEnabled;localStorage.setItem('swipeEnabled',swipeEnabled);document.getElementById('swipeToggle').classList.toggle('on',swipeEnabled);showToast(currentLang==='en'?(swipeEnabled?'Swipe ON':'Swipe OFF'):(swipeEnabled?'السحب مفعّل':'السحب متوقف'))}
+function toggleParticles(){var hidden=document.body.classList.toggle('hide-particles');localStorage.setItem('hideParticles',hidden);document.getElementById('particlesToggle').classList.toggle('on',!hidden);showToast(currentLang==='en'?'Particles changed':'تم تغيير الجزيئات')}
+function togglePerformance(){var perf=document.body.classList.toggle('no-animation');localStorage.setItem('performanceMode',perf);document.getElementById('performanceToggle').classList.toggle('on',perf);showToast(currentLang==='en'?(perf?'Performance mode ON':'Performance mode OFF'):(perf?'وضع الأداء مفعّل':'وضع الأداء متوقف'))}
+function clearAllData(){var msg=currentLang==='en'?'Clear all data?':'مسح كل البيانات؟';if(confirm(msg)){localStorage.clear();showToast('...');setTimeout(function(){location.reload()},800)}}
+function updateSidebarUI(){
+var theme=localStorage.getItem('theme')||'dark';
+var names={dark:'ليلي',light:'نهاري',gray:'رمادي'};
+var el=document.getElementById('themeValue');
+if(el)el.textContent=names[theme];
 }
-function removeFromFav(id){
-favorites=favorites.filter(f=>f!==id);
-localStorage.setItem('favorites',JSON.stringify(favorites));
-renderFavoritesPage();
-renderGames(games);
-showToast(currentLang==='en'?'Removed from favorites':'تم الحذف من المفضلة');
-}
+// ===== دوال الألعاب =====
+function renderTopRated(){var sorted=[].concat(games).sort((a,b)=>b.rating-a.rating).slice(0,3);var grid=document.getElementById('topRatedGrid');if(!grid)return;grid.innerHTML='';sorted.forEach(function(game,i){var card=document.createElement('div');card.className='top-card';card.onclick=function(){showDetails(game.id)};card.innerHTML='<div class="rank">'+(i+1)+'</div><img src="'+game.image+'" alt="'+game.name+'"><div class="overlay"><h3>'+game.name+'</h3><div class="rating">⭐ '+game.rating+' • '+game.category+'</div></div>';grid.appendChild(card)})}
+function incrementViews(id){var views={};try{views=JSON.parse(localStorage.getItem('views')||'{}')}catch(e){views={}}views[id]=(views[id]||0)+1;localStorage.setItem('views',JSON.stringify(views));if(Object.keys(views).length===1)unlockBadge('first_view');if(Object.keys(views).length>=5)unlockBadge('five_views');if(Object.keys(views).length>=games.length)unlockBadge('all_views')}
+function renderMostViewed(){var views=JSON.parse(localStorage.getItem('views')||'{}');var keys=Object.keys(views);var grid=document.getElementById('mostViewedGrid');if(!grid)return;grid.innerHTML='';if(keys.length===0){grid.innerHTML='<p style="grid-column:1/-1;text-align:center;color:#888;padding:30px;font-size:14px">'+(currentLang==='en'?'No games opened yet 👁️':'لم يتم فتح أي لعبة بعد 👁️')+'</p>';return}var sorted=keys.sort((a,b)=>views[b]-views[a]).slice(0,3).map(id=>games.find(g=>g.id==id)).filter(g=>g);sorted.forEach(function(game,i){var card=document.createElement('div');card.className='top-card';card.onclick=function(){showDetails(game.id)};card.innerHTML='<div class="rank">'+(i+1)+'</div><img src="'+game.image+'" alt="'+game.name+'"><div class="overlay"><h3>'+game.name+'</h3><div class="rating">👁️ '+views[game.id]+' '+(currentLang==='en'?'views':'مشاهدة')+'</div></div>';grid.appendChild(card)});renderTrending(views)}
+function renderTrending(views){var keys=Object.keys(views);if(keys.length<2){var tb=document.getElementById('trendingBox');if(tb)tb.style.display='none';return}var sorted=keys.sort((a,b)=>views[b]-views[a]).slice(0,5).map(id=>games.find(g=>g.id==id)).filter(g=>g);var list=document.getElementById('trendingList');list.innerHTML='';sorted.forEach(function(game,i){var item=document.createElement('div');item.className='trending-item';item.textContent='🔥 '+(i+1)+'. '+game.name;item.onclick=function(){showDetails(game.id)};list.appendChild(item)});document.getElementById('trendingBox').style.display='block'}
+function renderUpcoming(){var grid=document.getElementById('upcomingGrid');if(!grid)return;grid.innerHTML='';upcomingGames.forEach(function(g){var card=document.createElement('div');card.className='upcoming-card';var countdownHtml='';if(g.date&&g.date.includes('-')){countdownHtml='<div class="countdown" data-date="'+g.date+'"></div>'}card.innerHTML='<h4>🎮 '+g.name+'</h4><p>'+g.desc+'</p>'+countdownHtml;grid.appendChild(card)});startCountdowns()}
+function startCountdowns(){document.querySelectorAll('.countdown').forEach(function(el){var targetDate=new Date(el.getAttribute('data-date')).getTime();function update(){var now=new Date().getTime();var diff=targetDate-now;if(diff<=0){el.innerHTML='<div class="countdown-item" style="min-width:auto"><strong>🎉</strong><small>'+(currentLang==='en'?'Available':'متاح')+'</small></div>';return}var days=Math.floor(diff/(1000*60*60*24));var hours=Math.floor((diff%(1000*60*60*24))/(1000*60*60));var mins=Math.floor((diff%(1000*60*60))/(1000*60));var secs=Math.floor((diff%(1000*60))/1000);el.innerHTML='<div class="countdown-item"><strong>'+days+'</strong><small>'+(currentLang==='en'?'Days':'يوم')+'</small></div><div class="countdown-item"><strong>'+hours+'</strong><small>'+(currentLang==='en'?'Hrs':'ساعة')+'</small></div><div class="countdown-item"><strong>'+mins+'</strong><small>'+(currentLang==='en'?'Min':'دقيقة')+'</small></div><div class="countdown-item"><strong>'+secs+'</strong><small>'+(currentLang==='en'?'Sec':'ثانية')+'</small></div>'}update();setInterval(update,1000)})}
 
-// ===== الحساب =====
-function handleLogin(){
-const email=document.getElementById('accountEmail').value.trim();
-const pass=document.getElementById('accountPassword').value.trim();
-if(!email||!pass){showToast(currentLang==='en'?'Please fill all fields':'املأ كل الحقول');return}
-showToast(currentLang==='en'?'Login feature coming soon! 🚀':'ميزة تسجيل الدخول قريباً! 🚀');
-}
-
-// ===== النافذة =====
-function showDetails(id){
-const game=games.find(g=>g.id===id);
-if(!game)return;
-currentGameId=id;
-incrementViews(id);
-document.getElementById('modalImg').innerHTML='<img src="'+game.image+'" alt="'+game.name+'">';
-document.getElementById('modalTitle').textContent=game.name;
-document.getElementById('modalDesc').textContent=game.fullDesc;
-document.getElementById('modalRating').textContent=game.rating+'/10';
-document.getElementById('modalCat').textContent=game.category;
-document.getElementById('modalYear').textContent=game.year+' ('+timeAgo(game.year)+')';
-const labels=currentLang==='en'?{dev:'🏢 Developer',pub:'📤 Publisher',plat:'🖥️ Platforms',mode:'👥 Mode',age:'🔞 Age Rating',size:'💾 Size'}:{dev:'🏢 المطوّر',pub:'📤 الناشر',plat:'🖥️ المنصات',mode:'👥 الوضع',age:'🔞 التصنيف العمري',size:'💾 المساحة'};
-document.getElementById('modalInfo').innerHTML='<div class="modal-info-row"><span class="label">'+labels.dev+'</span><span class="value">'+game.developer+'</span></div><div class="modal-info-row"><span class="label">'+labels.pub+'</span><span class="value">'+game.publisher+'</span></div><div class="modal-info-row"><span class="label">'+labels.plat+'</span><span class="value">'+game.platforms+'</span></div><div class="modal-info-row"><span class="label">'+labels.mode+'</span><span class="value">'+game.mode+'</span></div><div class="modal-info-row"><span class="label">'+labels.age+'</span><span class="value">'+game.ageRating+'</span></div><div class="modal-info-row"><span class="label">'+labels.size+'</span><span class="value">'+game.size+'</span></div>';
-document.getElementById('favModalBtn').style.display='block';
-renderStars(id);
-const isFav=favorites.indexOf(id)>-1;
-const favBtn=document.getElementById('favModalBtn');
-if(isFav){favBtn.classList.add('active');favBtn.textContent='❤️ '+(currentLang==='en'?'In Favorites':'في المفضلة')}
-else{favBtn.classList.remove('active');favBtn.textContent='🤍 '+(currentLang==='en'?'Add to Favorites':'أضف للمفضلة')}
-document.getElementById('modal').classList.add('active');
-setTimeout(renderMostViewed,500);
-}
-function renderStars(gameId){const container=document.getElementById('starsRating');container.innerHTML='';const currentRating=userRatings[gameId]||0;for(let i=1;i<=5;i++){const star=document.createElement('span');star.className='star'+(i<=currentRating?' active':'');star.textContent=i<=currentRating?'★':'☆';star.onclick=function(){userRatings[gameId]=i;localStorage.setItem('userRatings',JSON.stringify(userRatings));renderStars(gameId);showToast(currentLang==='en'?'Thanks for rating! ⭐':'شكراً على تقييمك! ⭐');unlockBadge('rater');renderGames(games)};container.appendChild(star)}}
-function toggleFavFromModal(){if(!currentGameId)return;const isFav=favorites.indexOf(currentGameId)>-1;if(isFav){favorites=favorites.filter(f=>f!==currentGameId);showToast(currentLang==='en'?'Removed from favorites':'تم الحذف من المفضلة')}else{favorites.push(currentGameId);showToast(currentLang==='en'?'Added to favorites':'تمت الإضافة إلى المفضلة');checkFavBadges()}localStorage.setItem('favorites',JSON.stringify(favorites));const btn=document.getElementById('favModalBtn');if(favorites.indexOf(currentGameId)>-1){btn.classList.add('active');btn.textContent='❤️ '+(currentLang==='en'?'In Favorites':'في المفضلة')}else{btn.classList.remove('active');btn.textContent='🤍 '+(currentLang==='en'?'Add to Favorites':'أضف للمفضلة')}renderGames(games);renderFavoritesPage()}
+// ===== نافذة التفاصيل =====
+function showDetails(id){var game=games.find(g=>g.id===id);if(!game)return;currentGameId=id;incrementViews(id);document.getElementById('modalImg').innerHTML='<img src="'+game.image+'" alt="'+game.name+'">';document.getElementById('modalTitle').textContent=game.name;document.getElementById('modalDesc').textContent=game.fullDesc;document.getElementById('modalRating').textContent=game.rating+'/10';document.getElementById('modalCat').textContent=game.category;document.getElementById('modalYear').textContent=game.year+' ('+timeAgo(game.year)+')';var labels=currentLang==='en'?{dev:'🏢 Developer',pub:'📤 Publisher',plat:'🖥️ Platforms',mode:'👥 Mode',age:'🔞 Age Rating',size:'💾 Size'}:{dev:'🏢 المطوّر',pub:'📤 الناشر',plat:'🖥️ المنصات',mode:'👥 الوضع',age:'🔞 التصنيف العمري',size:'💾 المساحة'};document.getElementById('modalInfo').innerHTML='<div class="modal-info-row"><span class="label">'+labels.dev+'</span><span class="value">'+game.developer+'</span></div><div class="modal-info-row"><span class="label">'+labels.pub+'</span><span class="value">'+game.publisher+'</span></div><div class="modal-info-row"><span class="label">'+labels.plat+'</span><span class="value">'+game.platforms+'</span></div><div class="modal-info-row"><span class="label">'+labels.mode+'</span><span class="value">'+game.mode+'</span></div><div class="modal-info-row"><span class="label">'+labels.age+'</span><span class="value">'+game.ageRating+'</span></div><div class="modal-info-row"><span class="label">'+labels.size+'</span><span class="value">'+game.size+'</span></div>';document.getElementById('favModalBtn').style.display='block';renderStars(id);var isFav=favorites.indexOf(id)>-1;var favBtn=document.getElementById('favModalBtn');if(isFav){favBtn.classList.add('active');favBtn.textContent='❤️ '+(currentLang==='en'?'In Favorites':'في المفضلة')}else{favBtn.classList.remove('active');favBtn.textContent='🤍 '+(currentLang==='en'?'Add to Favorites':'أضف للمفضلة')}document.getElementById('modal').classList.add('active');setTimeout(renderMostViewed,500)}
+function renderStars(gameId){var container=document.getElementById('starsRating');container.innerHTML='';var currentRating=userRatings[gameId]||0;for(var i=1;i<=5;i++){(function(i){var star=document.createElement('span');star.className='star'+(i<=currentRating?' active':'');star.textContent=i<=currentRating?'★':'☆';star.onclick=function(){userRatings[gameId]=i;localStorage.setItem('userRatings',JSON.stringify(userRatings));renderStars(gameId);showToast(currentLang==='en'?'Thanks for rating! ⭐':'شكراً على تقييمك! ⭐');unlockBadge('rater')};container.appendChild(star)})(i)}}
+function toggleFavFromModal(){if(!currentGameId)return;var isFav=favorites.indexOf(currentGameId)>-1;if(isFav){favorites=favorites.filter(f=>f!==currentGameId);showToast(currentLang==='en'?'Removed from favorites':'تم الحذف من المفضلة')}else{favorites.push(currentGameId);showToast(currentLang==='en'?'Added to favorites':'تمت الإضافة إلى المفضلة');checkFavBadges()}localStorage.setItem('favorites',JSON.stringify(favorites));var btn=document.getElementById('favModalBtn');if(favorites.indexOf(currentGameId)>-1){btn.classList.add('active');btn.textContent='❤️ '+(currentLang==='en'?'In Favorites':'في المفضلة')}else{btn.classList.remove('active');btn.textContent='🤍 '+(currentLang==='en'?'Add to Favorites':'أضف للمفضلة')}renderFavoritesPage()}
 function checkFavBadges(){if(favorites.length===1)unlockBadge('first_fav');if(favorites.length>=5)unlockBadge('five_favs');if(favorites.length>=games.length)unlockBadge('all_favs')}
 function closeModal(){document.getElementById('modal').classList.remove('active')}
-document.getElementById('modal').addEventListener('click',e=>{if(e.target.id==='modal')closeModal()});
+document.getElementById('modal').addEventListener('click',function(e){if(e.target.id==='modal')closeModal()});
 function toggleFav(id,btn){if(favorites.indexOf(id)>-1){favorites=favorites.filter(f=>f!==id);btn.classList.remove('active');btn.textContent='🤍';showToast(currentLang==='en'?'Removed from favorites':'تم الحذف من المفضلة')}else{favorites.push(id);btn.classList.add('active');btn.textContent='❤️';showToast(currentLang==='en'?'Added to favorites':'تمت الإضافة إلى المفضلة');checkFavBadges()}localStorage.setItem('favorites',JSON.stringify(favorites))}
-function shareGame(id){const game=games.find(g=>g.id===id);if(!game)return;const text='🎮 '+game.name+'\n⭐ '+(currentLang==='en'?'Rating: ':'التقييم: ')+game.rating+'/10\n'+window.location.href;if(navigator.share){navigator.share({title:game.name,text:text,url:window.location.href}).catch(()=>{});unlockBadge('sharer')}else if(navigator.clipboard){navigator.clipboard.writeText(text).then(()=>{showToast(currentLang==='en'?'Link copied!':'تم نسخ الرابط!');unlockBadge('sharer')})}}
+function shareGame(id){var game=games.find(g=>g.id===id);if(!game)return;var text='🎮 '+game.name+'\n⭐ '+(currentLang==='en'?'Rating: ':'التقييم: ')+game.rating+'/10\n'+window.location.href;if(navigator.share){navigator.share({title:game.name,text:text,url:window.location.href}).catch(function(){});unlockBadge('sharer')}else if(navigator.clipboard){navigator.clipboard.writeText(text).then(function(){showToast(currentLang==='en'?'Link copied!':'تم نسخ الرابط!');unlockBadge('sharer')})}}
 function shareOnWhatsapp(){window.open('https://wa.me/?text='+encodeURIComponent('🎮 Game Hub — '+window.location.href),'_blank');unlockBadge('sharer')}
 function shareOnFacebook(){window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href),'_blank');unlockBadge('sharer')}
 function shareOnTwitter(){window.open('https://twitter.com/intent/tweet?text='+encodeURIComponent('🎮 Game Hub — '+window.location.href),'_blank');unlockBadge('sharer')}
-function copyGameLink(){if(navigator.clipboard){navigator.clipboard.writeText(window.location.href).then(()=>{showToast(currentLang==='en'?'Link copied!':'تم نسخ الرابط!');unlockBadge('sharer')})}}
-function populateYears(){const years=[...new Set(games.map(g=>g.year))].sort((a,b)=>b-a);const select=document.getElementById('yearSelect');select.innerHTML='<option value="all">'+(currentLang==='en'?'📅 All Years':'📅 كل السنوات')+'</option>';years.forEach(y=>{const opt=document.createElement('option');opt.value=y;opt.textContent='📅 '+y;select.appendChild(opt)})}
-function applyFilters(){const query=document.getElementById('searchInput').value.toLowerCase().trim();const sortValue=document.getElementById('sortSelect').value;const yearValue=document.getElementById('yearSelect').value;let filtered=[].concat(games);if(currentFilter!=='all'){filtered=filtered.filter(g=>g.category===currentFilter)}if(yearValue!=='all'){filtered=filtered.filter(g=>g.year===parseInt(yearValue))}if(query){filtered=filtered.filter(g=>g.name.toLowerCase().includes(query)||g.desc.toLowerCase().includes(query)||g.category.toLowerCase().includes(query))}if(sortValue==='rating-desc')filtered.sort((a,b)=>b.rating-a.rating);if(sortValue==='rating-asc')filtered.sort((a,b)=>a.rating-b.rating);if(sortValue==='year-desc')filtered.sort((a,b)=>b.year-a.year);if(sortValue==='year-asc')filtered.sort((a,b)=>a.year-b.year);if(sortValue==='name-asc')filtered.sort((a,b)=>a.name.localeCompare(b.name));renderGames(filtered)}
-function randomGame(){const randomIndex=Math.floor(Math.random()*games.length);showDetails(games[randomIndex].id)}
-document.getElementById('categories').addEventListener('click',function(e){if(e.target.classList.contains('cat-btn')){document.querySelectorAll('.cat-btn').forEach(function(b){b.classList.remove('active')});e.target.classList.add('active');currentFilter=e.target.dataset.cat;applyFilters()}});
-document.getElementById('searchInput').addEventListener('input',applyFilters);
-window.addEventListener('scroll',function(){const totalHeight=document.documentElement.scrollHeight-window.innerHeight;const progress=(window.scrollY/totalHeight)*100;document.getElementById('progress-bar').style.width=progress+'%';const topBtn=document.getElementById('topBtn');if(window.scrollY>300){topBtn.classList.add('show')}else{topBtn.classList.remove('show')}animateOnScroll()});
+function copyGameLink(){if(navigator.clipboard){navigator.clipboard.writeText(window.location.href).then(function(){showToast(currentLang==='en'?'Link copied!':'تم نسخ الرابط!');unlockBadge('sharer')})}}
+function randomGame(){var randomIndex=Math.floor(Math.random()*games.length);showDetails(games[randomIndex].id)}
 
-// ===== الإعدادات =====
-function openSettings(){document.getElementById('settingsModal').classList.add('active');loadSettingsUI()}
-function closeSettings(){document.getElementById('settingsModal').classList.remove('active')}
-document.getElementById('settingsModal').addEventListener('click',function(e){if(e.target.id==='settingsModal')closeSettings()});
-function loadSettingsUI(){const theme=localStorage.getItem('theme')||'dark';const font=localStorage.getItem('fontSize')||'medium';const accent=localStorage.getItem('accentColor')||'#8b3dff';const lang=localStorage.getItem('language')||'ar';document.querySelectorAll('[data-setting]').forEach(function(b){b.classList.remove('active')});const themeBtn=document.querySelector('[data-setting="theme"][data-value="'+theme+'"]');if(themeBtn)themeBtn.classList.add('active');const fontBtn=document.querySelector('[data-setting="font"][data-value="'+font+'"]');if(fontBtn)fontBtn.classList.add('active');const accentBtn=document.querySelector('[data-setting="accent"][data-value="'+accent+'"]');if(accentBtn)accentBtn.classList.add('active');const langBtn=document.querySelector('[data-setting="lang"][data-value="'+lang+'"]');if(langBtn)langBtn.classList.add('active')}
-function setTheme(mode){document.body.classList.remove('light','gray');if(mode==='light')document.body.classList.add('light');if(mode==='gray')document.body.classList.add('gray');localStorage.setItem('theme',mode);loadSettingsUI();if(mode==='dark')unlockBadge('dark_mode');showToast(currentLang==='en'?'Theme changed':'تم تغيير المظهر')}
-function setFontSize(size){document.body.classList.remove('font-small','font-medium','font-large');document.body.classList.add('font-'+size);localStorage.setItem('fontSize',size);loadSettingsUI();showToast(currentLang==='en'?'Font size changed':'تم تغيير حجم الخط')}
-function setAccent(color){document.documentElement.style.setProperty('--accent',color);document.documentElement.style.setProperty('--accent-light',color);document.documentElement.style.setProperty('--accent-dark',color);localStorage.setItem('accentColor',color);loadSettingsUI();showToast(currentLang==='en'?'Color changed':'تم تغيير اللون')}
-function setLanguage(lang){currentLang=lang;localStorage.setItem('language',lang);document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.querySelectorAll('[data-i18n]').forEach(function(el){const key=el.getAttribute('data-i18n');if(translations[lang]&&translations[lang][key]){el.textContent=translations[lang][key]}});document.querySelectorAll('[data-i18n-html]').forEach(function(el){const key=el.getAttribute('data-i18n-html');if(translations[lang]&&translations[lang][key]){el.innerHTML=translations[lang][key]}});document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){const key=el.getAttribute('data-i18n-placeholder');if(translations[lang]&&translations[lang][key]){el.placeholder=translations[lang][key]}});populateYears();renderGames(games);renderMostViewed();renderTopRated();renderUpcoming();loadSettingsUI();updateTicker();showToast(lang==='en'?'Language changed to English':'تم تغيير اللغة إلى العربية')}
-function updateTicker(){const ticker=document.getElementById('tickerContent');if(!ticker)return;if(currentLang==='en'){ticker.textContent='🎮 Welcome to Game Hub — Thousands of games! • 🔥 Discover new games • ⭐ Ratings & full details • ❤️ Add your favorites'}else{ticker.textContent='🎮 مرحباً بك في Game Hub — آلاف الألعاب! • 🔥 اكتشف ألعاباً جديدة • ⭐ تقييمات وتفاصيل كاملة • ❤️ أضف ألعابك المفضلة'}}
-function clearAllData(){const msg=currentLang==='en'?'Are you sure you want to clear all data?':'هل أنت متأكد من مسح كل البيانات؟';if(confirm(msg)){localStorage.clear();showToast(currentLang==='en'?'All data cleared':'تم مسح كل البيانات');setTimeout(function(){location.reload()},1000)}}
-(function loadSavedSettings(){const theme=localStorage.getItem('theme')||'dark';const font=localStorage.getItem('fontSize')||'medium';const accent=localStorage.getItem('accentColor')||'#8b3dff';if(theme==='light')document.body.classList.add('light');if(theme==='gray')document.body.classList.add('gray');document.body.classList.add('font-'+font);document.documentElement.style.setProperty('--accent',accent);document.documentElement.style.setProperty('--accent-light',accent);document.documentElement.style.setProperty('--accent-dark',accent)})();
-(function initParticles(){const canvas=document.getElementById('particles-bg');if(!canvas)return;const ctx=canvas.getContext('2d');let particles=[];function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}resize();window.addEventListener('resize',resize);for(let i=0;i<40;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5})}function getAccent(){return getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()||'#8b3dff'}function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);const accent=getAccent();ctx.fillStyle=accent;ctx.strokeStyle=accent;particles.forEach(function(p,i){p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>canvas.width)p.dx*=-1;if(p.y<0||p.y>canvas.height)p.dy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();particles.slice(i+1).forEach(function(p2){const dist=Math.hypot(p.x-p2.x,p.y-p2.y);if(dist<120){ctx.globalAlpha=0.15;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p2.x,p2.y);ctx.stroke();ctx.globalAlpha=1}})});requestAnimationFrame(animate)}animate()})();
+// ===== صفحة المفضلة =====
+function renderFavoritesPage(){var grid=document.getElementById('favoritesGrid');grid.innerHTML='';if(favorites.length===0){grid.innerHTML='<div class="favorites-empty"><span class="empty-icon">💔</span><p>'+(currentLang==='en'?'No favorites yet':'لا توجد ألعاب مفضلة بعد')+'</p><button class="empty-btn" onclick="goToPage(0)">'+(currentLang==='en'?'Browse Games':'تصفح الألعاب')+'</button></div>';return}games.filter(g=>favorites.indexOf(g.id)>-1).forEach(function(game){var card=document.createElement('div');card.className='game visible';card.innerHTML='<div class="game-actions"><button class="fav-btn active" onclick="event.stopPropagation();removeFromFav('+game.id+')">❤️</button></div><div class="game-image"><img src="'+game.image+'" alt="'+game.name+'" loading="lazy"></div><div class="game-info"><h3>'+game.name+'</h3><p>'+game.desc+'</p><div class="game-meta"><div class="rating">⭐ '+game.rating+'</div><div class="ago">'+timeAgo(game.year)+'</div></div><button class="details" onclick="showDetails('+game.id+')">'+(currentLang==='en'?'View Details →':'عرض التفاصيل →')+'</button></div>';grid.appendChild(card)})}
+function removeFromFav(id){favorites=favorites.filter(f=>f!==id);localStorage.setItem('favorites',JSON.stringify(favorites));renderFavoritesPage();showToast(currentLang==='en'?'Removed from favorites':'تم الحذف من المفضلة')}
 
-// ===== التشغيل الأولي =====
+// ===== الحساب =====
+function handleLogin(){var email=document.getElementById('accountEmail').value.trim();var pass=document.getElementById('accountPassword').value.trim();if(!email||!pass){showToast(currentLang==='en'?'Please fill all fields':'املأ كل الحقول');return}showToast(currentLang==='en'?'Login coming soon! 🚀':'ميزة الدخول قريباً! 🚀')}
+
+// ===== RAWG =====
+async function loadRawgGames(page,resetGrid){if(rawgLoading)return;if(resetGrid){rawgPage=1;page=1}rawgLoading=true;var grid=document.getElementById('rawgGridNew');var loading=document.getElementById('rawgLoading');var error=document.getElementById('rawgError');var showMore=document.getElementById('rawgShowMore');if(resetGrid){grid.innerHTML='';loading.style.display='block';error.style.display='none';grid.style.display='none'}else{showMore.disabled=true;showMore.textContent='⏳ جاري التحميل...'}var url=RAWG_PROXY+'?path=/api/games&key='+RAWG_API_KEY+'&page_size=16&page='+page;if(rawgCurrentQuery)url+='&search='+encodeURIComponent(rawgCurrentQuery);if(rawgCurrentGenre)url+='&genres='+rawgCurrentGenre;url+='&ordering='+rawgCurrentOrdering;try{var response=await fetch(url);if(!response.ok)throw new Error('HTTP '+response.status);var data=await response.json();if(data.error)throw new Error(data.error);var rawgGames=data.results||[];if(rawgGames.length===0){if(resetGrid){grid.innerHTML='<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--text3)">😕 '+(currentLang==='en'?'No games found':'لا توجد نتائج')+'</div>';grid.style.display='grid'}showMore.style.display='none';loading.style.display='none';rawgLoading=false;return}rawgGames.forEach(function(game){var rating=(game.rating*2).toFixed(1);var year=game.released?game.released.split('-')[0]:'?';var image=game.background_image||'https://placehold.co/300x200/8b3dff/ffffff?text=Game';var card=document.createElement('div');card.className='rawg-mini-card';card.onclick=function(){showRawgGameDetails(game)};card.innerHTML='<div class="mini-img"><img src="'+image+'" alt="'+game.name+'" loading="lazy" onerror="this.src=\'https://placehold.co/300x200/8b3dff/ffffff?text=Game\'"></div><div class="mini-info"><h4>'+game.name+'</h4><div class="mini-rating">⭐ '+rating+' • '+year+'</div></div>';grid.appendChild(card)});grid.style.display='grid';loading.style.display='none';showMore.style.display='block';showMore.disabled=false;showMore.textContent=currentLang==='en'?'📥 Show More':'📥 عرض المزيد';rawgPage=page}catch(err){console.error('RAWG Error:',err);if(resetGrid){loading.style.display='none';error.style.display='block';error.textContent='❌ '+(currentLang==='en'?'Connection error':'خطأ في الاتصال')+': '+err.message;showMore.style.display='none'}else{showMore.textContent='❌ '+(currentLang==='en'?'Failed — try again':'فشل — جرب مرة أخرى');showMore.disabled=false}}rawgLoading=false}
+function searchRawg(){rawgCurrentQuery=document.getElementById('rawgSearchInput').value.trim();rawgCurrentGenre=document.getElementById('rawgGenre').value;rawgCurrentOrdering=document.getElementById('rawgOrdering').value;loadRawgGames(1,true)}
+function filterRawgByGenre(){rawgCurrentGenre=document.getElementById('rawgGenre').value;rawgCurrentOrdering=document.getElementById('rawgOrdering').value;loadRawgGames(1,true)}
+function showRawgGameDetails(game){var rating=(game.rating*2).toFixed(1);var year=game.released?game.released.split('-')[0]:'?';document.getElementById('modalImg').innerHTML='<img src="'+(game.background_image||'https://placehold.co/300x200/8b3dff/ffffff?text=Game')+'" alt="'+game.name+'">';document.getElementById('modalTitle').textContent=game.name;document.getElementById('modalDesc').textContent=(currentLang==='en'?'Released: ':'صدرت: ')+year+(currentLang==='en'?' • Rating: ':' • التقييم: ')+rating+'/10';document.getElementById('modalRating').textContent=rating+'/10';document.getElementById('modalCat').textContent=game.genres&&game.genres[0]?game.genres[0].name:'Game';document.getElementById('modalYear').textContent=year;document.getElementById('modalInfo').innerHTML='<div class="modal-info-row"><span class="label">🌐 '+(currentLang==='en'?'Source':'المصدر')+'</span><span class="value">RAWG API</span></div><div class="modal-info-row"><span class="label">📅 '+(currentLang==='en'?'Released':'تاريخ الإصدار')+'</span><span class="value">'+(game.released||'?')+'</span></div><div class="modal-info-row"><span class="label">⭐ '+(currentLang==='en'?'Rating':'التقييم')+'</span><span class="value">'+rating+'/10</span></div>';document.getElementById('starsRating').innerHTML='';document.getElementById('favModalBtn').style.display='none';document.getElementById('modal').classList.add('active')}
+
+// ===== التهيئة =====
+(function loadSavedSettings(){
+var theme=localStorage.getItem('theme')||'dark';
+var font=localStorage.getItem('fontSize')||'medium';
+var accent=localStorage.getItem('accentColor')||'#8b3dff';
+var grid=localStorage.getItem('gridSize')||'4';
+var cardSize=localStorage.getItem('cardSize')||'normal';
+var animSpeed=localStorage.getItem('animSpeed')||'normal';
+var animStyle=localStorage.getItem('animStyle')||'fade';
+var hideParticles=localStorage.getItem('hideParticles')==='true';
+var performanceMode=localStorage.getItem('performanceMode')==='true';
+if(theme==='light')document.body.classList.add('light');
+if(theme==='gray')document.body.classList.add('gray');
+document.body.classList.add('font-'+font);
+document.body.classList.add('grid-'+grid);
+if(cardSize==='compact')document.body.classList.add('compact-cards');
+if(cardSize==='large')document.body.classList.add('large-cards');
+if(animSpeed==='fast')document.body.classList.add('fast-animation');
+if(animSpeed==='slow')document.body.classList.add('slow-animation');
+if(animStyle==='slide')document.body.classList.add('anim-slide');
+if(animStyle==='zoom')document.body.classList.add('anim-zoom');
+if(hideParticles)document.body.classList.add('hide-particles');
+if(performanceMode)document.body.classList.add('no-animation');
+if(!animEnabled)document.body.classList.add('no-animation');
+document.documentElement.style.setProperty('--accent',accent);
+document.documentElement.style.setProperty('--accent-light',accent);
+document.documentElement.style.setProperty('--accent-dark',accent);
+setTimeout(function(){
+var st=document.getElementById('soundToggle');if(st&&!soundEnabled)st.classList.remove('on');
+var sw=document.getElementById('swipeToggle');if(sw&&!swipeEnabled)sw.classList.remove('on');
+var an=document.getElementById('animToggle');if(an&&!animEnabled)an.classList.remove('on');
+var pt=document.getElementById('particlesToggle');if(pt&&hideParticles)pt.classList.remove('on');
+var pf=document.getElementById('performanceToggle');if(pf&&performanceMode)pf.classList.add('on');
+var vs=document.getElementById('volumeSlider');if(vs)vs.value=volume;
+},100);
+updateSidebarUI();
+})();
+(function initParticles(){var canvas=document.getElementById('particles-bg');if(!canvas)return;var ctx=canvas.getContext('2d');var particles=[];function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}resize();window.addEventListener('resize',resize);var count=performanceMode?15:40;for(var i=0;i<count;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5})}function getAccent(){return getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()||'#8b3dff'}function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);var accent=getAccent();ctx.fillStyle=accent;ctx.strokeStyle=accent;particles.forEach(function(p,i){p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>canvas.width)p.dx*=-1;if(p.y<0||p.y>canvas.height)p.dy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();particles.slice(i+1).forEach(function(p2){var dist=Math.hypot(p.x-p2.x,p.y-p2.y);if(dist<120){ctx.globalAlpha=0.15;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p2.x,p2.y);ctx.stroke();ctx.globalAlpha=1}})});requestAnimationFrame(animate)}animate()})();
+window.addEventListener('scroll',function(){var totalHeight=document.documentElement.scrollHeight-window.innerHeight;var progress=(window.scrollY/totalHeight)*100;document.getElementById('progress-bar').style.width=progress+'%';var topBtn=document.getElementById('topBtn');if(window.scrollY>300){topBtn.classList.add('show')}else{topBtn.classList.remove('show')}});
 populateYears();
 renderTopRated();
 renderMostViewed();
-renderGames(games);
 renderUpcoming();
+initSwipe();
 document.getElementById('badgesCount').textContent=Object.keys(badges).length;
-setTimeout(function(){const savedLang=localStorage.getItem('language')||'ar';if(savedLang==='en'){setLanguage('en')}},200);
+setTimeout(function(){var savedLang=localStorage.getItem('language')||'ar';if(savedLang==='en'){setLanguage('en')}},200);
 if('serviceWorker' in navigator){window.addEventListener('load',function(){navigator.serviceWorker.register('sw.js').then(function(reg){console.log('Service Worker registered!',reg)}).catch(function(err){console.log('Service Worker failed:',err)})})}
+function populateYears(){var years=[].concat([]);var select=document.getElementById('yearSelect');if(!select)return}
 </script>
 </body>
 </html>
