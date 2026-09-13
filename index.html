@@ -194,7 +194,6 @@ body.no-animation .modal-content{animation:none}
 .sidebar-color-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
 .sidebar-color-btn{width:38px;height:38px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:.3s}
 .sidebar-color-btn.active{border-color:#fff;box-shadow:0 0 12px currentColor}
-.sidebar-select{background:var(--bg);border:1px solid var(--border);color:var(--text);padding:8px 12px;border-radius:12px;font-size:12px;cursor:pointer;outline:none;font-family:inherit;width:100%;margin-top:8px}
 .sidebar-info{background:var(--bg);border-radius:12px;padding:15px;font-size:12px;color:var(--text2);line-height:1.8}
 .sidebar-info strong{color:var(--accent-light)}
 .sidebar-btn-full{width:100%;padding:14px;background:var(--accent);color:#fff;border:none;border-radius:12px;cursor:pointer;font-size:14px;font-weight:bold;margin-top:8px}
@@ -211,10 +210,10 @@ body.no-animation .modal-content{animation:none}
 body.no-animation .bottom-nav-item.active .nav-icon{transform:none;background:transparent;color:var(--accent)}
 body.no-animation .bottom-nav-item.active .nav-label{transform:none}
 
-/* ===== الصفحات ===== */
+/* ===== الصفحات (مصحّح) ===== */
 .page-container{position:fixed;top:0;left:0;width:100%;height:100%;overflow:hidden;z-index:1}
-.page{position:absolute;top:0;left:0;width:100%;height:100%;overflow-y:auto;overflow-x:hidden;background:var(--bg);transition:transform var(--anim-speed) cubic-bezier(.4,0,.2,1);padding-bottom:100px;will-change:transform;touch-action:pan-y}
-.page.dragging{transition:none}
+.page{position:absolute;top:0;left:0;width:100%;height:100%;overflow-y:auto;overflow-x:hidden;background:var(--bg);display:none;padding-bottom:100px;will-change:auto;touch-action:pan-y}
+.page.active{display:block;z-index:2}
 .page-header{padding:20px;background:var(--bg2);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:15px;position:sticky;top:0;z-index:10}
 .page-header h2{font-size:20px;color:var(--text);flex:1}
 .page-header .back-btn{background:transparent;border:none;color:var(--text);font-size:22px;cursor:pointer;padding:5px}
@@ -344,7 +343,6 @@ body.no-animation button:active,body.no-animation .icon-btn:active,body.no-anima
 <input class="search" id="searchInput" type="text" placeholder="🔍 ابحث..." data-i18n-placeholder="search_placeholder">
 <button class="icon-btn random-btn" onclick="randomGame()" title="لعبة عشوائية">🎲</button>
 <button class="icon-btn" onclick="openAbout()" title="حول">ℹ️</button>
-<button class="icon-btn" onclick="openSettings()" title="الإعدادات">⚙️</button>
 </div>
 </header>
 <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
@@ -409,11 +407,6 @@ body.no-animation button:active,body.no-animation .icon-btn:active,body.no-anima
 <button class="sidebar-btn" onclick="setAnimSpeed('normal')" data-speed="normal">عادي</button>
 <button class="sidebar-btn" onclick="setAnimSpeed('fast')" data-speed="fast">سريع</button>
 </div>
-<div class="sidebar-btn-row" style="margin-top:8px">
-<button class="sidebar-btn" onclick="setAnimStyle('fade')" data-style="fade">Fade</button>
-<button class="sidebar-btn" onclick="setAnimStyle('slide')" data-style="slide">Slide</button>
-<button class="sidebar-btn" onclick="setAnimStyle('zoom')" data-style="zoom">Zoom</button>
-</div>
 </div>
 <div class="sidebar-section">
 <div class="sidebar-section-title">📱 إضافات</div>
@@ -425,26 +418,17 @@ body.no-animation button:active,body.no-animation .icon-btn:active,body.no-anima
 <span class="sidebar-option-label">✨ الجزيئات المتحركة</span>
 <button class="sidebar-toggle on" id="particlesToggle"></button>
 </div>
-<div class="sidebar-option" onclick="togglePerformance()">
-<span class="sidebar-option-label">⚡ وضع الأداء العالي</span>
-<button class="sidebar-toggle" id="performanceToggle"></button>
-</div>
 </div>
 <div class="sidebar-section">
 <div class="sidebar-section-title">ℹ️ معلومات</div>
 <div class="sidebar-info">
-<p><strong>الإصدار:</strong> v3.0</p>
+<p><strong>الإصدار:</strong> v3.1</p>
 <p><strong>المطوّر:</strong> Zaki Safri</p>
 <p><strong>المصدر:</strong> RAWG API</p>
-<p><strong>الألعاب:</strong> 900,000+</p>
 </div>
 </div>
-<div class="sidebar-section">
-<button class="sidebar-btn-full" onclick="showBadges();toggleSidebar()">🏆 إنجازاتي</button>
-<button class="sidebar-btn-full danger" onclick="clearAllData();toggleSidebar()">🗑️ مسح البيانات</button>
 </div>
-</div>
-<main class="container" id="home">
+<main class="container">
 <section class="hero">
 <div class="hero-content">
 <div data-i18n="hero_welcome">🎮 مرحباً بك في Game Hub</div>
@@ -596,7 +580,7 @@ body.no-animation button:active,body.no-animation .icon-btn:active,body.no-anima
 <p class="modal-desc">🎮 Game Hub — موسوعة الألعاب الأولى بالعربية. اكتشف أفضل الألعاب بمعلومات كاملة وتقييمات. موقع مجاني، يعمل كتطبيق على جوالك!</p>
 <div class="modal-info">
 <div class="modal-info-row"><span class="label">📅 تاريخ الإصدار</span><span class="value">2025</span></div>
-<div class="modal-info-row"><span class="label">🔢 الإصدار</span><span class="value">v3.0</span></div>
+<div class="modal-info-row"><span class="label">🔢 الإصدار</span><span class="value">v3.1</span></div>
 <div class="modal-info-row"><span class="label">👨‍💻 المطوّر</span><span class="value">Zaki Safri</span></div>
 <div class="modal-info-row"><span class="label">🌐 من RAWG</span><span class="value">900,000+ لعبة</span></div>
 </div>
@@ -647,11 +631,6 @@ let rawgCurrentOrdering = '-rating';
 let rawgLoading = false;
 let currentPageIndex = 0;
 const totalPages = 4;
-let touchStartX = 0;
-let touchStartY = 0;
-let touchCurrentX = 0;
-let isDragging = false;
-let dragDirection = null;
 const games=[
 {id:1,name:"Minecraft",desc:"بناء • مغامرة • بقاء",fullDesc:"لعبة بناء واستكشاف لا نهائية.",rating:9.0,year:2011,category:"مغامرة",image:"https://i.postimg.cc/59HZFNKx/file-000000001210821087a228f03f7e497e.jpg",developer:"Mojang Studios",publisher:"Xbox Game Studios",platforms:"PC, PS, Xbox, Switch, Mobile",mode:"فردي + جماعي",ageRating:"PEGI 7",size:"من 1 GB"},
 {id:2,name:"God of War: Ragnarök",desc:"أكشن • مغامرة • أساطير",fullDesc:"مغامرة ملحمية مع كراتوس وأتريوس.",rating:9.8,year:2022,category:"أكشن",image:"https://i.postimg.cc/d0bGH6vF/wp11484883-god-of-war-ragnarok-desktop-wallpapers.jpg",developer:"Santa Monica Studio",publisher:"Sony Interactive",platforms:"PS4, PS5, PC",mode:"فردي",ageRating:"PEGI 18",size:"من 100 GB"},
@@ -715,7 +694,7 @@ document.getElementById('settingsModal').addEventListener('click',function(e){if
 function unlockBadge(id){if(badges[id])return;badges[id]=true;localStorage.setItem('badges',JSON.stringify(badges));document.getElementById('badgesCount').textContent=Object.keys(badges).length;showToast(currentLang==='en'?'🏆 New badge unlocked!':'🏆 إنجاز جديد!')}
 function renderBadges(){const list=document.getElementById('badgesList');list.innerHTML='';badgesList.forEach(b=>{const unlocked=badges[b.id];const div=document.createElement('div');div.className='badge'+(unlocked?' unlocked':'');div.innerHTML='<span class="badge-icon">'+b.icon+'</span><span class="badge-name">'+(currentLang==='en'?b.en:b.ar)+'</span>';list.appendChild(div)})}
 
-// ===== التنقل =====
+// ===== التنقل (مصحّح) =====
 function goToPage(index){
 if(index<0||index>=totalPages)return;
 currentPageIndex=index;
@@ -789,10 +768,8 @@ function setGridSize(size){document.body.classList.remove('grid-3','grid-4','gri
 function setCardSize(size){document.body.classList.remove('compact-cards','large-cards');if(size==='compact')document.body.classList.add('compact-cards');if(size==='large')document.body.classList.add('large-cards');localStorage.setItem('cardSize',size);updateSidebarUI();showToast(currentLang==='en'?'Card size changed':'تم تغيير حجم البطاقات')}
 function toggleAnimation(){animEnabled=!animEnabled;localStorage.setItem('animEnabled',animEnabled);document.body.classList.toggle('no-animation',!animEnabled);document.getElementById('animToggle').classList.toggle('on',animEnabled);showToast(currentLang==='en'?(animEnabled?'Animation ON':'Animation OFF'):(animEnabled?'الأنميشن مفعّل':'الأنميشن متوقف'))}
 function setAnimSpeed(speed){document.body.classList.remove('fast-animation','slow-animation');if(speed==='fast')document.body.classList.add('fast-animation');if(speed==='slow')document.body.classList.add('slow-animation');localStorage.setItem('animSpeed',speed);updateSidebarUI();showToast(currentLang==='en'?'Speed changed':'تم تغيير السرعة')}
-function setAnimStyle(style){document.body.classList.remove('anim-slide','anim-zoom');if(style==='slide')document.body.classList.add('anim-slide');if(style==='zoom')document.body.classList.add('anim-zoom');localStorage.setItem('animStyle',style);updateSidebarUI();showToast(currentLang==='en'?'Style changed':'تم تغيير النمط')}
 function toggleSwipe(){swipeEnabled=!swipeEnabled;localStorage.setItem('swipeEnabled',swipeEnabled);document.getElementById('swipeToggle').classList.toggle('on',swipeEnabled);showToast(currentLang==='en'?(swipeEnabled?'Swipe ON':'Swipe OFF'):(swipeEnabled?'السحب مفعّل':'السحب متوقف'))}
 function toggleParticles(){var hidden=document.body.classList.toggle('hide-particles');localStorage.setItem('hideParticles',hidden);document.getElementById('particlesToggle').classList.toggle('on',!hidden);showToast(currentLang==='en'?'Particles changed':'تم تغيير الجزيئات')}
-function togglePerformance(){var perf=document.body.classList.toggle('no-animation');localStorage.setItem('performanceMode',perf);document.getElementById('performanceToggle').classList.toggle('on',perf);showToast(currentLang==='en'?(perf?'Performance mode ON':'Performance mode OFF'):(perf?'وضع الأداء مفعّل':'وضع الأداء متوقف'))}
 function clearAllData(){var msg=currentLang==='en'?'Clear all data?':'مسح كل البيانات؟';if(confirm(msg)){localStorage.clear();showToast('...');setTimeout(function(){location.reload()},800)}}
 function updateSidebarUI(){
 var theme=localStorage.getItem('theme')||'dark';
@@ -809,8 +786,6 @@ var card=localStorage.getItem('cardSize')||'normal';
 document.querySelectorAll('[data-card]').forEach(function(b){b.classList.remove('active');if(b.getAttribute('data-card')===card)b.classList.add('active')});
 var speed=localStorage.getItem('animSpeed')||'normal';
 document.querySelectorAll('[data-speed]').forEach(function(b){b.classList.remove('active');if(b.getAttribute('data-speed')===speed)b.classList.add('active')});
-var style=localStorage.getItem('animStyle')||'fade';
-document.querySelectorAll('[data-style]').forEach(function(b){b.classList.remove('active');if(b.getAttribute('data-style')===style)b.classList.add('active')});
 var lang=localStorage.getItem('language')||'ar';
 document.querySelectorAll('[data-lang]').forEach(function(b){b.classList.remove('active');if(b.getAttribute('data-lang')===lang)b.classList.add('active')});
 }
@@ -858,9 +833,7 @@ var accent=localStorage.getItem('accentColor')||'#8b3dff';
 var grid=localStorage.getItem('gridSize')||'4';
 var cardSize=localStorage.getItem('cardSize')||'normal';
 var animSpeed=localStorage.getItem('animSpeed')||'normal';
-var animStyle=localStorage.getItem('animStyle')||'fade';
 var hideParticles=localStorage.getItem('hideParticles')==='true';
-var performanceMode=localStorage.getItem('performanceMode')==='true';
 if(theme==='light')document.body.classList.add('light');
 if(theme==='gray')document.body.classList.add('gray');
 document.body.classList.add('font-'+font);
@@ -869,10 +842,8 @@ if(cardSize==='compact')document.body.classList.add('compact-cards');
 if(cardSize==='large')document.body.classList.add('large-cards');
 if(animSpeed==='fast')document.body.classList.add('fast-animation');
 if(animSpeed==='slow')document.body.classList.add('slow-animation');
-if(animStyle==='slide')document.body.classList.add('anim-slide');
-if(animStyle==='zoom')document.body.classList.add('anim-zoom');
 if(hideParticles)document.body.classList.add('hide-particles');
-if(performanceMode||!animEnabled)document.body.classList.add('no-animation');
+if(!animEnabled)document.body.classList.add('no-animation');
 document.documentElement.style.setProperty('--accent',accent);
 document.documentElement.style.setProperty('--accent-light',accent);
 document.documentElement.style.setProperty('--accent-dark',accent);
@@ -880,7 +851,6 @@ setTimeout(function(){
 var sw=document.getElementById('swipeToggle');if(sw&&!swipeEnabled)sw.classList.remove('on');
 var an=document.getElementById('animToggle');if(an&&!animEnabled)an.classList.remove('on');
 var pt=document.getElementById('particlesToggle');if(pt&&hideParticles)pt.classList.remove('on');
-var pf=document.getElementById('performanceToggle');if(pf&&performanceMode)pf.classList.add('on');
 },100);
 updateSidebarUI();
 })();
