@@ -241,7 +241,7 @@ body.no-animation .modal-content{animation:none}
 .custom-card .custom-info h4{font-size:11px;color:var(--text);overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.3;height:28px}
 .custom-card .custom-info .custom-rating{font-size:10px;color:var(--yellow);margin-top:4px}
 /* ===== القائمة الجانبية ===== */
-.sidebar{position:fixed;top:0;right:-100%;width:320px;max-width:85%;height:100%;background:var(--bg2);border-left:1px solid var(--border);z-index:2000;transition:right var(--anim-speed) ease;overflow-y:auto;padding:20px;box-shadow:-10px 0 40px rgba(0,0,0,.5)}
+.sidebar{position:fixed;top:0;right:-100%;width:340px;max-width:88%;height:100%;background:var(--bg2);border-left:1px solid var(--border);z-index:2000;transition:right var(--anim-speed) ease;overflow-y:auto;padding:20px;box-shadow:-10px 0 40px rgba(0,0,0,.5)}
 .sidebar.open{right:0}
 .sidebar-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:#000000aa;z-index:1999;display:none;backdrop-filter:blur(3px)}
 .sidebar-overlay.open{display:block}
@@ -251,9 +251,9 @@ body.no-animation .modal-content{animation:none}
 .sidebar-section{margin-bottom:20px}
 .sidebar-section-title{color:var(--accent);font-size:13px;margin-bottom:10px;font-weight:bold;display:flex;align-items:center;gap:8px}
 .sidebar-option{display:flex;justify-content:space-between;align-items:center;padding:12px 15px;background:var(--bg);border-radius:12px;margin-bottom:8px;transition:.3s;cursor:pointer;border:1px solid transparent}
-.sidebar-option:hover{border-color:var(--accent)}
+.sidebar-option:hover{border-color:var(--accent);background:var(--bg3)}
 .sidebar-option-label{color:var(--text);font-size:14px;display:flex;align-items:center;gap:10px}
-.sidebar-option-value{color:var(--accent-light);font-size:13px;font-weight:bold}
+.sidebar-option-value{color:var(--accent-light);font-size:12px;font-weight:bold}
 .sidebar-toggle{position:relative;width:48px;height:26px;background:var(--border);border-radius:15px;cursor:pointer;transition:.3s;border:none;padding:0}
 .sidebar-toggle::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;background:#fff;border-radius:50%;transition:.3s}
 .sidebar-toggle.on{background:var(--accent)}
@@ -269,6 +269,40 @@ body.no-animation .modal-content{animation:none}
 .sidebar-info strong{color:var(--accent-light)}
 .sidebar-btn-full{width:100%;padding:14px;background:var(--accent);color:#fff;border:none;border-radius:12px;cursor:pointer;font-size:14px;font-weight:bold;margin-top:8px}
 .sidebar-btn-full.danger{background:var(--red)}
+/* ===== القائمة الجانبية - الإعدادات ===== */
+.sidebar-menu{margin-bottom:15px}
+.sidebar-menu-item{display:flex;align-items:center;gap:12px;padding:14px 15px;background:var(--bg);border-radius:12px;margin-bottom:6px;transition:.3s;cursor:pointer;border:1px solid transparent}
+.sidebar-menu-item:hover{border-color:var(--accent);background:var(--bg3);transform:translateX(-3px)}
+.sidebar-menu-item .menu-icon{font-size:20px;width:32px;text-align:center;flex-shrink:0}
+.sidebar-menu-item .menu-info{flex:1}
+.sidebar-menu-item .menu-info h4{color:var(--text);font-size:14px;margin-bottom:3px}
+.sidebar-menu-item .menu-info p{color:var(--text3);font-size:11px}
+.sidebar-menu-item .menu-arrow{color:var(--accent);font-size:16px;font-weight:bold}
+/* ===== النوافذ الفرعية للإعدادات ===== */
+.settings-sub{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000000cc;z-index:2100;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(5px)}
+.settings-sub.active{display:flex}
+.settings-sub-content{background:var(--bg2);border:1px solid var(--accent);border-radius:20px;padding:25px;max-width:500px;width:100%;animation:pop var(--anim-speed) ease;max-height:85vh;overflow-y:auto}
+.settings-sub-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid var(--border)}
+.settings-sub-header h3{color:var(--accent-light);font-size:18px}
+.settings-sub-close{background:transparent;border:none;color:var(--text);font-size:24px;cursor:pointer;padding:5px}
+.settings-option{display:flex;justify-content:space-between;align-items:center;padding:14px 15px;background:var(--bg);border-radius:12px;margin-bottom:8px;transition:.3s;cursor:pointer;border:1px solid transparent}
+.settings-option:hover{border-color:var(--accent)}
+.settings-option-label{color:var(--text);font-size:14px;display:flex;align-items:center;gap:10px}
+.settings-option-value{color:var(--accent-light);font-size:13px;font-weight:bold}
+.settings-toggle{position:relative;width:48px;height:26px;background:var(--border);border-radius:15px;cursor:pointer;transition:.3s;border:none;padding:0}
+.settings-toggle::after{content:'';position:absolute;top:3px;left:3px;width:20px;height:20px;background:#fff;border-radius:50%;transition:.3s}
+.settings-toggle.on{background:var(--accent)}
+.settings-toggle.on::after{left:25px}
+.settings-btn-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.settings-btn{flex:1;min-width:70px;background:var(--bg);border:1px solid var(--border);color:var(--text2);padding:10px 12px;border-radius:12px;cursor:pointer;font-size:13px;transition:.3s}
+.settings-btn:hover{border-color:var(--accent);color:var(--accent)}
+.settings-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.settings-color-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+.settings-color-btn{width:42px;height:42px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:.3s}
+.settings-color-btn.active{border-color:#fff;box-shadow:0 0 12px currentColor}
+.settings-section-title{color:var(--accent);font-size:13px;margin:15px 0 10px;font-weight:bold}
+.settings-info-box{background:var(--bg);border-radius:12px;padding:15px;font-size:13px;color:var(--text2);line-height:1.9}
+.settings-info-box strong{color:var(--accent-light)}
 /* ===== الشريط السفلي ===== */
 .bottom-nav{position:fixed;bottom:15px;left:50%;transform:translateX(-50%);width:calc(100% - 30px);max-width:440px;height:65px;background:var(--bg2);border:1px solid var(--border);border-radius:35px;display:flex;align-items:center;justify-content:space-around;z-index:1000;box-shadow:0 10px 40px rgba(0,0,0,.5);padding:0 8px;transition:background var(--anim-speed)}
 .bottom-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;cursor:pointer;position:relative;height:100%;background:transparent;border:none;color:var(--text3);font-size:10px;font-family:inherit;transition:color var(--anim-speed);padding:0}
@@ -319,7 +353,7 @@ header{padding:8px 15px}
 .logo{font-size:16px}
 .icon-btn{width:38px;height:38px;font-size:16px}
 .menu-btn{width:38px;height:38px;font-size:18px}
-.sidebar{width:290px}
+.sidebar{width:300px}
 .bottom-nav{max-width:400px;height:62px;bottom:12px;padding:0 5px}
 .bottom-nav-item .nav-label{font-size:7px}
 .bottom-nav-item .nav-icon{font-size:18px;width:34px;height:34px}
@@ -336,7 +370,7 @@ header{padding:8px 15px}
 .search{width:80px}
 .rawg-grid-new{grid-template-columns:repeat(3,1fr);gap:8px}
 .rawg-mini-card .mini-img{height:75px}
-.sidebar{width:280px}
+.sidebar{width:290px}
 .custom-list{grid-template-columns:repeat(3,1fr);gap:6px}
 .bottom-nav{max-width:360px}
 }
@@ -347,6 +381,76 @@ body.no-animation button:active,body.no-animation .icon-btn:active,body.no-anima
 <body class="grid-4">
 <canvas id="particles-bg"></canvas>
 <div id="progress-bar"></div>
+
+<!-- ===== القائمة الجانبية (خارج Slider) ===== -->
+<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
+<div class="sidebar" id="sidebar">
+<div class="sidebar-header">
+<h3>☰ القائمة</h3>
+<button class="sidebar-close" onclick="toggleSidebar()">✕</button>
+</div>
+<div class="sidebar-menu">
+<div class="sidebar-menu-item" onclick="openSubSettings('account')">
+<span class="menu-icon">👤</span>
+<div class="menu-info"><h4>الحساب</h4><p>الملف الشخصي</p></div>
+<span class="menu-arrow">‹</span>
+</div>
+<div class="sidebar-menu-item" onclick="openSubSettings('theme')">
+<span class="menu-icon">🎨</span>
+<div class="menu-info"><h4>المظهر</h4><p>تخصيص شكل التطبيق</p></div>
+<span class="menu-arrow">‹</span>
+</div>
+<div class="sidebar-menu-item" onclick="openSubSettings('navigation')">
+<span class="menu-icon">🧭</span>
+<div class="menu-info"><h4>التنقل</h4><p>إعدادات السحب والتنقل</p></div>
+<span class="menu-arrow">‹</span>
+</div>
+<div class="sidebar-menu-item" onclick="openSubSettings('content')">
+<span class="menu-icon">🎮</span>
+<div class="menu-info"><h4>الألعاب والمحتوى</h4><p>المنصات والأنواع والترتيب</p></div>
+<span class="menu-arrow">‹</span>
+</div>
+<div class="sidebar-menu-item" onclick="openSubSettings('notifications')">
+<span class="menu-icon">🔔</span>
+<div class="menu-info"><h4>الإشعارات</h4><p>إدارة التنبيهات</p></div>
+<span class="menu-arrow">‹</span>
+</div>
+<div class="sidebar-menu-item" onclick="openSubSettings('search')">
+<span class="menu-icon">🔍</span>
+<div class="menu-info"><h4>البحث</h4><p>سجل البحث والتفضيلات</p></div>
+<span class="menu-arrow">‹</span>
+</div>
+<div class="sidebar-menu-item" onclick="openSubSettings('favorites')">
+<span class="menu-icon">❤️</span>
+<div class="menu-info"><h4>المفضلة</h4><p>إدارة القوائم</p></div>
+<span class="menu-arrow">‹</span>
+</div>
+<div class="sidebar-menu-item" onclick="openSubSettings('language')">
+<span class="menu-icon">🌐</span>
+<div class="menu-info"><h4>اللغة والمنطقة</h4><p id="langSubValue">العربية • الجزائر</p></div>
+<span class="menu-arrow">‹</span>
+</div>
+<div class="sidebar-menu-item" onclick="openSubSettings('privacy')">
+<span class="menu-icon">🔒</span>
+<div class="menu-info"><h4>الخصوصية</h4><p>الحساب والبيانات</p></div>
+<span class="menu-arrow">‹</span>
+</div>
+<div class="sidebar-menu-item" onclick="openSubSettings('performance')">
+<span class="menu-icon">📶</span>
+<div class="menu-info"><h4>البيانات والأداء</h4><p>الصور • Cache • البيانات</p></div>
+<span class="menu-arrow">‹</span>
+</div>
+<div class="sidebar-menu-item" onclick="openSubSettings('about')">
+<span class="menu-icon">ℹ️</span>
+<div class="menu-info"><h4>حول Game Hub</h4><p>الإصدار • الدعم • المصادر</p></div>
+<span class="menu-arrow">‹</span>
+</div>
+</div>
+<div class="sidebar-section">
+<button class="sidebar-btn-full" onclick="showBadges();toggleSidebar()">🏆 إنجازاتي</button>
+<button class="sidebar-btn-full danger" onclick="clearAllData();toggleSidebar()">🗑️ مسح البيانات</button>
+</div>
+</div>
 
 <!-- ===== Slider: 5 صفحات ===== -->
 <div class="page-slider" id="pageSlider">
@@ -409,85 +513,6 @@ body.no-animation button:active,body.no-animation .icon-btn:active,body.no-anima
 <button class="icon-btn" onclick="openAbout()" title="حول">ℹ️</button>
 </div>
 </header>
-<div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
-<div class="sidebar" id="sidebar">
-<div class="sidebar-header">
-<h3>⚙️ القائمة</h3>
-<button class="sidebar-close" onclick="toggleSidebar()">✕</button>
-</div>
-<div class="sidebar-section">
-<div class="sidebar-section-title">🎨 المظهر</div>
-<div class="sidebar-option" onclick="cycleTheme()">
-<span class="sidebar-option-label">🌙 الوضع</span>
-<span class="sidebar-option-value" id="themeValue">ليلي</span>
-</div>
-<div class="sidebar-section-title" style="margin-top:12px">🎨 لون التطبيق</div>
-<div class="sidebar-color-row">
-<button class="sidebar-color-btn" onclick="setAccent('#8b3dff')" data-color="#8b3dff" style="background:#8b3dff"></button>
-<button class="sidebar-color-btn" onclick="setAccent('#1d6cff')" data-color="#1d6cff" style="background:#1d6cff"></button>
-<button class="sidebar-color-btn" onclick="setAccent('#12b94f')" data-color="#12b94f" style="background:#12b94f"></button>
-<button class="sidebar-color-btn" onclick="setAccent('#ff3366')" data-color="#ff3366" style="background:#ff3366"></button>
-<button class="sidebar-color-btn" onclick="setAccent('#ffd21f')" data-color="#ffd21f" style="background:#ffd21f"></button>
-<button class="sidebar-color-btn" onclick="setAccent('#ff6b00')" data-color="#ff6b00" style="background:#ff6b00"></button>
-</div>
-<div class="sidebar-section-title" style="margin-top:12px">🔤 حجم الخط</div>
-<div class="sidebar-btn-row">
-<button class="sidebar-btn" onclick="setFontSize('small')" data-font="small">صغير</button>
-<button class="sidebar-btn" onclick="setFontSize('medium')" data-font="medium">متوسط</button>
-<button class="sidebar-btn" onclick="setFontSize('large')" data-font="large">كبير</button>
-</div>
-</div>
-<div class="sidebar-section">
-<div class="sidebar-section-title">🌐 اللغة</div>
-<div class="sidebar-btn-row">
-<button class="sidebar-btn" onclick="setLanguage('ar')" data-lang="ar">🇸🇦 العربية</button>
-<button class="sidebar-btn" onclick="setLanguage('en')" data-lang="en">🇬🇧 English</button>
-</div>
-</div>
-<div class="sidebar-section">
-<div class="sidebar-section-title">🎮 عدد الألعاب في الصف</div>
-<div class="sidebar-btn-row">
-<button class="sidebar-btn" onclick="setGridSize(3)" data-grid="3">3</button>
-<button class="sidebar-btn" onclick="setGridSize(4)" data-grid="4">4</button>
-<button class="sidebar-btn" onclick="setGridSize(5)" data-grid="5">5</button>
-</div>
-</div>
-<div class="sidebar-section">
-<div class="sidebar-section-title">✨ الأنميشن</div>
-<div class="sidebar-option" onclick="toggleAnimation()">
-<span class="sidebar-option-label">🎬 تشغيل الأنميشن</span>
-<button class="sidebar-toggle on" id="animToggle"></button>
-</div>
-<div class="sidebar-btn-row">
-<button class="sidebar-btn" onclick="setAnimSpeed('slow')" data-speed="slow">بطيء</button>
-<button class="sidebar-btn" onclick="setAnimSpeed('normal')" data-speed="normal">عادي</button>
-<button class="sidebar-btn" onclick="setAnimSpeed('fast')" data-speed="fast">سريع</button>
-</div>
-</div>
-<div class="sidebar-section">
-<div class="sidebar-section-title">📱 إضافات</div>
-<div class="sidebar-option" onclick="toggleSwipe()">
-<span class="sidebar-option-label">👆 السحب بين الصفحات</span>
-<button class="sidebar-toggle on" id="swipeToggle"></button>
-</div>
-<div class="sidebar-option" onclick="toggleLoop()">
-<span class="sidebar-option-label">🔄 السحب الدائري</span>
-<button class="sidebar-toggle on" id="loopToggle"></button>
-</div>
-<div class="sidebar-option" onclick="toggleParticles()">
-<span class="sidebar-option-label">✨ الجزيئات المتحركة</span>
-<button class="sidebar-toggle on" id="particlesToggle"></button>
-</div>
-</div>
-<div class="sidebar-section">
-<div class="sidebar-section-title">ℹ️ معلومات</div>
-<div class="sidebar-info">
-<p><strong>الإصدار:</strong> v5.8</p>
-<p><strong>المطوّر:</strong> Zaki Safri</p>
-<p><strong>المصدر:</strong> RAWG API</p>
-</div>
-</div>
-</div>
 <main class="container">
 <section class="hero">
 <div class="hero-content">
@@ -495,9 +520,8 @@ body.no-animation button:active,body.no-animation .icon-btn:active,body.no-anima
 <h1 data-i18n-html="hero_title">موسوعة <span>الألعاب</span></h1>
 <p data-i18n="hero_subtitle">اكتشف عالم الألعاب — آلاف الألعاب في مكان واحد</p>
 <div class="hero-buttons">
-<button class="hero-button" onclick="goToPage(1)">🌐 كل الألعاب</button>
-<button class="hero-button secondary" onclick="goToPage(0)">❤️ المفضلة</button>
-<button class="hero-button secondary" onclick="goToPage(3)">⭐ مخصصة</button>
+<button class="hero-button" onclick="document.getElementById('top-rated').scrollIntoView({behavior:'smooth'})">⭐ اكتشف الأفضل ←</button>
+<button class="hero-button secondary" onclick="randomGame()">🎲 لعبة عشوائية</button>
 </div>
 </div>
 <div class="hero-character">🎮</div>
@@ -602,18 +626,158 @@ body.no-animation button:active,body.no-animation .icon-btn:active,body.no-anima
 </button>
 </div>
 
-<!-- ===== النوافذ ===== -->
+<!-- ===== النوافذ الفرعية للإعدادات ===== -->
+<div class="settings-sub" id="subAccount">
+<div class="settings-sub-content">
+<div class="settings-sub-header"><h3>👤 الحساب</h3><button class="settings-sub-close" onclick="closeSubSettings()">✕</button></div>
+<div class="settings-option"><span class="settings-option-label">📝 الاسم</span><span class="settings-option-value">زائر</span></div>
+<div class="settings-option"><span class="settings-option-label">📧 البريد</span><span class="settings-option-value">غير مسجل</span></div>
+<div class="settings-option" onclick="goToPage(0);closeSubSettings();toggleSidebar()"><span class="settings-option-label">🔑 تسجيل الدخول</span><span class="menu-arrow">‹</span></div>
+<div class="settings-option" onclick="showToast('قريباً: الملف الشخصي')"><span class="settings-option-label">📊 نشاطي</span><span class="menu-arrow">‹</span></div>
+</div>
+</div>
+
+<div class="settings-sub" id="subTheme">
+<div class="settings-sub-content">
+<div class="settings-sub-header"><h3>🎨 المظهر</h3><button class="settings-sub-close" onclick="closeSubSettings()">✕</button></div>
+<div class="settings-section-title">الوضع</div>
+<div class="settings-btn-row">
+<button class="settings-btn" onclick="setTheme('dark');updateSubSettingsUI()" data-sub-theme="dark">🌙 ليلي</button>
+<button class="settings-btn" onclick="setTheme('light');updateSubSettingsUI()" data-sub-theme="light">☀️ نهاري</button>
+<button class="settings-btn" onclick="setTheme('gray');updateSubSettingsUI()" data-sub-theme="gray">🌫️ رمادي</button>
+</div>
+<div class="settings-section-title">لون التطبيق</div>
+<div class="settings-color-row">
+<button class="settings-color-btn" onclick="setAccent('#8b3dff');updateSubSettingsUI()" data-sub-color="#8b3dff" style="background:#8b3dff"></button>
+<button class="settings-color-btn" onclick="setAccent('#1d6cff');updateSubSettingsUI()" data-sub-color="#1d6cff" style="background:#1d6cff"></button>
+<button class="settings-color-btn" onclick="setAccent('#12b94f');updateSubSettingsUI()" data-sub-color="#12b94f" style="background:#12b94f"></button>
+<button class="settings-color-btn" onclick="setAccent('#ff3366');updateSubSettingsUI()" data-sub-color="#ff3366" style="background:#ff3366"></button>
+<button class="settings-color-btn" onclick="setAccent('#ffd21f');updateSubSettingsUI()" data-sub-color="#ffd21f" style="background:#ffd21f"></button>
+<button class="settings-color-btn" onclick="setAccent('#ff6b00');updateSubSettingsUI()" data-sub-color="#ff6b00" style="background:#ff6b00"></button>
+</div>
+<div class="settings-section-title">حجم الخط</div>
+<div class="settings-btn-row">
+<button class="settings-btn" onclick="setFontSize('small');updateSubSettingsUI()" data-sub-font="small">صغير</button>
+<button class="settings-btn" onclick="setFontSize('medium');updateSubSettingsUI()" data-sub-font="medium">متوسط</button>
+<button class="settings-btn" onclick="setFontSize('large');updateSubSettingsUI()" data-sub-font="large">كبير</button>
+</div>
+</div>
+</div>
+
+<div class="settings-sub" id="subNavigation">
+<div class="settings-sub-content">
+<div class="settings-sub-header"><h3>🧭 التنقل</h3><button class="settings-sub-close" onclick="closeSubSettings()">✕</button></div>
+<div class="settings-option" onclick="toggleSwipe()"><span class="settings-option-label">👆 السحب بين الصفحات</span><button class="settings-toggle on" id="subSwipeToggle"></button></div>
+<div class="settings-option" onclick="toggleLoop()"><span class="settings-option-label">🔄 السحب الدائري</span><button class="settings-toggle on" id="subLoopToggle"></button></div>
+<div class="settings-section-title">سرعة الأنميشن</div>
+<div class="settings-btn-row">
+<button class="settings-btn" onclick="setAnimSpeed('slow');updateSubSettingsUI()" data-sub-speed="slow">بطيء</button>
+<button class="settings-btn" onclick="setAnimSpeed('normal');updateSubSettingsUI()" data-sub-speed="normal">عادي</button>
+<button class="settings-btn" onclick="setAnimSpeed('fast');updateSubSettingsUI()" data-sub-speed="fast">سريع</button>
+</div>
+</div>
+</div>
+
+<div class="settings-sub" id="subContent">
+<div class="settings-sub-content">
+<div class="settings-sub-header"><h3>🎮 الألعاب والمحتوى</h3><button class="settings-sub-close" onclick="closeSubSettings()">✕</button></div>
+<div class="settings-section-title">عدد الألعاب في الصف</div>
+<div class="settings-btn-row">
+<button class="settings-btn" onclick="setGridSize(3);updateSubSettingsUI()" data-sub-grid="3">3</button>
+<button class="settings-btn" onclick="setGridSize(4);updateSubSettingsUI()" data-sub-grid="4">4</button>
+<button class="settings-btn" onclick="setGridSize(5);updateSubSettingsUI()" data-sub-grid="5">5</button>
+</div>
+<div class="settings-section-title">عرض الأقسام</div>
+<div class="settings-option" onclick="toggleTrending()"><span class="settings-option-label">🔥 الأكثر رواجاً</span><button class="settings-toggle on" id="subTrendingToggle"></button></div>
+<div class="settings-option" onclick="toggleNews()"><span class="settings-option-label">📰 الأخبار</span><button class="settings-toggle on" id="subNewsToggle"></button></div>
+<div class="settings-option" onclick="toggleUpcoming()"><span class="settings-option-label">🚀 الألعاب القادمة</span><button class="settings-toggle on" id="subUpcomingToggle"></button></div>
+</div>
+</div>
+
+<div class="settings-sub" id="subNotifications">
+<div class="settings-sub-content">
+<div class="settings-sub-header"><h3>🔔 الإشعارات</h3><button class="settings-sub-close" onclick="closeSubSettings()">✕</button></div>
+<div class="settings-option" onclick="toggleNotification('newGames')"><span class="settings-option-label">🎮 ألعاب جديدة</span><button class="settings-toggle on" id="subNotifNewGames"></button></div>
+<div class="settings-option" onclick="toggleNotification('updates')"><span class="settings-option-label">📰 تحديثات الموقع</span><button class="settings-toggle on" id="subNotifUpdates"></button></div>
+<div class="settings-option" onclick="toggleNotification('favorites')"><span class="settings-option-label">❤️ مفضلاتي</span><button class="settings-toggle" id="subNotifFavorites"></button></div>
+<div class="settings-info-box" style="margin-top:15px">🔔 الإشعارات ستصل عند دعم المتصفح لها.</div>
+</div>
+</div>
+
+<div class="settings-sub" id="subSearch">
+<div class="settings-sub-content">
+<div class="settings-sub-header"><h3>🔍 البحث</h3><button class="settings-sub-close" onclick="closeSubSettings()">✕</button></div>
+<div class="settings-option" onclick="clearSearchHistory()"><span class="settings-option-label">🗑️ مسح سجل البحث</span><span class="menu-arrow">‹</span></div>
+<div class="settings-section-title">سجل البحث</div>
+<div class="settings-info-box" id="searchHistoryBox">لا يوجد سجل بحث حالياً</div>
+</div>
+</div>
+
+<div class="settings-sub" id="subFavorites">
+<div class="settings-sub-content">
+<div class="settings-sub-header"><h3>❤️ المفضلة</h3><button class="settings-sub-close" onclick="closeSubSettings()">✕</button></div>
+<div class="settings-option" onclick="goToPage(0);closeSubSettings();toggleSidebar()"><span class="settings-option-label">📋 عرض المفضلة</span><span class="menu-arrow">‹</span></div>
+<div class="settings-option" onclick="clearFavorites()"><span class="settings-option-label">🗑️ مسح كل المفضلة</span><span class="menu-arrow">‹</span></div>
+<div class="settings-info-box" style="margin-top:15px">❤️ عدد الألعاب المفضلة: <strong id="favCountBox">0</strong></div>
+</div>
+</div>
+
+<div class="settings-sub" id="subLanguage">
+<div class="settings-sub-content">
+<div class="settings-sub-header"><h3>🌐 اللغة والمنطقة</h3><button class="settings-sub-close" onclick="closeSubSettings()">✕</button></div>
+<div class="settings-section-title">اللغة</div>
+<div class="settings-btn-row">
+<button class="settings-btn" onclick="setLanguage('ar');updateSubSettingsUI()" data-sub-lang="ar">🇸🇦 العربية</button>
+<button class="settings-btn" onclick="setLanguage('en');updateSubSettingsUI()" data-sub-lang="en">🇬🇧 English</button>
+</div>
+<div class="settings-section-title">المنطقة</div>
+<div class="settings-option"><span class="settings-option-label">📍 البلد</span><span class="settings-option-value">🇩🇿 الجزائر</span></div>
+</div>
+</div>
+
+<div class="settings-sub" id="subPrivacy">
+<div class="settings-sub-content">
+<div class="settings-sub-header"><h3>🔒 الخصوصية</h3><button class="settings-sub-close" onclick="closeSubSettings()">✕</button></div>
+<div class="settings-option" onclick="showToast('سياسة الخصوصية')"><span class="settings-option-label">📜 سياسة الخصوصية</span><span class="menu-arrow">‹</span></div>
+<div class="settings-option" onclick="showToast('شروط الاستخدام')"><span class="settings-option-label">📋 شروط الاستخدام</span><span class="menu-arrow">‹</span></div>
+<div class="settings-option" onclick="exportData()"><span class="settings-option-label">📤 تصدير بياناتي</span><span class="menu-arrow">‹</span></div>
+<div class="settings-option" onclick="clearAllData()"><span class="settings-option-label">🗑️ مسح كل بياناتي</span><span class="menu-arrow">‹</span></div>
+<div class="settings-info-box" style="margin-top:15px">🔐 بياناتك محفوظة على جهازك فقط ولا تُرسل لأي مكان.</div>
+</div>
+</div>
+
+<div class="settings-sub" id="subPerformance">
+<div class="settings-sub-content">
+<div class="settings-sub-header"><h3>📶 البيانات والأداء</h3><button class="settings-sub-close" onclick="closeSubSettings()">✕</button></div>
+<div class="settings-option" onclick="toggleParticles()"><span class="settings-option-label">✨ الجزيئات المتحركة</span><button class="settings-toggle on" id="subParticlesToggle"></button></div>
+<div class="settings-option" onclick="toggleAnimation()"><span class="settings-option-label">🎬 الأنميشن</span><button class="settings-toggle on" id="subAnimToggle"></button></div>
+<div class="settings-option" onclick="showToast('سيتم تحديث الصور')"><span class="settings-option-label">🖼️ تحميل الصور تلقائياً</span><button class="settings-toggle on" id="subImagesToggle"></button></div>
+<div class="settings-option" onclick="clearCache()"><span class="settings-option-label">🗑️ مسح Cache</span><span class="menu-arrow">‹</span></div>
+<div class="settings-info-box" style="margin-top:15px">📊 حجم البيانات: <strong id="dataSizeBox">صغير</strong></div>
+</div>
+</div>
+
+<div class="settings-sub" id="subAbout">
+<div class="settings-sub-content">
+<div class="settings-sub-header"><h3>ℹ️ حول Game Hub</h3><button class="settings-sub-close" onclick="closeSubSettings()">✕</button></div>
+<div class="settings-info-box">
+<p><strong>🎮 Game Hub</strong></p>
+<p style="margin-top:10px"><strong>الإصدار:</strong> v6.0</p>
+<p><strong>المطوّر:</strong> Zaki Safri</p>
+<p><strong>المصادر:</strong> RAWG API</p>
+<p><strong>الألعاب:</strong> 900,000+</p>
+<p><strong>السنة:</strong> 2025</p>
+</div>
+<div class="settings-option" onclick="copySiteLink()" style="margin-top:15px"><span class="settings-option-label">📋 نسخ رابط الموقع</span><span class="menu-arrow">‹</span></div>
+<div class="settings-option" onclick="showToast('شكراً لدعمك! 💜')"><span class="settings-option-label">⭐ قيّم الموقع</span><span class="menu-arrow">‹</span></div>
+</div>
+</div>
+
+<!-- ===== النوافذ الأصلية ===== -->
 <div class="modal" id="aboutModal">
 <div class="modal-content">
 <h2>ℹ️ حول الموقع</h2>
-<p class="modal-desc">🎮 Game Hub — موسوعة الألعاب الأولى بالعربية. اكتشف أفضل الألعاب بمعلومات كاملة وتقييمات. موقع مجاني، يعمل كتطبيق على جوالك!</p>
-<div class="modal-info">
-<div class="modal-info-row"><span class="label">📅 تاريخ الإصدار</span><span class="value">2025</span></div>
-<div class="modal-info-row"><span class="label">🔢 الإصدار</span><span class="value">v5.8</span></div>
-<div class="modal-info-row"><span class="label">👨‍💻 المطوّر</span><span class="value">Zaki Safri</span></div>
-<div class="modal-info-row"><span class="label">🌐 من RAWG</span><span class="value">900,000+ لعبة</span></div>
-</div>
-<button class="fav-modal" onclick="copySiteLink()">📋 نسخ رابط الموقع</button>
+<p class="modal-desc">🎮 Game Hub — موسوعة الألعاب الأولى بالعربية.</p>
 <button class="close" onclick="closeAbout()">إغلاق</button>
 </div>
 </div>
@@ -741,6 +905,37 @@ function showBadges(){openBadges()}
 function unlockBadge(id){if(badges[id])return;badges[id]=true;localStorage.setItem('badges',JSON.stringify(badges));document.getElementById('badgesCount').textContent=Object.keys(badges).length;showToast(currentLang==='en'?'🏆 New badge unlocked!':'🏆 إنجاز جديد!')}
 function renderBadges(){const list=document.getElementById('badgesList');list.innerHTML='';badgesList.forEach(function(b){const unlocked=badges[b.id];const div=document.createElement('div');div.className='badge'+(unlocked?' unlocked':'');div.innerHTML='<span class="badge-icon">'+b.icon+'</span><span class="badge-name">'+(currentLang==='en'?b.en:b.ar)+'</span>';list.appendChild(div)})}
 
+// ===== النوافذ الفرعية للإعدادات =====
+function openSubSettings(key){
+var all=document.querySelectorAll('.settings-sub');
+for(var i=0;i<all.length;i++)all[i].classList.remove('active');
+var map={account:'subAccount',theme:'subTheme',navigation:'subNavigation',content:'subContent',notifications:'subNotifications',search:'subSearch',favorites:'subFavorites',language:'subLanguage',privacy:'subPrivacy',performance:'subPerformance',about:'subAbout'};
+var target=document.getElementById(map[key]);
+if(target){target.classList.add('active');updateSubSettingsUI()}
+}
+function closeSubSettings(){
+var all=document.querySelectorAll('.settings-sub');
+for(var i=0;i<all.length;i++)all[i].classList.remove('active');
+}
+function updateSubSettingsUI(){
+var theme=localStorage.getItem('theme')||'dark';
+var font=localStorage.getItem('fontSize')||'medium';
+var accent=localStorage.getItem('accentColor')||'#8b3dff';
+var grid=localStorage.getItem('gridSize')||'4';
+var speed=localStorage.getItem('animSpeed')||'normal';
+var lang=localStorage.getItem('language')||'ar';
+document.querySelectorAll('[data-sub-theme]').forEach(function(b){b.classList.remove('active');if(b.getAttribute('data-sub-theme')===theme)b.classList.add('active')});
+document.querySelectorAll('[data-sub-font]').forEach(function(b){b.classList.remove('active');if(b.getAttribute('data-sub-font')===font)b.classList.add('active')});
+document.querySelectorAll('[data-sub-color]').forEach(function(b){b.classList.remove('active');if(b.getAttribute('data-sub-color')===accent)b.classList.add('active')});
+document.querySelectorAll('[data-sub-grid]').forEach(function(b){b.classList.remove('active');if(b.getAttribute('data-sub-grid')===grid)b.classList.add('active')});
+document.querySelectorAll('[data-sub-speed]').forEach(function(b){b.classList.remove('active');if(b.getAttribute('data-sub-speed')===speed)b.classList.add('active')});
+document.querySelectorAll('[data-sub-lang]').forEach(function(b){b.classList.remove('active');if(b.getAttribute('data-sub-lang')===lang)b.classList.add('active')});
+var favBox=document.getElementById('favCountBox');if(favBox)favBox.textContent=favorites.length;
+var langSub=document.getElementById('langSubValue');if(langSub)langSub.textContent=lang==='en'?'English • Algeria':'العربية • الجزائر';
+var searchBox=document.getElementById('searchHistoryBox');
+if(searchBox){var hist=[];try{hist=JSON.parse(localStorage.getItem('searchHistory')||'[]')}catch(e){hist=[]}searchBox.innerHTML=hist.length===0?'لا يوجد سجل بحث حالياً':hist.map(function(h){return '🔍 '+h}).join('<br>');}
+}
+
 // ===== Slider: التنقل =====
 function initSlider(){
 sliderEl = document.getElementById('pageSlider');
@@ -784,13 +979,13 @@ var pages=document.querySelectorAll('.page');
 if(pages[currentPageIndex])pages[currentPageIndex].scrollTo({top:0,behavior:'smooth'});
 }
 
-// ===== السحب (مصحّح: بدون - على movePercent) =====
+// ===== السحب =====
 function initSwipe(){
 if(!sliderEl)return;
 var screenWidth = window.innerWidth;
 sliderEl.addEventListener('touchstart',function(e){
 if(!swipeEnabled)return;
-if(e.target.closest('.modal')||e.target.closest('.bottom-nav')||e.target.closest('.sidebar')||e.target.closest('input')||e.target.closest('select')||e.target.closest('button'))return;
+if(e.target.closest('.modal')||e.target.closest('.bottom-nav')||e.target.closest('.sidebar')||e.target.closest('.settings-sub')||e.target.closest('input')||e.target.closest('select')||e.target.closest('button'))return;
 touchStartX = e.touches[0].clientX;
 touchStartY = e.touches[0].clientY;
 touchCurrentX = touchStartX;
@@ -805,13 +1000,10 @@ var deltaX = touchCurrentX - touchStartX;
 var deltaY = e.touches[0].clientY - touchStartY;
 if(!dragDirection && (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10)){
 dragDirection = Math.abs(deltaX) > Math.abs(deltaY) ? 'horizontal' : 'vertical';
-if(dragDirection === 'horizontal'){
-sliderEl.style.transition = 'none';
-}
+if(dragDirection === 'horizontal'){sliderEl.style.transition = 'none'}
 }
 if(dragDirection !== 'horizontal')return;
 isDragging = true;
-// ⚠️ مصحّح: بدون -
 var movePercent = (deltaX / screenWidth) * 20;
 var basePercent = -currentPageIndex * 20;
 var newPercent = basePercent + movePercent;
@@ -828,7 +1020,6 @@ if(!isDragging){touchStartX = 0;return}
 var deltaX = touchCurrentX - touchStartX;
 var threshold = screenWidth * 0.15;
 var newIndex = currentPageIndex;
-// ⚠️ مصحّح: عكس المنطق
 if(deltaX > threshold){
 if(currentPageIndex < totalPages - 1){newIndex = currentPageIndex + 1}
 else if(currentPageIndex === totalPages - 1 && loopEnabled){newIndex = 0}
@@ -850,17 +1041,17 @@ touchStartX = 0;isDragging = false;dragDirection = null;
 });
 }
 // ===== الإعدادات =====
-function cycleTheme(){var themes=['dark','light','gray'];var names={dark:'ليلي',light:'نهاري',gray:'رمادي'};var current=localStorage.getItem('theme')||'dark';var next=themes[(themes.indexOf(current)+1)%3];setTheme(next)}
-function setTheme(mode){document.body.classList.remove('light','gray');if(mode==='light')document.body.classList.add('light');if(mode==='gray')document.body.classList.add('gray');localStorage.setItem('theme',mode);updateSidebarUI();if(mode==='dark')unlockBadge('dark_mode');showToast(currentLang==='en'?'Theme changed':'تم تغيير المظهر')}
-function setFontSize(size){document.body.classList.remove('font-small','font-medium','font-large');document.body.classList.add('font-'+size);localStorage.setItem('fontSize',size);updateSidebarUI();showToast(currentLang==='en'?'Font size changed':'تم تغيير حجم الخط')}
-function setAccent(color){document.documentElement.style.setProperty('--accent',color);document.documentElement.style.setProperty('--accent-light',color);document.documentElement.style.setProperty('--accent-dark',color);localStorage.setItem('accentColor',color);updateSidebarUI();showToast(currentLang==='en'?'Color changed':'تم تغيير اللون')}
-function setLanguage(lang){currentLang=lang;localStorage.setItem('language',lang);document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.querySelectorAll('[data-i18n]').forEach(function(el){var key=el.getAttribute('data-i18n');if(translations[lang]&&translations[lang][key]){el.textContent=translations[lang][key]}});document.querySelectorAll('[data-i18n-html]').forEach(function(el){var key=el.getAttribute('data-i18n-html');if(translations[lang]&&translations[lang][key]){el.innerHTML=translations[lang][key]}});document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){var key=el.getAttribute('data-i18n-placeholder');if(translations[lang]&&translations[lang][key]){el.placeholder=translations[lang][key]}});updateSidebarUI();showToast(lang==='en'?'Language changed':'تم تغيير اللغة')}
-function setGridSize(size){document.body.classList.remove('grid-3','grid-4','grid-5');document.body.classList.add('grid-'+size);localStorage.setItem('gridSize',size);updateSidebarUI();showToast(currentLang==='en'?'Grid: '+size+' per row':'الشبكة: '+size+' في الصف')}
-function toggleAnimation(){animEnabled=!animEnabled;localStorage.setItem('animEnabled',animEnabled);document.body.classList.toggle('no-animation',!animEnabled);document.getElementById('animToggle').classList.toggle('on',animEnabled);showToast(currentLang==='en'?(animEnabled?'Animation ON':'Animation OFF'):(animEnabled?'الأنميشن مفعّل':'الأنميشن متوقف'))}
-function setAnimSpeed(speed){document.body.classList.remove('fast-animation','slow-animation');if(speed==='fast')document.body.classList.add('fast-animation');if(speed==='slow')document.body.classList.add('slow-animation');localStorage.setItem('animSpeed',speed);updateSidebarUI();showToast(currentLang==='en'?'Speed changed':'تم تغيير السرعة')}
-function toggleSwipe(){swipeEnabled=!swipeEnabled;localStorage.setItem('swipeEnabled',swipeEnabled);document.getElementById('swipeToggle').classList.toggle('on',swipeEnabled);showToast(currentLang==='en'?(swipeEnabled?'Swipe ON':'Swipe OFF'):(swipeEnabled?'السحب مفعّل':'السحب متوقف'))}
-function toggleLoop(){loopEnabled=!loopEnabled;localStorage.setItem('loopEnabled',loopEnabled);document.getElementById('loopToggle').classList.toggle('on',loopEnabled);showToast(currentLang==='en'?(loopEnabled?'Loop ON':'Loop OFF'):(loopEnabled?'السحب الدائري مفعّل':'السحب الدائري متوقف'))}
-function toggleParticles(){var hidden=document.body.classList.toggle('hide-particles');localStorage.setItem('hideParticles',hidden);document.getElementById('particlesToggle').classList.toggle('on',!hidden);showToast(currentLang==='en'?'Particles changed':'تم تغيير الجزيئات')}
+function cycleTheme(){var themes=['dark','light','gray'];var current=localStorage.getItem('theme')||'dark';var next=themes[(themes.indexOf(current)+1)%3];setTheme(next)}
+function setTheme(mode){document.body.classList.remove('light','gray');if(mode==='light')document.body.classList.add('light');if(mode==='gray')document.body.classList.add('gray');localStorage.setItem('theme',mode);updateSidebarUI();updateSubSettingsUI();if(mode==='dark')unlockBadge('dark_mode');showToast(currentLang==='en'?'Theme changed':'تم تغيير المظهر')}
+function setFontSize(size){document.body.classList.remove('font-small','font-medium','font-large');document.body.classList.add('font-'+size);localStorage.setItem('fontSize',size);updateSidebarUI();updateSubSettingsUI();showToast(currentLang==='en'?'Font size changed':'تم تغيير حجم الخط')}
+function setAccent(color){document.documentElement.style.setProperty('--accent',color);document.documentElement.style.setProperty('--accent-light',color);document.documentElement.style.setProperty('--accent-dark',color);localStorage.setItem('accentColor',color);updateSidebarUI();updateSubSettingsUI();showToast(currentLang==='en'?'Color changed':'تم تغيير اللون')}
+function setLanguage(lang){currentLang=lang;localStorage.setItem('language',lang);document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.querySelectorAll('[data-i18n]').forEach(function(el){var key=el.getAttribute('data-i18n');if(translations[lang]&&translations[lang][key]){el.textContent=translations[lang][key]}});document.querySelectorAll('[data-i18n-html]').forEach(function(el){var key=el.getAttribute('data-i18n-html');if(translations[lang]&&translations[lang][key]){el.innerHTML=translations[lang][key]}});document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el){var key=el.getAttribute('data-i18n-placeholder');if(translations[lang]&&translations[lang][key]){el.placeholder=translations[lang][key]}});updateSidebarUI();updateSubSettingsUI();showToast(lang==='en'?'Language changed':'تم تغيير اللغة')}
+function setGridSize(size){document.body.classList.remove('grid-3','grid-4','grid-5');document.body.classList.add('grid-'+size);localStorage.setItem('gridSize',size);updateSidebarUI();updateSubSettingsUI();showToast(currentLang==='en'?'Grid: '+size+' per row':'الشبكة: '+size+' في الصف')}
+function toggleAnimation(){animEnabled=!animEnabled;localStorage.setItem('animEnabled',animEnabled);document.body.classList.toggle('no-animation',!animEnabled);document.getElementById('animToggle').classList.toggle('on',animEnabled);var s=document.getElementById('subAnimToggle');if(s)s.classList.toggle('on',animEnabled);showToast(currentLang==='en'?(animEnabled?'Animation ON':'Animation OFF'):(animEnabled?'الأنميشن مفعّل':'الأنميشن متوقف'))}
+function setAnimSpeed(speed){document.body.classList.remove('fast-animation','slow-animation');if(speed==='fast')document.body.classList.add('fast-animation');if(speed==='slow')document.body.classList.add('slow-animation');localStorage.setItem('animSpeed',speed);updateSidebarUI();updateSubSettingsUI();showToast(currentLang==='en'?'Speed changed':'تم تغيير السرعة')}
+function toggleSwipe(){swipeEnabled=!swipeEnabled;localStorage.setItem('swipeEnabled',swipeEnabled);document.getElementById('swipeToggle').classList.toggle('on',swipeEnabled);var s=document.getElementById('subSwipeToggle');if(s)s.classList.toggle('on',swipeEnabled);showToast(currentLang==='en'?(swipeEnabled?'Swipe ON':'Swipe OFF'):(swipeEnabled?'السحب مفعّل':'السحب متوقف'))}
+function toggleLoop(){loopEnabled=!loopEnabled;localStorage.setItem('loopEnabled',loopEnabled);document.getElementById('loopToggle').classList.toggle('on',loopEnabled);var s=document.getElementById('subLoopToggle');if(s)s.classList.toggle('on',loopEnabled);showToast(currentLang==='en'?(loopEnabled?'Loop ON':'Loop OFF'):(loopEnabled?'السحب الدائري مفعّل':'السحب الدائري متوقف'))}
+function toggleParticles(){var hidden=document.body.classList.toggle('hide-particles');localStorage.setItem('hideParticles',hidden);document.getElementById('particlesToggle').classList.toggle('on',!hidden);var s=document.getElementById('subParticlesToggle');if(s)s.classList.toggle('on',!hidden);showToast(currentLang==='en'?'Particles changed':'تم تغيير الجزيئات')}
 function clearAllData(){var msg=currentLang==='en'?'Clear all data?':'مسح كل البيانات؟';if(confirm(msg)){localStorage.clear();showToast('...');setTimeout(function(){location.reload()},800)}}
 function updateSidebarUI(){
 var theme=localStorage.getItem('theme')||'dark';
@@ -878,6 +1069,16 @@ document.querySelectorAll('[data-speed]').forEach(function(b){b.classList.remove
 var lang=localStorage.getItem('language')||'ar';
 document.querySelectorAll('[data-lang]').forEach(function(b){b.classList.remove('active');if(b.getAttribute('data-lang')===lang)b.classList.add('active')});
 }
+
+// ===== دوال الإعدادات الفرعية =====
+function toggleTrending(){var hidden=document.body.classList.toggle('hide-trending');localStorage.setItem('hideTrending',hidden);var s=document.getElementById('subTrendingToggle');if(s)s.classList.toggle('on',!hidden);showToast(currentLang==='en'?'Trending changed':'تم تغيير قسم الرواج')}
+function toggleNews(){var hidden=document.body.classList.toggle('hide-news');localStorage.setItem('hideNews',hidden);var s=document.getElementById('subNewsToggle');if(s)s.classList.toggle('on',!hidden);showToast(currentLang==='en'?'News changed':'تم تغيير قسم الأخبار')}
+function toggleUpcoming(){var hidden=document.body.classList.toggle('hide-upcoming');localStorage.setItem('hideUpcoming',hidden);var s=document.getElementById('subUpcomingToggle');if(s)s.classList.toggle('on',!hidden);showToast(currentLang==='en'?'Upcoming changed':'تم تغيير قسم القادمة')}
+function toggleNotification(type){var key='notif_'+type;var current=localStorage.getItem(key)!=='false';localStorage.setItem(key,!current);showToast(currentLang==='en'?(current?'Notification OFF':'Notification ON'):(current?'تم إيقاف الإشعار':'تم تفعيل الإشعار'))}
+function clearSearchHistory(){localStorage.removeItem('searchHistory');updateSubSettingsUI();showToast(currentLang==='en'?'Search history cleared':'تم مسح سجل البحث')}
+function clearFavorites(){if(confirm(currentLang==='en'?'Clear all favorites?':'مسح كل المفضلة؟')){favorites=[];localStorage.setItem('favorites','[]');renderFavoritesPage();updateSubSettingsUI();showToast(currentLang==='en'?'Favorites cleared':'تم مسح المفضلة')}}
+function exportData(){var data={favorites:favorites,customList:customList,badges:badges,settings:{theme:localStorage.getItem('theme'),font:localStorage.getItem('fontSize'),accent:localStorage.getItem('accentColor'),lang:localStorage.getItem('language')}};var str=JSON.stringify(data,null,2);if(navigator.clipboard){navigator.clipboard.writeText(str).then(function(){showToast(currentLang==='en'?'Data copied!':'تم نسخ بياناتك!')})}else{showToast('تعذر النسخ')}}
+function clearCache(){if('caches' in window){caches.keys().then(function(names){for(var i=0;i<names.length;i++){caches.delete(names[i])}})}showToast(currentLang==='en'?'Cache cleared!':'تم مسح الكاش!')}
 
 // ===== صفحة مخصصة =====
 function renderCustomPage(){
@@ -1021,7 +1222,7 @@ grid.style.display='grid';loading.style.display='none';showMore.style.display='b
 }catch(err){console.error('RAWG Error:',err);if(resetGrid){loading.style.display='none';error.style.display='block';error.textContent='❌ '+(currentLang==='en'?'Connection error':'خطأ في الاتصال')+': '+err.message;showMore.style.display='none'}else{showMore.textContent='❌ '+(currentLang==='en'?'Failed — try again':'فشل — جرب مرة أخرى');showMore.disabled=false}}
 rawgLoading=false;
 }
-function searchRawg(){rawgCurrentQuery=document.getElementById('rawgSearchInput').value.trim();rawgCurrentGenre=document.getElementById('rawgGenre').value;rawgCurrentOrdering=document.getElementById('rawgOrdering').value;loadRawgGames(1,true)}
+function searchRawg(){rawgCurrentQuery=document.getElementById('rawgSearchInput').value.trim();rawgCurrentGenre=document.getElementById('rawgGenre').value;rawgCurrentOrdering=document.getElementById('rawgOrdering').value;var hist=[];try{hist=JSON.parse(localStorage.getItem('searchHistory')||'[]')}catch(e){hist=[]}if(rawgCurrentQuery){hist.unshift(rawgCurrentQuery);hist=hist.slice(0,10);localStorage.setItem('searchHistory',JSON.stringify(hist))}loadRawgGames(1,true)}
 function filterRawgByGenre(){rawgCurrentGenre=document.getElementById('rawgGenre').value;rawgCurrentOrdering=document.getElementById('rawgOrdering').value;loadRawgGames(1,true)}
 function showRawgGameDetails(game){currentRawgGame=game;currentGameId=null;var rating=(game.rating*2).toFixed(1);var year=game.released?game.released.split('-')[0]:'?';document.getElementById('modalImg').innerHTML='<img src="'+(game.background_image||'https://placehold.co/300x200/8b3dff/ffffff?text=Game')+'" alt="'+game.name+'">';document.getElementById('modalTitle').textContent=game.name;document.getElementById('modalDesc').textContent=(currentLang==='en'?'Released: ':'صدرت: ')+year+(currentLang==='en'?' • Rating: ':' • التقييم: ')+rating+'/10';document.getElementById('modalRating').textContent=rating+'/10';document.getElementById('modalCat').textContent=game.genres&&game.genres[0]?game.genres[0].name:'Game';document.getElementById('modalYear').textContent=year;document.getElementById('modalInfo').innerHTML='<div class="modal-info-row"><span class="label">🌐 '+(currentLang==='en'?'Source':'المصدر')+'</span><span class="value">RAWG API</span></div><div class="modal-info-row"><span class="label">📅 '+(currentLang==='en'?'Released':'تاريخ الإصدار')+'</span><span class="value">'+(game.released||'?')+'</span></div><div class="modal-info-row"><span class="label">⭐ '+(currentLang==='en'?'Rating':'التقييم')+'</span><span class="value">'+rating+'/10</span></div>';document.getElementById('starsRating').innerHTML='';document.getElementById('favModalBtn').style.display='none';document.getElementById('addToCustomBtn').style.display='block';updateCustomBtn();document.getElementById('modal').classList.add('active')}
 
@@ -1033,6 +1234,9 @@ var accent=localStorage.getItem('accentColor')||'#8b3dff';
 var grid=localStorage.getItem('gridSize')||'4';
 var animSpeed=localStorage.getItem('animSpeed')||'normal';
 var hideParticles=localStorage.getItem('hideParticles')==='true';
+var hideTrending=localStorage.getItem('hideTrending')==='true';
+var hideNews=localStorage.getItem('hideNews')==='true';
+var hideUpcoming=localStorage.getItem('hideUpcoming')==='true';
 if(theme==='light')document.body.classList.add('light');
 if(theme==='gray')document.body.classList.add('gray');
 document.body.classList.add('font-'+font);
@@ -1040,6 +1244,9 @@ document.body.classList.add('grid-'+grid);
 if(animSpeed==='fast')document.body.classList.add('fast-animation');
 if(animSpeed==='slow')document.body.classList.add('slow-animation');
 if(hideParticles)document.body.classList.add('hide-particles');
+if(hideTrending)document.body.classList.add('hide-trending');
+if(hideNews)document.body.classList.add('hide-news');
+if(hideUpcoming)document.body.classList.add('hide-upcoming');
 if(!animEnabled)document.body.classList.add('no-animation');
 document.documentElement.style.setProperty('--accent',accent);
 document.documentElement.style.setProperty('--accent-light',accent);
@@ -1049,11 +1256,20 @@ var sw=document.getElementById('swipeToggle');if(sw&&!swipeEnabled)sw.classList.
 var lp=document.getElementById('loopToggle');if(lp&&!loopEnabled)lp.classList.remove('on');
 var an=document.getElementById('animToggle');if(an&&!animEnabled)an.classList.remove('on');
 var pt=document.getElementById('particlesToggle');if(pt&&hideParticles)pt.classList.remove('on');
+var ssw=document.getElementById('subSwipeToggle');if(ssw&&!swipeEnabled)ssw.classList.remove('on');
+var slp=document.getElementById('subLoopToggle');if(slp&&!loopEnabled)slp.classList.remove('on');
+var san=document.getElementById('subAnimToggle');if(san&&!animEnabled)san.classList.remove('on');
+var spt=document.getElementById('subParticlesToggle');if(spt&&hideParticles)spt.classList.remove('on');
+var st=document.getElementById('subTrendingToggle');if(st&&hideTrending)st.classList.remove('on');
+var sn=document.getElementById('subNewsToggle');if(sn&&hideNews)sn.classList.remove('on');
+var su=document.getElementById('subUpcomingToggle');if(su&&hideUpcoming)su.classList.remove('on');
 },100);
 updateSidebarUI();
+updateSubSettingsUI();
 })();
 (function initParticles(){var canvas=document.getElementById('particles-bg');if(!canvas)return;var ctx=canvas.getContext('2d');var particles=[];function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight}resize();window.addEventListener('resize',resize);var count=15;for(var i=0;i<count;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5})}function getAccent(){return getComputedStyle(document.documentElement).getPropertyValue('--accent').trim()||'#8b3dff'}function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);var accent=getAccent();ctx.fillStyle=accent;ctx.strokeStyle=accent;particles.forEach(function(p,i){p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>canvas.width)p.dx*=-1;if(p.y<0||p.y>canvas.height)p.dy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fill();particles.slice(i+1).forEach(function(p2){var dist=Math.hypot(p.x-p2.x,p.y-p2.y);if(dist<120){ctx.globalAlpha=0.15;ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(p2.x,p2.y);ctx.stroke();ctx.globalAlpha=1}})});requestAnimationFrame(animate)}animate()})();
 window.addEventListener('scroll',function(){var totalHeight=document.documentElement.scrollHeight-window.innerHeight;var progress=(window.scrollY/totalHeight)*100;var pb=document.getElementById('progress-bar');if(pb)pb.style.width=progress+'%';var topBtn=document.getElementById('topBtn');if(topBtn){if(window.scrollY>300){topBtn.classList.add('show')}else{topBtn.classList.remove('show')}}});
+document.querySelectorAll('.settings-sub').forEach(function(el){el.addEventListener('click',function(e){if(e.target===el)closeSubSettings()})});
 renderTopRated();
 renderMostViewed();
 renderUpcoming();
