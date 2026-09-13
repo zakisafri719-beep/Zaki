@@ -50,7 +50,7 @@ header{min-height:75px;background:var(--bg2);border-bottom:1px solid var(--borde
 .search:focus{border-color:var(--accent);box-shadow:0 0 15px var(--accent)}
 .icon-btn{background:var(--bg3);border:1px solid var(--border2);color:var(--text);width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:18px;transition:.3s;display:flex;align-items:center;justify-content:center;padding:0;line-height:1}
 .icon-btn:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
-.menu-btn{background:var(--bg3);border:1px solid var(--border2);color:var(--text);width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:20px;transition:.3s;display:flex;align-items:center;justify-content:center;padding:0}
+.menu-btn{background:var(--bg3);border:1px solid var(--border2);color:var(--text);width:42px;height:42px;border-radius:50%;cursor:pointer;font-size:20px;transition:.3s;display:flex;align-items:center;justify-content:center;padding:0;position:relative;z-index:3000}
 .menu-btn:hover{background:var(--accent);color:#fff}
 .container{max-width:1250px;margin:auto;padding:25px;position:relative;z-index:1}
 .hero{min-height:330px;border-radius:25px;padding:50px;display:flex;align-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 80% 30%,var(--accent) 0,transparent 30%),radial-gradient(circle at 60% 80%,#1d6cff 0,transparent 30%),linear-gradient(135deg,#17125a,#080d2b);border:1px solid var(--accent);margin-bottom:20px}
@@ -241,9 +241,9 @@ body.no-animation .modal-content{animation:none}
 .custom-card .custom-info h4{font-size:11px;color:var(--text);overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;line-height:1.3;height:28px}
 .custom-card .custom-info .custom-rating{font-size:10px;color:var(--yellow);margin-top:4px}
 /* ===== القائمة الجانبية ===== */
-.sidebar{position:fixed;top:0;right:-100%;width:340px;max-width:88%;height:100%;background:var(--bg2);border-left:1px solid var(--border);z-index:2000;transition:right var(--anim-speed) ease;overflow-y:auto;padding:20px;box-shadow:-10px 0 40px rgba(0,0,0,.5)}
+.sidebar{position:fixed;top:0;right:-100%;width:340px;max-width:88%;height:100%;background:var(--bg2);border-left:1px solid var(--border);z-index:3500;transition:right var(--anim-speed) ease;overflow-y:auto;padding:20px;box-shadow:-10px 0 40px rgba(0,0,0,.5)}
 .sidebar.open{right:0}
-.sidebar-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:#000000aa;z-index:1999;display:none;backdrop-filter:blur(3px)}
+.sidebar-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:#000000aa;z-index:3400;display:none;backdrop-filter:blur(3px)}
 .sidebar-overlay.open{display:block}
 .sidebar-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid var(--border)}
 .sidebar-header h3{color:var(--accent-light);font-size:18px}
@@ -279,7 +279,7 @@ body.no-animation .modal-content{animation:none}
 .sidebar-menu-item .menu-info p{color:var(--text3);font-size:11px}
 .sidebar-menu-item .menu-arrow{color:var(--accent);font-size:16px;font-weight:bold}
 /* ===== النوافذ الفرعية للإعدادات ===== */
-.settings-sub{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000000cc;z-index:2100;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(5px)}
+.settings-sub{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:#000000cc;z-index:3600;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(5px)}
 .settings-sub.active{display:flex}
 .settings-sub-content{background:var(--bg2);border:1px solid var(--accent);border-radius:20px;padding:25px;max-width:500px;width:100%;animation:pop var(--anim-speed) ease;max-height:85vh;overflow-y:auto}
 .settings-sub-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid var(--border)}
@@ -632,7 +632,7 @@ body.no-animation button:active,body.no-animation .icon-btn:active,body.no-anima
 <div class="settings-sub-header"><h3>👤 الحساب</h3><button class="settings-sub-close" onclick="closeSubSettings()">✕</button></div>
 <div class="settings-option"><span class="settings-option-label">📝 الاسم</span><span class="settings-option-value">زائر</span></div>
 <div class="settings-option"><span class="settings-option-label">📧 البريد</span><span class="settings-option-value">غير مسجل</span></div>
-<div class="settings-option" onclick="goToPage(0);closeSubSettings();toggleSidebar()"><span class="settings-option-label">🔑 تسجيل الدخول</span><span class="menu-arrow">‹</span></div>
+<div class="settings-option" onclick="goToPage(4);closeSubSettings();toggleSidebar()"><span class="settings-option-label">🔑 تسجيل الدخول</span><span class="menu-arrow">‹</span></div>
 <div class="settings-option" onclick="showToast('قريباً: الملف الشخصي')"><span class="settings-option-label">📊 نشاطي</span><span class="menu-arrow">‹</span></div>
 </div>
 </div>
@@ -716,7 +716,7 @@ body.no-animation button:active,body.no-animation .icon-btn:active,body.no-anima
 <div class="settings-sub" id="subFavorites">
 <div class="settings-sub-content">
 <div class="settings-sub-header"><h3>❤️ المفضلة</h3><button class="settings-sub-close" onclick="closeSubSettings()">✕</button></div>
-<div class="settings-option" onclick="goToPage(0);closeSubSettings();toggleSidebar()"><span class="settings-option-label">📋 عرض المفضلة</span><span class="menu-arrow">‹</span></div>
+<div class="settings-option" onclick="goToPage(4);closeSubSettings();toggleSidebar()"><span class="settings-option-label">📋 عرض المفضلة</span><span class="menu-arrow">‹</span></div>
 <div class="settings-option" onclick="clearFavorites()"><span class="settings-option-label">🗑️ مسح كل المفضلة</span><span class="menu-arrow">‹</span></div>
 <div class="settings-info-box" style="margin-top:15px">❤️ عدد الألعاب المفضلة: <strong id="favCountBox">0</strong></div>
 </div>
@@ -979,7 +979,7 @@ var pages=document.querySelectorAll('.page');
 if(pages[currentPageIndex])pages[currentPageIndex].scrollTo({top:0,behavior:'smooth'});
 }
 
-// ===== السحب =====
+// ===== السحب (touchend مصحّح) =====
 function initSwipe(){
 if(!sliderEl)return;
 var screenWidth = window.innerWidth;
@@ -1020,13 +1020,14 @@ if(!isDragging){touchStartX = 0;return}
 var deltaX = touchCurrentX - touchStartX;
 var threshold = screenWidth * 0.15;
 var newIndex = currentPageIndex;
+// ⚠️ مصحّح: عكس الاتجاه
 if(deltaX > threshold){
-if(currentPageIndex < totalPages - 1){newIndex = currentPageIndex + 1}
-else if(currentPageIndex === totalPages - 1 && loopEnabled){newIndex = 0}
-}
-else if(deltaX < -threshold){
 if(currentPageIndex > 0){newIndex = currentPageIndex - 1}
 else if(currentPageIndex === 0 && loopEnabled){newIndex = totalPages - 1}
+}
+else if(deltaX < -threshold){
+if(currentPageIndex < totalPages - 1){newIndex = currentPageIndex + 1}
+else if(currentPageIndex === totalPages - 1 && loopEnabled){newIndex = 0}
 }
 currentPageIndex = newIndex;
 setSliderPosition(newIndex, true);
@@ -1070,7 +1071,7 @@ var lang=localStorage.getItem('language')||'ar';
 document.querySelectorAll('[data-lang]').forEach(function(b){b.classList.remove('active');if(b.getAttribute('data-lang')===lang)b.classList.add('active')});
 }
 
-// ===== دوال الإعدادات الفرعية =====
+// ===== دوال النوافذ الفرعية =====
 function toggleTrending(){var hidden=document.body.classList.toggle('hide-trending');localStorage.setItem('hideTrending',hidden);var s=document.getElementById('subTrendingToggle');if(s)s.classList.toggle('on',!hidden);showToast(currentLang==='en'?'Trending changed':'تم تغيير قسم الرواج')}
 function toggleNews(){var hidden=document.body.classList.toggle('hide-news');localStorage.setItem('hideNews',hidden);var s=document.getElementById('subNewsToggle');if(s)s.classList.toggle('on',!hidden);showToast(currentLang==='en'?'News changed':'تم تغيير قسم الأخبار')}
 function toggleUpcoming(){var hidden=document.body.classList.toggle('hide-upcoming');localStorage.setItem('hideUpcoming',hidden);var s=document.getElementById('subUpcomingToggle');if(s)s.classList.toggle('on',!hidden);showToast(currentLang==='en'?'Upcoming changed':'تم تغيير قسم القادمة')}
