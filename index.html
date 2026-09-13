@@ -354,7 +354,7 @@ body.no-animation button:active,body.no-animation .icon-btn:active,body.no-anima
 <!-- الصفحة 0: المفضلة -->
 <div class="page" data-page="favorites" id="pageFavorites">
 <div class="page-header">
-<button class="back-btn" onclick="goToPage(2)">→</button>
+<button class="back-btn" onclick="goToPage(4)">→</button>
 <h2>❤️ المفضلة</h2>
 </div>
 <div id="favoritesGrid" class="games" style="padding:15px"></div>
@@ -482,7 +482,7 @@ body.no-animation button:active,body.no-animation .icon-btn:active,body.no-anima
 <div class="sidebar-section">
 <div class="sidebar-section-title">ℹ️ معلومات</div>
 <div class="sidebar-info">
-<p><strong>الإصدار:</strong> v5.0</p>
+<p><strong>الإصدار:</strong> v5.5</p>
 <p><strong>المطوّر:</strong> Zaki Safri</p>
 <p><strong>المصدر:</strong> RAWG API</p>
 </div>
@@ -535,7 +535,7 @@ body.no-animation button:active,body.no-animation .icon-btn:active,body.no-anima
 <div class="page" data-page="custom" id="pageCustom">
 <div class="custom-header">
 <div class="custom-title-row">
-<button class="back-btn" onclick="goToPage(2)">→</button>
+<button class="back-btn" onclick="goToPage(1)">→</button>
 <h2 id="customListTitle">⭐ قائمتي المخصصة</h2>
 <button class="custom-edit-btn" onclick="toggleEditName()" id="editNameBtn">✏️ تعديل</button>
 </div>
@@ -551,7 +551,7 @@ body.no-animation button:active,body.no-animation .icon-btn:active,body.no-anima
 <!-- الصفحة 4: الحساب -->
 <div class="page" data-page="account" id="pageAccount">
 <div class="page-header">
-<button class="back-btn" onclick="goToPage(2)">→</button>
+<button class="back-btn" onclick="goToPage(0)">→</button>
 <h2>👤 الحساب</h2>
 </div>
 <div id="accountPageContent">
@@ -584,7 +584,7 @@ body.no-animation button:active,body.no-animation .icon-btn:active,body.no-anima
 <span class="nav-icon">❤️</span>
 <span class="nav-label">المفضلة</span>
 </button>
-<button class="bottom-nav-item" data-page-btn="1" onclick="goToPage(1)">
+<button class="bottom-nav-item" data-page-btn="1" onclick="goToPage(3)">
 <span class="nav-icon">🎮</span>
 <span class="nav-label">الألعاب</span>
 </button>
@@ -592,7 +592,7 @@ body.no-animation button:active,body.no-animation .icon-btn:active,body.no-anima
 <span class="nav-icon">🏠</span>
 <span class="nav-label">الرئيسية</span>
 </button>
-<button class="bottom-nav-item" data-page-btn="3" onclick="goToPage(3)">
+<button class="bottom-nav-item" data-page-btn="3" onclick="goToPage(1)">
 <span class="nav-icon">⭐</span>
 <span class="nav-label">مخصصة</span>
 </button>
@@ -609,7 +609,7 @@ body.no-animation button:active,body.no-animation .icon-btn:active,body.no-anima
 <p class="modal-desc">🎮 Game Hub — موسوعة الألعاب الأولى بالعربية. اكتشف أفضل الألعاب بمعلومات كاملة وتقييمات. موقع مجاني، يعمل كتطبيق على جوالك!</p>
 <div class="modal-info">
 <div class="modal-info-row"><span class="label">📅 تاريخ الإصدار</span><span class="value">2025</span></div>
-<div class="modal-info-row"><span class="label">🔢 الإصدار</span><span class="value">v5.0</span></div>
+<div class="modal-info-row"><span class="label">🔢 الإصدار</span><span class="value">v5.5</span></div>
 <div class="modal-info-row"><span class="label">👨‍💻 المطوّر</span><span class="value">Zaki Safri</span></div>
 <div class="modal-info-row"><span class="label">🌐 من RAWG</span><span class="value">900,000+ لعبة</span></div>
 </div>
@@ -773,9 +773,10 @@ if(index===3)renderCustomPage();
 }
 function updateBottomNav(){
 var btns=document.querySelectorAll('.bottom-nav-item');
+var pageToBtn={0:0,1:3,2:2,3:1,4:4};
 for(var i=0;i<btns.length;i++){
 btns[i].classList.remove('active');
-if(parseInt(btns[i].getAttribute('data-page-btn'))===currentPageIndex)btns[i].classList.add('active');
+if(parseInt(btns[i].getAttribute('data-page-btn'))===pageToBtn[currentPageIndex])btns[i].classList.add('active');
 }
 }
 function scrollToTop(){
@@ -824,7 +825,6 @@ if(!isDragging){touchStartX = 0;return}
 var deltaX = touchCurrentX - touchStartX;
 var threshold = screenWidth * 0.15;
 var newIndex = currentPageIndex;
-// السحب لليمين → الصفحة التالية
 if(deltaX > threshold){
 if(currentPageIndex < totalPages - 1){newIndex = currentPageIndex + 1}
 else if(currentPageIndex === totalPages - 1 && loopEnabled){newIndex = 0}
