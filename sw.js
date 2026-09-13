@@ -1,4 +1,4 @@
-const CACHE_NAME = 'game-hub-v10';
+const CACHE_NAME = 'game-hub-v11';
 const urlsToCache = [
   './',
   './index.html',
